@@ -4,4 +4,4 @@ require("@babel/register")({
 });
 
 // Import the rest of our application.
-module.exports = require("./cluster/cluster.js");
+module.exports = require("./cluster");
