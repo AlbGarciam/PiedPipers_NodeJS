@@ -1,2 +1,2 @@
-import GetPort from "./port";
+import GetPort from "./get-port";
 export { GetPort };
