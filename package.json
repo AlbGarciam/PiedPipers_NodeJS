@@ -15,6 +15,8 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
+    "constantinople": ">=3.1.1",
+    "clean-css": ">=4.1.11",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/register": "^7.6.2"
