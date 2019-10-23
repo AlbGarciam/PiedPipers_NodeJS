@@ -2,13 +2,16 @@ import { createError } from "http-errors";
 import express from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import { DBConnection } from "../database";
 
 import { User as UsersRouter } from "../routes";
+
+DBConnection();
 
 const app = express();
 
 // view engine setup
-app.use(logger("dev"));
+app.use(logger("dev", { stream: logger.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
