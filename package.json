@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prepare": "mkdir -p database && rm -f ./database/db && mkdir ./database/db",
+    "database": "mongod --config ./etc/mongo.conf",
     "start:prod": "babel-node ./src",
     "start": "nodemon --exec babel-node ./src"
   },
@@ -13,6 +15,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "mongoose": "^5.7.6",
+    "cuid": "^2.1.4",
     "morgan": "~1.9.1"
   },
   "devDependencies": {
