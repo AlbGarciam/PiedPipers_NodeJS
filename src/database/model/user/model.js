@@ -1,6 +1,4 @@
-import { Schema, Model } from "mongoose";
-import Cuid from "cuid";
-import { HashItem, GenerateSalt } from "../../../utils";
+import { Schema, model } from "mongoose";
 
 const UserSchema = Schema(
   {
@@ -25,11 +23,11 @@ const UserSchema = Schema(
   { collection: "User" }
 );
 
-const UserModel = Model("User", UserSchema);
+const UserModel = model("User", UserSchema);
 
 UserModel.getByEmail = email => {
   return UserModel.findOne({ email: email }).select(
-    "name password username cuid dateAdded salt -_id"
+    "email password cuid dateAdded salt -_id"
   );
 };
 
@@ -38,14 +36,3 @@ UserModel.createUser = model => {
 };
 
 export default UserModel;
-
-/**
-  const salt = GenerateSalt();
-  const hashedPwd = HashItem(password, salt);
-
-  var model = {};
-  model.email = email;
-  model.password = hashedPwd;
-  model.cuid = Cuid();
-  model.salt = salt;
- */

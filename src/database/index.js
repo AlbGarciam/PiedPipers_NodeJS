@@ -1,2 +1,3 @@
 import DBConnection from "./connection";
-export { DBConnection };
+import * as Model from "./model";
+export { DBConnection, Model };

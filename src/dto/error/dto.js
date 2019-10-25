@@ -1,0 +1,33 @@
+const DTO = (code, ecode, message) => {
+  return {
+    code,
+    ecode,
+    message
+  };
+};
+
+/** CODES */
+const CODE_SERVER_ERROR = 500;
+const CODE_LOGIC_ERROR = 404;
+const CODE_AUTHORIZATION_ERROR = 403;
+
+/** ECODES */
+const ECODE_DATABASE_ERROR = 1000;
+const ECODE_ITEM_NOT_FOUND = 1001;
+const ECODE_INVALID_PASSWORD = 1002;
+
+/** MESSAGES */
+const MSG_ITEM_NOT_FOUND = "Item was not found";
+const MSG_INVALID_PASSWORD = "Invalid password";
+
+export {
+  DTO,
+  CODE_SERVER_ERROR,
+  CODE_LOGIC_ERROR,
+  CODE_AUTHORIZATION_ERROR,
+  ECODE_DATABASE_ERROR,
+  ECODE_ITEM_NOT_FOUND,
+  ECODE_INVALID_PASSWORD,
+  MSG_ITEM_NOT_FOUND,
+  MSG_INVALID_PASSWORD
+};
