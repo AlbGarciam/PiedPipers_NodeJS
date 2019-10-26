@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { Error } from "../../../dto";
 
 const UserSchema = Schema(
   {
@@ -25,14 +26,40 @@ const UserSchema = Schema(
 
 const UserModel = model("User", UserSchema);
 
-UserModel.getByEmail = email => {
-  return UserModel.findOne({ email: email }).select(
-    "email password cuid dateAdded salt -_id"
-  );
+UserModel.getByEmail = async email => {
+  try {
+    return await UserModel.findOne({ email: email }).select(
+      "email password cuid dateAdded salt -_id"
+    );
+  } catch (err) {
+    throw ErrorDTO.DTO(
+      ErrorDTO.CODE_SERVER_ERROR,
+      ErrorDTO.ECODE_DATABASE_ERROR,
+      err.message
+    );
+  }
 };
 
-UserModel.createUser = model => {
-  return model.save();
+UserModel.createUser = async model => {
+  try {
+    return await model.save();
+  } catch (err) {
+    console.log(err.code);
+    if (err.code == 11000) {
+      console.log("Duplicated");
+      throw Error.DTO(
+        Error.CODE_AUTHORIZATION_ERROR,
+        Error.ECODE_DUPLICATED_ITEM,
+        Error.MSG_DUPLICATED_ITEM
+      );
+    }
+    console.log("Not duplicated");
+    throw Error.DTO(
+      Error.CODE_SERVER_ERROR,
+      Error.ECODE_DATABASE_ERROR,
+      err.errmsg
+    );
+  }
 };
 
 export default UserModel;

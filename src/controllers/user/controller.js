@@ -8,16 +8,7 @@ const controller = {};
 
 controller.login = async (email, pwd) => {
   const trimmedEmail = email.trim();
-  var user = null;
-  try {
-    user = await Model.User.getByEmail(trimmedEmail);
-  } catch (err) {
-    throw ErrorDTO.DTO(
-      ErrorDTO.CODE_SERVER_ERROR,
-      ErrorDTO.ECODE_DATABASE_ERROR,
-      err.message
-    );
-  }
+  var user = await Model.User.getByEmail(trimmedEmail);
   if (_.isNull(user)) {
     throw ErrorDTO.DTO(
       ErrorDTO.CODE_LOGIC_ERROR,
@@ -46,16 +37,7 @@ controller.create = async (email, pwd) => {
     cuid: Cuid(),
     salt: salt
   });
-  try {
-    let user = await Model.User.createUser(model);
-    return User.DTO(user.email, user.cuid, user.dateAdded);
-  } catch (err) {
-    throw ErrorDTO.DTO(
-      ErrorDTO.CODE_SERVER_ERROR,
-      ErrorDTO.ECODE_DATABASE_ERROR,
-      err.message
-    );
-  }
+  return await Model.User.createUser(model);
 };
 
 export default controller;

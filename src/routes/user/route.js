@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { UserController } from "../../controllers";
+import { UserController, TokenController } from "../../controllers";
 import _ from "lodash";
 
 const router = Router();
@@ -12,12 +12,13 @@ router.post("/login", async (req, res, next) => {
     );
     if (_.isNull(result)) {
       res.status(403).json({ message: "UNAUTHORIZED" });
-    } else {
-      res.status(200).json(result);
+      return;
     }
+    const token = TokenController.encodeToken(result);
+    res.setHeader("Authorization", token);
+    res.status(200).json(result);
   } catch (err) {
     next(err);
-    return;
   }
 });
 
@@ -29,12 +30,13 @@ router.post("/create", async (req, res, next) => {
     );
     if (_.isNull(result)) {
       res.status(500).json({ message: "Failure" });
-    } else {
-      res.status(200).json(result);
+      return;
     }
+    const token = TokenController.encodeToken(result);
+    res.setHeader("Authorization", token);
+    res.status(200).json(result);
   } catch (err) {
     next(err);
-    return;
   }
 });
 
