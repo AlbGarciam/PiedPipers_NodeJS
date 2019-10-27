@@ -2,7 +2,7 @@ import { TokenController } from "../../controllers";
 import { Error } from "../../dto";
 import _ from "lodash";
 
-export default async (req, res, next) => {
+export default () => async (req, res, next) => {
   const token = req.header("Authorization");
   try {
     const data = await TokenController.decodeToken(token);
@@ -16,6 +16,8 @@ export default async (req, res, next) => {
         )
       );
     } else {
+      res.locals.decodedToken = data;
+      res.setHeader("Authorization", token);
       next();
     }
   } catch (err) {

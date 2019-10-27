@@ -1,2 +1,3 @@
 import User from "./user";
-export { User };
+import Token from "./token";
+export { User, Token };

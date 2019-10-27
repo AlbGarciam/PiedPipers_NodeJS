@@ -2,6 +2,7 @@ import fs from "fs";
 import _ from "lodash";
 import { createHash } from "crypto";
 import JWT from "jsonwebtoken";
+import moment from "moment";
 import { Error } from "../../dto";
 
 const secretKey = fs.readFileSync("./etc/keys/private.key");
@@ -61,6 +62,7 @@ controller.encodeToken = data => {
   const hashedKey = sha256(key);
   const jwtData = {
     ...data,
+    userAction: moment().add(process.env.USER_ACTION_TTL, "minutes"),
     token: hashedKey
   };
   return encryptJWT(jwtData);

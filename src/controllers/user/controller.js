@@ -1,6 +1,7 @@
 import { Model } from "../../database";
 import { Error as ErrorDTO, User } from "../../dto";
 import Cuid from "cuid";
+import moment from "moment";
 import { ValidateEquality, GenerateSalt, HashItem } from "../../utils";
 import _ from "lodash";
 
@@ -28,7 +29,6 @@ controller.login = async (email, pwd) => {
 };
 
 controller.create = async (email, pwd) => {
-  console.debug(`Email to create: ${email}`);
   const salt = GenerateSalt();
   const hashedPwd = HashItem(pwd.trim(), salt);
   const model = Model.User({
@@ -38,6 +38,27 @@ controller.create = async (email, pwd) => {
     salt: salt
   });
   return await Model.User.createUser(model);
+};
+
+controller.updatePassword = async (cuid, password, userValidity) => {
+  if (moment().isAfter(userValidity)) {
+    throw ErrorDTO.DTO(
+      ErrorDTO.CODE_AUTHORIZATION_ERROR,
+      ErrorDTO.ECODE_LOGIN_REQUIRED,
+      ErrorDTO.MSG_LOGIN_REQUIRED
+    );
+  }
+  const { email, salt, dateAdded } = await Model.User.getByCuid(cuid);
+  if (_.isNull(salt)) {
+    throw ErrorDTO.DTO(
+      ErrorDTO.CODE_LOGIC_ERROR,
+      ErrorDTO.ECODE_ITEM_NOT_FOUND,
+      ErrorDTO.MSG_ITEM_NOT_FOUND
+    );
+  }
+  const hashedPwd = HashItem(password, salt);
+  await Model.User.updatePassword(cuid, hashedPwd);
+  return User.DTO(email, cuid, dateAdded);
 };
 
 export default controller;
