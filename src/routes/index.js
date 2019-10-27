@@ -1,2 +1,4 @@
 import User from "./user";
-export { User };
+import Token from "./token";
+import Validation from "./validation";
+export { User, Token, Validation };

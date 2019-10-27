@@ -1,14 +1,12 @@
-import dotenv from "dotenv";
+import "dotenv/config";
 import http from "http";
 import cluster from "cluster";
-import { GetPort } from "../utils";
+import { ServerPort } from "../utils";
 import { cpus } from "os";
 import app from "../app";
 
-dotenv.config();
-
 let workers = [];
-const port = GetPort();
+const port = ServerPort();
 
 /**
  * Setup number of worker processes to share port which will be defined while setting up server
@@ -52,7 +50,6 @@ const setupWorkerProcesses = () => {
  * Setup an express server and define port to listen all incoming requests for this application
  */
 const setUpExpress = () => {
-  console.debug("Updating port");
   app.set("port", port);
   // create server
   app.server = http.createServer(app);
