@@ -37,7 +37,8 @@ controller.create = async (email, pwd) => {
     cuid: Cuid(),
     salt: salt
   });
-  return await Model.User.createUser(model);
+  const user = await Model.User.createUser(model);
+  return User.DTO(user.email, user.cuid, user.dateAdded);
 };
 
 controller.updatePassword = async (cuid, password, userValidity) => {
