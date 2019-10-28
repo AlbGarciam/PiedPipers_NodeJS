@@ -1,3 +1,4 @@
 import UserController from "./user";
 import TokenController from "./tokens";
-export { UserController, TokenController };
+import ProfileController from "./profile";
+export { UserController, TokenController, ProfileController };

@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import { DBConnection } from "../database";
 
-import { User as UsersRouter } from "../routes";
+import { User as UsersRouter, Profile as ProfileRouter } from "../routes";
 
 DBConnection();
 
@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/users", UsersRouter);
+app.use("/profile", ProfileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

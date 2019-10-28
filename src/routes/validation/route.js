@@ -4,7 +4,6 @@ import _ from "lodash";
 
 export default () => async (req, res, next) => {
   if (!validationResult(req).isEmpty()) {
-    console.error("error in validations");
     next(
       Error.DTO(
         Error.CODE_VALIDATION_ERROR,
@@ -13,7 +12,6 @@ export default () => async (req, res, next) => {
       )
     );
   } else {
-    console.error("success in validations");
     next();
   }
 };
