@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { ContactMehtod } from "../../../dto";
-import { Error } from "../../../dto";
+import { Error as ErrorDTO } from "../../../dto";
 
 const PositionSchema = Schema({
   type: { type: String, enum: ["Point"], required: true },
@@ -67,6 +67,18 @@ ProfileModel.getByCUID = async cuid => {
     return await ProfileModel.findOne({ cuid: cuid }).select(
       "cuid dateAdded name location contactMe instruments photo videos description followers -_id"
     );
+  } catch (err) {
+    throw ErrorDTO.DTO(
+      ErrorDTO.CODE_SERVER_ERROR,
+      ErrorDTO.ECODE_DATABASE_ERROR,
+      err.message
+    );
+  }
+};
+
+ProfileModel.updateData = async (cuid, model) => {
+  try {
+    return await ProfileModel.update({ cuid: cuid }, model);
   } catch (err) {
     throw ErrorDTO.DTO(
       ErrorDTO.CODE_SERVER_ERROR,

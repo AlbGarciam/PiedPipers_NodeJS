@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Error } from "../../../dto";
+import { Error as ErrorDTO } from "../../../dto";
 
 const UserSchema = Schema(
   {

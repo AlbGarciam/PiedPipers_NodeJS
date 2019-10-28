@@ -31,4 +31,9 @@ controller.get = async identifier => {
   );
 };
 
+controller.update = async (cuid, model) => {
+  await Model.Profile.updateData(cuid, _.omitBy(model, _.isNil));
+  return controller.get(cuid);
+};
+
 export default controller;
