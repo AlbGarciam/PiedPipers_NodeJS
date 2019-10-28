@@ -7,8 +7,8 @@ import _ from "lodash";
 
 const controller = {};
 
-controller.login = async (email, pwd) => {
-  const trimmedEmail = email.trim();
+controller.login = async (mail, pwd) => {
+  const trimmedEmail = mail.trim();
   var user = await Model.User.getByEmail(trimmedEmail);
   if (_.isNull(user)) {
     throw ErrorDTO.DTO(
@@ -28,11 +28,11 @@ controller.login = async (email, pwd) => {
   }
 };
 
-controller.create = async (email, pwd) => {
+controller.create = async (mail, pwd) => {
   const salt = GenerateSalt();
   const hashedPwd = HashItem(pwd.trim(), salt);
   const model = Model.User({
-    email: email,
+    email: mail,
     password: hashedPwd,
     cuid: Cuid(),
     salt: salt
