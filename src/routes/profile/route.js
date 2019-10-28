@@ -16,4 +16,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/:cuid", async (req, res, next) => {
+  const { cuid } = req.params;
+  try {
+    const result = await ProfileController.get(cuid); // It throws an error if not found
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 export default router;
