@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { ContactMehtod } from "../../../dto";
+import { ContactMehtod, Profile } from "../../../dto";
 import { Error as ErrorDTO } from "../../../dto";
 
 const PositionSchema = Schema({
@@ -29,9 +29,10 @@ const ProfileSchema = Schema(
     name: { type: String, index: true },
     location: { type: PositionSchema, index: true },
     contactMe: { type: ContactMethodSchema },
-    instruments: [
-      { type: String, enum: ["guitarra", "batería", "contrabajo"] }
-    ],
+    instruments: {
+      type: [String],
+      enum: Profile.INSTRUMENTS
+    },
     photo: { type: String },
     videos: [{ type: String }],
     description: { type: String },
@@ -78,7 +79,7 @@ ProfileModel.getByCUID = async cuid => {
 
 ProfileModel.updateData = async (cuid, model) => {
   try {
-    return await ProfileModel.update({ cuid: cuid }, model);
+    return await ProfileModel.updateOne({ cuid: cuid }, model);
   } catch (err) {
     throw ErrorDTO.DTO(
       ErrorDTO.CODE_SERVER_ERROR,

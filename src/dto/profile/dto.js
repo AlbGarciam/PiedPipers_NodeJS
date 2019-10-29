@@ -24,3 +24,7 @@ const DTO = (
 };
 
 export { DTO };
+
+const INSTRUMENTS = ["guitarra", "bateria", "bajo"];
+
+export { INSTRUMENTS };
