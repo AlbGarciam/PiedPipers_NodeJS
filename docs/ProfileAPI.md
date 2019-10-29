@@ -35,6 +35,14 @@
   }
 ```
 
+### Instruments
+
+```javascript
+{
+  items: [String];
+}
+```
+
 ## API
 
 Returns current user profile
@@ -52,7 +60,17 @@ body:
 
 ```javascript
 {
-    name: String,
-    description: String
-  }
+	"name": "Test user 123",
+	"description": "Lorem ipsum dolor ...",
+	"videos":["https://www.youtube.com/watch?v=41DH065Lfeo&list=RD41DH065Lfeo&start_radio=1"],
+	"contact":{
+		"type":"email",
+		"data":"test_user@gmail.com"
+	},
+	"instruments":["Bateria"]
+}
 ```
+
+Returns possible values for instruments tags
+GET - `{{endpoint}}/profile/tags`
+**Authorized API**

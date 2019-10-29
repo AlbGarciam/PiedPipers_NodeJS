@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { Error as ErrorDTO } from "../../../dto";
+import { Error } from "../../../dto";
 
 const UserSchema = Schema(
   {
@@ -75,7 +75,7 @@ UserModel.createUser = async model => {
 
 UserModel.updatePassword = async (cuid, password) => {
   try {
-    return await UserModel.update({ cuid: cuid }, { password: password });
+    return await UserModel.updateOne({ cuid: cuid }, { password: password });
   } catch (err) {
     throw ErrorDTO.DTO(
       ErrorDTO.CODE_SERVER_ERROR,

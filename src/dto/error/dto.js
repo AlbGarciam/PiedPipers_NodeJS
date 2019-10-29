@@ -51,6 +51,7 @@ const MSG_LOGIN_REQUIRED =
   "It is necessary to relogin the user before taking any action";
 const MSG_DUPLICATED_ITEM = "This item already exists";
 const MSG_VALIDATION_ERROR = "One or more parameters are invalid";
+const MSG_INVALID_INSTRUMENTS_ERROR = "Provided instruments are invalid";
 
 export {
   MSG_ITEM_NOT_FOUND,
@@ -59,5 +60,6 @@ export {
   MSG_UNKNOWN_ERROR,
   MSG_LOGIN_REQUIRED,
   MSG_VALIDATION_ERROR,
-  MSG_DUPLICATED_ITEM
+  MSG_DUPLICATED_ITEM,
+  MSG_INVALID_INSTRUMENTS_ERROR
 };
