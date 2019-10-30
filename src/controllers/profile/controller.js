@@ -47,7 +47,7 @@ controller.update = async (cuid, model) => {
     }
   }
   await Model.Profile.updateData(cuid, _.omitBy(model, _.isNil));
-  return controller.get(cuid);
+  return controller.provide(cuid);
 };
 
 controller.instruments = () => {
