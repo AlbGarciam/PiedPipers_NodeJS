@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "preparedb": "mkdir -p database && rm -f ./database/db && mkdir ./database/db",
+    "preparedb": "mkdir -p database && rm -rf ./database/db && mkdir ./database/db",
     "database": "mongod --config ./etc/mongo.conf",
     "start": "babel-node ./src",
     "start:dev": "nodemon --exec babel-node ./src"
