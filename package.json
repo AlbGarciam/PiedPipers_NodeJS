@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prepare": "mkdir -p database && rm -f ./database/db && mkdir ./database/db",
+    "preparedb": "mkdir -p database && rm -f ./database/db && mkdir ./database/db",
     "database": "mongod --config ./etc/mongo.conf",
-    "start:prod": "babel-node ./src",
-    "start": "nodemon --exec babel-node ./src"
+    "start": "babel-node ./src",
+    "start:dev": "nodemon --exec babel-node ./src"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
