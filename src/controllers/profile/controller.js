@@ -36,7 +36,7 @@ controller.update = async (cuid, model) => {
   if (!_.isNil(instruments)) {
     const filtered = instruments
       .map(item => item.toLowerCase())
-      .filter(item => controller.instruments().includes(item.toLowerCase()));
+      .filter(item => Profile.INSTRUMENTS.includes(item.toLowerCase()));
     console.log(filtered);
     if (filtered.length !== instruments.length) {
       throw Error.DTO(
