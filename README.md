@@ -35,5 +35,32 @@ In order to deploy this project you should follow these steps:
 ```
 
 ## API
+### User
+#### Create
+This method allows you to create a user on the database
+
+**Endpoint**
+`/users/create`
+
+**Method**
+POST
+
+**Params**
+* `email`(String)(**Required**) This must be a unique identifier. Server validates if it is an email
+* `password`: (String)(**Required**) This must have 5 or more characters
+
+**Success response**
+
+[User DTO](#user)
 
 ## DTO
+### User
+This DTO represents a user inside the server. It has the following structure:
+```javascript
+{
+    "email": String,
+    "id": String,
+    "addDate": String "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+}
+```
+
