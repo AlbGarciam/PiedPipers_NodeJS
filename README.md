@@ -85,7 +85,7 @@ This method allows you to update a user password on the database
 `/users/update`
 
 **Method**
-PATH
+PATCH
 
 **Params**
 * `password`: (String)(**Required**) This must have 5 or more characters
