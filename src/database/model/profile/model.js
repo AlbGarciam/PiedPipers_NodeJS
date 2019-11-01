@@ -1,9 +1,8 @@
-import { Schema, model } from "mongoose";
-import { ContactMehtod, Profile } from "../../../dto";
-import { Error as ErrorDTO } from "../../../dto";
+import { Schema, model as Model } from 'mongoose';
+import { ContactMehtod, Profile, Error as ErrorDTO } from '../../../dto';
 
 const PositionSchema = Schema({
-  type: { type: String, enum: ["Point"], required: true },
+  type: { type: String, enum: ['Point'], required: true },
   coordinates: { type: [Number], required: true }
 });
 
@@ -25,7 +24,7 @@ const ProfileSchema = Schema(
       dropDups: true,
       index: true
     },
-    dateAdded: { type: "Date", default: Date.now, required: true },
+    dateAdded: { type: 'Date', default: Date.now, required: true },
     name: { type: String, index: true },
     location: { type: PositionSchema, index: true },
     contactMe: { type: ContactMethodSchema },
@@ -38,54 +37,44 @@ const ProfileSchema = Schema(
     description: { type: String },
     followers: [{ type: String }]
   },
-  { collection: "Profile" }
+  { collection: 'Profile' }
 );
 
-const ProfileModel = model("Profile", ProfileSchema);
+const ProfileModel = Model('Profile', ProfileSchema);
 
 ProfileModel.create = async cuid => {
   const model = ProfileModel({ cuid });
   try {
     return await model.save();
   } catch (err) {
-    if (err.code == 11000) {
+    if (err.code === 11000) {
       throw Error.DTO(
         Error.CODE_AUTHORIZATION_ERROR,
         Error.ECODE_DUPLICATED_ITEM,
         Error.MSG_DUPLICATED_ITEM
       );
     }
-    throw Error.DTO(
-      Error.CODE_SERVER_ERROR,
-      Error.ECODE_DATABASE_ERROR,
-      err.errmsg
-    );
+    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.errmsg);
   }
 };
 
 ProfileModel.getByCUID = async cuid => {
   try {
-    return await ProfileModel.findOne({ cuid: cuid }).select(
-      "cuid dateAdded name location contactMe instruments photo videos description followers -_id"
+    const query = { cuid };
+    return await ProfileModel.findOne(query).select(
+      'cuid dateAdded name location contactMe instruments photo videos description followers -_id'
     );
   } catch (err) {
-    throw ErrorDTO.DTO(
-      ErrorDTO.CODE_SERVER_ERROR,
-      ErrorDTO.ECODE_DATABASE_ERROR,
-      err.message
-    );
+    throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);
   }
 };
 
 ProfileModel.updateData = async (cuid, model) => {
   try {
-    return await ProfileModel.updateOne({ cuid: cuid }, model);
+    const query = { cuid };
+    return await ProfileModel.updateOne(query, model);
   } catch (err) {
-    throw ErrorDTO.DTO(
-      ErrorDTO.CODE_SERVER_ERROR,
-      ErrorDTO.ECODE_DATABASE_ERROR,
-      err.message
-    );
+    throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);
   }
 };
 

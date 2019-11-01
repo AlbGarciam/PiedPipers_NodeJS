@@ -2,6 +2,8 @@ import ServerPort from './port';
 import MongoConfig, { route as MongoRoute } from './mongo';
 import ValidateInstruments from './validate-instruments';
 import { ValidateEquality, GenerateSalt, HashItem } from './hash';
+import ResizeImage from './resize-image';
+import RemoveImage from './remove-image';
 
 export {
   ServerPort,
@@ -10,5 +12,7 @@ export {
   ValidateEquality,
   GenerateSalt,
   HashItem,
-  ValidateInstruments
+  ValidateInstruments,
+  ResizeImage,
+  RemoveImage
 };

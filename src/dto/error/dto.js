@@ -14,12 +14,7 @@ const CODE_LOGIC_ERROR = 404;
 const CODE_AUTHORIZATION_ERROR = 403;
 const CODE_VALIDATION_ERROR = 422;
 
-export {
-  CODE_SERVER_ERROR,
-  CODE_LOGIC_ERROR,
-  CODE_AUTHORIZATION_ERROR,
-  CODE_VALIDATION_ERROR
-};
+export { CODE_SERVER_ERROR, CODE_LOGIC_ERROR, CODE_AUTHORIZATION_ERROR, CODE_VALIDATION_ERROR };
 
 /** ECODES */
 const ECODE_DATABASE_ERROR = 1000;
@@ -43,16 +38,16 @@ export {
 };
 
 /** MESSAGES */
-const MSG_ITEM_NOT_FOUND = "Item was not found";
-const MSG_INVALID_PASSWORD = "Invalid password";
-const MSG_INVALID_TOKEN = "Invalid token";
-const MSG_UNKNOWN_ERROR = "Unexpected error";
-const MSG_LOGIN_REQUIRED =
-  "It is necessary to relogin the user before taking any action";
-const MSG_DUPLICATED_ITEM = "This item already exists";
-const MSG_VALIDATION_ERROR = "One or more parameters are invalid";
-const MSG_INVALID_INSTRUMENTS_ERROR = "Provided instruments are invalid";
-const MSG_INVALID_LOCATION_ERROR = "Provided location is invalid";
+const MSG_ITEM_NOT_FOUND = 'Item was not found';
+const MSG_INVALID_PASSWORD = 'Invalid password';
+const MSG_INVALID_TOKEN = 'Invalid token';
+const MSG_UNKNOWN_ERROR = 'Unexpected error';
+const MSG_LOGIN_REQUIRED = 'It is necessary to relogin the user before taking any action';
+const MSG_DUPLICATED_ITEM = 'This item already exists';
+const MSG_VALIDATION_ERROR = 'One or more parameters are invalid';
+const MSG_INVALID_INSTRUMENTS_ERROR = 'Provided instruments are invalid';
+const MSG_INVALID_LOCATION_ERROR = 'Provided location is invalid';
+const MSG_INVALID_IMAGE_BUFFER = 'Please provide an image';
 
 export {
   MSG_ITEM_NOT_FOUND,
@@ -63,5 +58,6 @@ export {
   MSG_VALIDATION_ERROR,
   MSG_DUPLICATED_ITEM,
   MSG_INVALID_INSTRUMENTS_ERROR,
-  MSG_INVALID_LOCATION_ERROR
+  MSG_INVALID_LOCATION_ERROR,
+  MSG_INVALID_IMAGE_BUFFER
 };
