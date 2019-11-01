@@ -1,4 +1,4 @@
-import { promises } from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
 
 const filename = name => `${name}.png`;
@@ -6,5 +6,8 @@ const filepath = (destination, name) => path.resolve(`${destination}/${filename(
 
 export default async (destination, name) => {
   const filePath = filepath(destination, name);
-  return promises.unlink(filePath);
+  const exists = await fs.pathExists(filePath);
+  if (exists) {
+    await fs.remove(filePath);
+  }
 };

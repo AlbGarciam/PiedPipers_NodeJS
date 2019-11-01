@@ -11,6 +11,6 @@ export default async (destination, name, buffer) => {
       fit: sharp.fit.inside,
       withoutEnlargement: true
     })
-    .toFile(filepath);
+    .toFile(filePath);
   return filePath;
 };

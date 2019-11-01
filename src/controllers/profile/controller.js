@@ -23,7 +23,6 @@ controller.provide = async identifier => {
   const { cuid, name, contactMe, location, instruments, videos, description, photo } = model;
   const locationDTO = CoordinatesToLocationMapper(location);
   const contactDTO = ContactMethodMapper(contactMe);
-
   return Profile.DTO(cuid, name, locationDTO, contactDTO, instruments, videos, description, photo);
 };
 
@@ -43,12 +42,11 @@ controller.instruments = () => {
 };
 
 controller.updateAvatar = async (cuid, file) => {
-  const avatarDir = path.join(__dirname, '/public/img');
+  const avatarDir = path.resolve('./public/img');
   const buffer = FileToBufferMapper(file);
 
-  RemoveImage(avatarDir, cuid);
+  await RemoveImage(avatarDir, cuid);
   const filename = await ResizeImage(avatarDir, cuid, buffer);
-  console.log(filename);
   const query = { photo: filename };
 
   const profile = await controller.update(cuid, query);
