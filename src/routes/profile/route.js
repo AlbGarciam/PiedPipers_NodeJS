@@ -1,14 +1,13 @@
-import { Router } from "express";
-import { ProfileController } from "../../controllers";
-import Token from "../token";
-import { check } from "express-validator";
-import Validation from "../validation";
+import { Router } from 'express';
+import { check } from 'express-validator';
+import { ProfileController } from '../../controllers';
+import { TokenMiddleware, ValidationMiddleware, UploadMiddleware } from '../../middlewares';
 
 const router = Router();
 
-router.use(Token());
+router.use(TokenMiddleware());
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   const { id } = res.locals.decodedToken;
   try {
     const result = await ProfileController.provide(id); // It throws an error if not found
@@ -18,12 +17,12 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/tags", async (req, res, next) => {
+router.get('/tags', async (req, res) => {
   const result = ProfileController.instruments();
   res.status(200).json(result);
 });
 
-router.get("/:cuid", async (req, res, next) => {
+router.get('/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
   try {
     const result = await ProfileController.provide(cuid); // It throws an error if not found
@@ -34,26 +33,19 @@ router.get("/:cuid", async (req, res, next) => {
 });
 
 const patchValidations = [
-  check("name")
+  check('name')
     .optional()
     .isString()
     .trim(),
-  check("description")
+  check('description')
     .optional()
     .isString()
     .trim()
 ];
 
-router.patch("/", patchValidations, Validation(), async (req, res, next) => {
+router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, next) => {
   const { id } = res.locals.decodedToken;
-  const {
-    name,
-    location,
-    contact,
-    description,
-    videos,
-    instruments
-  } = req.body;
+  const { name, location, contact, description, videos, instruments } = req.body;
   const model = {
     name,
     location,
@@ -64,6 +56,17 @@ router.patch("/", patchValidations, Validation(), async (req, res, next) => {
   };
   try {
     const result = await ProfileController.update(id, model); // It throws an error if not found
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/avatar', UploadMiddleware.single('photo'), async (req, res, next) => {
+  const { id } = res.locals.decodedToken;
+  const { file } = req;
+  try {
+    const result = await ProfileController.updateAvatar(id, file);
     res.status(200).json(result);
   } catch (err) {
     next(err);

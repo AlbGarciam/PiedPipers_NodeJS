@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "preparedb": "mkdir -p database && rm -rf ./database/db && mkdir ./database/db",
+    "preparedb": "mkdir -p database && rm -rf ./database/db && mkdir ./database/db && mkdir -p ./public/img",
     "database": "mongod --config ./etc/mongo.conf",
     "start": "babel-node ./src",
     "start:dev": "nodemon --exec babel-node ./src"
@@ -15,12 +15,15 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-validator": "^6.2.0",
+    "fs-extra": "^8.1.0",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "mongoose": "^5.7.6",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "sharp": "^0.23.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
@@ -29,6 +32,19 @@
     "@babel/preset-env": "^7.1.6",
     "clean-css": ">=4.1.11",
     "constantinople": ">=3.1.1",
-    "nodemon": "^1.19.4"
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.18.2"
   }
 }
