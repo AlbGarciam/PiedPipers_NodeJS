@@ -49,4 +49,4 @@ In order to deploy this project you should follow these steps:
 ## API
 
 - [Users](./docs/user.md)
-- [profile](./docs/profile.md)
+- [Profile](./docs/profile.md)
