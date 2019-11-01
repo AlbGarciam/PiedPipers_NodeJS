@@ -48,7 +48,7 @@ controller.updateAvatar = async (cuid, file) => {
   await RemoveImage(avatarDir, cuid);
   const filename = await ResizeImage(avatarDir, cuid, buffer);
 
-  const query = { photo: path.relative('./', filename) };
+  const query = { photo: path.relative('./public', filename) };
 
   const profile = await controller.update(cuid, query);
   return profile;
