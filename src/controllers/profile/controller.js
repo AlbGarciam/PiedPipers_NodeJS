@@ -1,31 +1,23 @@
-import { Model } from "../../database";
-import {
-  Error,
-  Profile,
-  ContactMehtod,
-  Instruments,
-  Location
-} from "../../dto";
-import { LocationToCoordinates, ValidateInstruments } from "../../utils";
-import _ from "lodash";
+import _ from 'lodash';
+import { Model } from '../../database';
+import { Error, Profile, ContactMehtod, Instruments, Location } from '../../dto';
+import { ValidateInstruments } from '../../utils';
+import { LocationToCoordinatesMapper } from '../../mappers';
 
 const controller = {};
 
 controller.provide = async identifier => {
+  let contact = null;
+  let location = null;
+
   const model = await Model.Profile.getByCUID(identifier);
   if (_.isNil(model)) {
-    throw Error.DTO(
-      Error.CODE_LOGIC_ERROR,
-      Error.ECODE_ITEM_NOT_FOUND,
-      Error.MSG_ITEM_NOT_FOUND
-    );
+    throw Error.DTO(Error.CODE_LOGIC_ERROR, Error.ECODE_ITEM_NOT_FOUND, Error.MSG_ITEM_NOT_FOUND);
   }
-  var contact = null;
   if (!_.isNil(model.contactMe)) {
     const { type, data } = model.contactMe;
     contact = ContactMehtod.DTO(type, data);
   }
-  var location = null;
   if (!_.isNil(model.location)) {
     const { coordinates } = model.location;
     location = Location.DTO(coordinates[0], coordinates[1]);
@@ -44,21 +36,22 @@ controller.provide = async identifier => {
 };
 
 controller.update = async (cuid, model) => {
-  var { instruments, location } = model;
+  const dbModel = model;
+  const { instruments, location } = model;
   if (!_.isNil(instruments)) {
-    instruments = instruments.map(item => item.toLowerCase());
-    if (!ValidateInstruments(instruments)) {
+    const lowerCasedInstruments = instruments.map(item => item.toLowerCase());
+    if (!ValidateInstruments(lowerCasedInstruments)) {
       throw Error.DTO(
         Error.CODE_VALIDATION_ERROR,
         Error.ECODE_VALIDATION_ERROR,
         Error.MSG_INVALID_INSTRUMENTS_ERROR
       );
     }
-    model.instruments = instruments;
+    dbModel.instruments = lowerCasedInstruments;
   }
 
   if (!_.isNil(location)) {
-    const coordinates = LocationToCoordinates(location);
+    const coordinates = LocationToCoordinatesMapper(location);
     if (_.isNil(coordinates)) {
       throw Error.DTO(
         Error.CODE_VALIDATION_ERROR,
@@ -66,10 +59,10 @@ controller.update = async (cuid, model) => {
         Error.MSG_INVALID_LOCATION_ERROR
       );
     }
-    model.location = coordinates;
+    dbModel.location = coordinates;
   }
 
-  await Model.Profile.updateData(cuid, _.omitBy(model, _.isNil));
+  await Model.Profile.updateData(cuid, _.omitBy(dbModel, _.isNil));
   return controller.provide(cuid);
 };
 

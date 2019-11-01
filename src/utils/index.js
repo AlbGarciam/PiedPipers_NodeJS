@@ -1,8 +1,7 @@
-import ServerPort from "./serverPort";
-import MongoConfig, { route as MongoRoute } from "./mongoConfiguration";
-import LocationToCoordinates from "./locationToCoordinates";
-import ValidateInstruments from "./validateInstruments";
-import { ValidateEquality, GenerateSalt, HashItem } from "./hashes";
+import ServerPort from './port';
+import MongoConfig, { route as MongoRoute } from './mongo';
+import ValidateInstruments from './validate-instruments';
+import { ValidateEquality, GenerateSalt, HashItem } from './hash';
 
 export {
   ServerPort,
@@ -11,6 +10,5 @@ export {
   ValidateEquality,
   GenerateSalt,
   HashItem,
-  LocationToCoordinates,
   ValidateInstruments
 };

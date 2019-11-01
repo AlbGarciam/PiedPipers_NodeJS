@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { ProfileController } from '../../controllers';
-import { TokenMiddleware, ValidationMiddleware } from '../../middlewares';
+import { TokenMiddleware, ValidationMiddleware, UploadMiddleware } from '../../middlewares';
 
 const router = Router();
 
@@ -61,5 +61,7 @@ router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, nex
     next(err);
   }
 });
+
+router.post('/avatar', UploadMiddleware.single('photo'), async (req, res, next) => {});
 
 export default router;
