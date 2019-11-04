@@ -1,2 +1,3 @@
-import cluster from "./cluster";
+import cluster from './cluster';
+
 export default cluster;
