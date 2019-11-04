@@ -10,6 +10,7 @@ This DTO represents a profile on the server. It has the following values
 - **videos**: _[String]_ User's examples
 - **description**: _String_ User's description
 - **photo**: _String_ User's relative path to its avatar
+- **friendlyLocation**: _String_ User's friendly location
 
 ## Example
 
@@ -28,6 +29,7 @@ This DTO represents a profile on the server. It has the following values
     "instruments": [
         "bateria"
     ],
+    "friendlyLocation": "Vienna",
     "videos": [
         "https://www.youtube.com/watch?v=41DH065Lfeo&list=RD41DH065Lfeo&start_radio=1"
     ],

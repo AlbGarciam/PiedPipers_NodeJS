@@ -27,6 +27,7 @@ const ProfileSchema = Schema(
     dateAdded: { type: 'Date', default: Date.now, required: true },
     name: { type: String, index: true },
     location: { type: PositionSchema, index: true },
+    friendlyLocation: { type: String },
     contactMe: { type: ContactMethodSchema },
     instruments: {
       type: [String],
@@ -62,7 +63,7 @@ ProfileModel.getByCUID = async cuid => {
   try {
     const query = { cuid };
     return await ProfileModel.findOne(query).select(
-      'cuid dateAdded name location contactMe instruments photo videos description followers -_id'
+      'cuid dateAdded name location contactMe instruments photo videos description followers friendlyLocation -_id'
     );
   } catch (err) {
     throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);

@@ -45,14 +45,15 @@ const patchValidations = [
 
 router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, next) => {
   const { id } = res.locals.decodedToken;
-  const { name, location, contact, description, videos, instruments } = req.body;
+  const { name, location, contact, description, videos, instruments, friendlyLocation } = req.body;
   const model = {
     name,
     location,
     contactMe: contact,
     description,
     videos,
-    instruments
+    instruments,
+    friendlyLocation
   };
   try {
     const result = await ProfileController.update(id, model); // It throws an error if not found
