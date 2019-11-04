@@ -10,16 +10,9 @@ import {
   FileToBufferMapper
 } from '../../mappers';
 import { ResizeImage, RemoveImage } from '../../utils';
+import ProfileModel from '../../database/model/profile/model';
 
-const controller = {};
-
-controller.provide = async identifier => {
-  const model = await Model.Profile.getByCUID(identifier);
-
-  if (_.isNil(model)) {
-    throw Error.DTO(Error.CODE_LOGIC_ERROR, Error.ECODE_ITEM_NOT_FOUND, Error.MSG_ITEM_NOT_FOUND);
-  }
-
+const generateDTOFromDatabase = model => {
   const {
     cuid,
     name,
@@ -44,6 +37,18 @@ controller.provide = async identifier => {
     description,
     photo
   );
+};
+
+const controller = {};
+
+controller.provide = async identifier => {
+  const model = await Model.Profile.getByCUID(identifier);
+
+  if (_.isNil(model)) {
+    throw Error.DTO(Error.CODE_LOGIC_ERROR, Error.ECODE_ITEM_NOT_FOUND, Error.MSG_ITEM_NOT_FOUND);
+  }
+
+  return generateDTOFromDatabase(model);
 };
 
 controller.update = async (cuid, model) => {
@@ -72,6 +77,18 @@ controller.updateAvatar = async (cuid, file) => {
 
   const profile = await controller.update(cuid, query);
   return profile;
+};
+
+controller.search = async (name, instruments, location, friendlyLocation, limit, offset) => {
+  const filter = {};
+  if (!_.isNil(name)) filter.name = new RegExp(`^${name.toLowerCase()}`, 'i');
+  if (!_.isNil(instruments)) {
+    const array = instruments.split(',');
+    filter.instruments = { $in: array };
+  }
+  if (!_.isNil(friendlyLocation))
+    filter.friendlyLocation = new RegExp(`^${friendlyLocation.toLowerCase()}`, 'i');
+  return ProfileModel.search(filter, limit, offset);
 };
 
 export default controller;
