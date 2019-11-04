@@ -1,5 +1,9 @@
 import { Schema, model as Model } from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 import { ContactMehtod, Profile, Error as ErrorDTO } from '../../../dto';
+
+const querySelect =
+  'cuid dateAdded name location contactMe instruments photo videos description followers friendlyLocation -_id';
 
 const PositionSchema = Schema({
   type: { type: String, enum: ['Point'], required: true },
@@ -41,6 +45,8 @@ const ProfileSchema = Schema(
   { collection: 'Profile' }
 );
 
+ProfileSchema.plugin(mongoosePaginate);
+
 const ProfileModel = Model('Profile', ProfileSchema);
 
 ProfileModel.create = async cuid => {
@@ -62,9 +68,7 @@ ProfileModel.create = async cuid => {
 ProfileModel.getByCUID = async cuid => {
   try {
     const query = { cuid };
-    return await ProfileModel.findOne(query).select(
-      'cuid dateAdded name location contactMe instruments photo videos description followers friendlyLocation -_id'
-    );
+    return await ProfileModel.findOne(query).select(querySelect);
   } catch (err) {
     throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);
   }
@@ -74,6 +78,20 @@ ProfileModel.updateData = async (cuid, model) => {
   try {
     const query = { cuid };
     return await ProfileModel.updateOne(query, model);
+  } catch (err) {
+    throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);
+  }
+};
+
+ProfileModel.search = async (filter, limit, skip) => {
+  try {
+    const options = {
+      select: querySelect,
+      limit,
+      offset: skip,
+      lean: false
+    };
+    return await ProfileModel.paginate(filter, options);
   } catch (err) {
     throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);
   }

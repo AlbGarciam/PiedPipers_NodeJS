@@ -1,4 +1,5 @@
 import User from './user';
 import Profile from './profile';
+import Search from './search';
 
-export { User, Profile };
+export { User, Profile, Search };
