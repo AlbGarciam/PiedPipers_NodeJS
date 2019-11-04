@@ -1,9 +1,10 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 const DTO = (
   cuid,
   name,
   location,
+  friendlyLocation,
   contact,
   instruments,
   videos,
@@ -14,6 +15,7 @@ const DTO = (
     cuid,
     name,
     location,
+    friendlyLocation,
     contact,
     instruments,
     videos,
@@ -25,6 +27,6 @@ const DTO = (
 
 export { DTO };
 
-const INSTRUMENTS = ["guitarra", "bateria", "bajo"];
+const INSTRUMENTS = ['guitarra', 'bateria', 'bajo'];
 
 export { INSTRUMENTS };

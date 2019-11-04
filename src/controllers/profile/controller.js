@@ -20,10 +20,30 @@ controller.provide = async identifier => {
     throw Error.DTO(Error.CODE_LOGIC_ERROR, Error.ECODE_ITEM_NOT_FOUND, Error.MSG_ITEM_NOT_FOUND);
   }
 
-  const { cuid, name, contactMe, location, instruments, videos, description, photo } = model;
+  const {
+    cuid,
+    name,
+    contactMe,
+    location,
+    friendlyLocation,
+    instruments,
+    videos,
+    description,
+    photo
+  } = model;
   const locationDTO = CoordinatesToLocationMapper(location);
   const contactDTO = ContactMethodMapper(contactMe);
-  return Profile.DTO(cuid, name, locationDTO, contactDTO, instruments, videos, description, photo);
+  return Profile.DTO(
+    cuid,
+    name,
+    locationDTO,
+    friendlyLocation,
+    contactDTO,
+    instruments,
+    videos,
+    description,
+    photo
+  );
 };
 
 controller.update = async (cuid, model) => {
