@@ -34,7 +34,12 @@ const generateDTOFromDatabase = model => {
 
 controller.searchProfile = async (name, instruments, location, friendlyLocation, limit, offset) => {
   const filter = {};
-  if (!_.isNil(name)) filter.name = new RegExp(`^${name.toLowerCase()}`, 'i');
+  if (!_.isNil(name)) {
+    filter.name = new RegExp(`^${name.toLowerCase()}`, 'i');
+  } else {
+    filter.name = { $exists: true };
+  }
+
   if (!_.isNil(instruments)) {
     const array = instruments.split(',');
     filter.instruments = { $in: array };
