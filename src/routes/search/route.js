@@ -7,12 +7,13 @@ const router = Router();
 router.use(TokenMiddleware());
 
 router.get('/profile', async (req, res, next) => {
-  const { name, instruments, location, friendlyLocation, limit, offset } = req.query;
+  const { name, instruments, lat, long, friendlyLocation, limit, offset } = req.query;
   try {
     const result = await SearchController.searchProfile(
       name,
       instruments,
-      location,
+      lat,
+      long,
       friendlyLocation,
       parseInt(limit, 10) || 10,
       parseInt(offset, 10) || 0

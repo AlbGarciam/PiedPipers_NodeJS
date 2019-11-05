@@ -82,6 +82,8 @@ Yes
 - **friendlyLocation**: _String_ User's friendly location
 - **limit**: _Int_ Maximum number of results
 - **offset**: _Int_ Results offset
+- **lat**: _Float_ Latitude
+- **long**: _Float_ Longitude
 
 ### Success response
 

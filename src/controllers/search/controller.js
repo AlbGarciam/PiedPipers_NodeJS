@@ -32,8 +32,16 @@ const generateDTOFromDatabase = model => {
   );
 };
 
-controller.searchProfile = async (name, instruments, location, friendlyLocation, limit, offset) => {
-  const filter = {};
+controller.searchProfile = async (
+  name,
+  instruments,
+  lat,
+  long,
+  friendlyLocation,
+  limit,
+  offset
+) => {
+  let filter = {};
   if (!_.isNil(name)) {
     filter.name = new RegExp(`^${name.toLowerCase()}`, 'i');
   } else {
@@ -46,6 +54,16 @@ controller.searchProfile = async (name, instruments, location, friendlyLocation,
   }
   if (!_.isNil(friendlyLocation))
     filter.friendlyLocation = new RegExp(`^${friendlyLocation.toLowerCase()}`, 'i');
+
+  if (!_.isNil(lat) && !_.isNil(long)) {
+    filter = {
+      ...filter,
+      location: {
+        $geoWithin: { $centerSphere: [[parseFloat(lat), parseFloat(long)], 10 / 6378.1] }
+      }
+    };
+    // 10 km
+  }
 
   const { docs, totalDocs } = await Model.Profile.search(filter, limit, offset);
   return List.DTO(totalDocs, offset, docs.map(item => generateDTOFromDatabase(item)));
