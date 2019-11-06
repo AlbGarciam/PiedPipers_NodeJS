@@ -30,7 +30,7 @@ const ProfileSchema = Schema(
     },
     dateAdded: { type: 'Date', default: Date.now, required: true },
     name: { type: String, index: true },
-    location: { type: PositionSchema, index: true },
+    location: { type: PositionSchema },
     friendlyLocation: { type: String },
     contactMe: { type: ContactMethodSchema },
     instruments: {
@@ -45,6 +45,7 @@ const ProfileSchema = Schema(
   { collection: 'Profile' }
 );
 
+ProfileSchema.index({ location: '2dsphere' });
 ProfileSchema.plugin(mongoosePaginate);
 
 const ProfileModel = Model('Profile', ProfileSchema);
