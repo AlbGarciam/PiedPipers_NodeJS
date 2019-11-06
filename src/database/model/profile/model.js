@@ -1,49 +1,10 @@
-import { Schema, model as Model } from 'mongoose';
+import { model as Model } from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
-import { ContactMehtod, Profile, Error as ErrorDTO } from '../../../dto';
+import { ProfileSchema } from '../../schema';
+import { Error as ErrorDTO } from '../../../dto';
 
 const querySelect =
   'cuid dateAdded name location contactMe instruments photo videos description followers friendlyLocation -_id';
-
-const PositionSchema = Schema({
-  type: { type: String, enum: ['Point'], required: true },
-  coordinates: { type: [Number], required: true }
-});
-
-const ContactMethodSchema = Schema({
-  type: {
-    type: String,
-    enum: [ContactMehtod.PHONE, ContactMehtod.EMAIL],
-    required: true
-  },
-  data: { type: String, required: true }
-});
-
-const ProfileSchema = Schema(
-  {
-    cuid: {
-      type: String,
-      unique: true,
-      required: true,
-      dropDups: true,
-      index: true
-    },
-    dateAdded: { type: 'Date', default: Date.now, required: true },
-    name: { type: String, index: true },
-    location: { type: PositionSchema },
-    friendlyLocation: { type: String },
-    contactMe: { type: ContactMethodSchema },
-    instruments: {
-      type: [String],
-      enum: Profile.INSTRUMENTS
-    },
-    photo: { type: String },
-    videos: [{ type: String }],
-    description: { type: String },
-    followers: [{ type: String }]
-  },
-  { collection: 'Profile' }
-);
 
 ProfileSchema.index({ location: '2dsphere' });
 ProfileSchema.plugin(mongoosePaginate);

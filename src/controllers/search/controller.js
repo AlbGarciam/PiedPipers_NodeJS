@@ -1,36 +1,9 @@
 import _ from 'lodash';
 import { Model } from '../../database';
-import { List, Profile } from '../../dto';
-import { CoordinatesToLocationMapper, ContactMethodMapper } from '../../mappers';
+import { List } from '../../dto';
+import { ProfileDBToDTOMapper } from '../../mappers';
 
 const controller = {};
-
-const generateDTOFromDatabase = model => {
-  const {
-    cuid,
-    name,
-    contactMe,
-    location,
-    friendlyLocation,
-    instruments,
-    videos,
-    description,
-    photo
-  } = model;
-  const locationDTO = CoordinatesToLocationMapper(location);
-  const contactDTO = ContactMethodMapper(contactMe);
-  return Profile.DTO(
-    cuid,
-    name,
-    locationDTO,
-    friendlyLocation,
-    contactDTO,
-    instruments,
-    videos,
-    description,
-    photo
-  );
-};
 
 controller.searchProfile = async (
   name,
@@ -66,7 +39,7 @@ controller.searchProfile = async (
   }
 
   const { docs, totalDocs } = await Model.Profile.search(filter, limit, offset);
-  return List.DTO(totalDocs, offset, docs.map(item => generateDTOFromDatabase(item)));
+  return List.DTO(totalDocs, offset, docs.map(item => ProfileDBToDTOMapper(item)));
 };
 
 export default controller;

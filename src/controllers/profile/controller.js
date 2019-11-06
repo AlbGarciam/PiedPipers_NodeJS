@@ -4,40 +4,12 @@ import { Model } from '../../database';
 import { Error, Profile, Instruments } from '../../dto';
 import {
   LocationToCoordinatesMapper,
-  CoordinatesToLocationMapper,
-  ContactMethodMapper,
   DatabaseInstrumentsMapper,
-  FileToBufferMapper
+  FileToBufferMapper,
+  ProfileDBToDTOMapper
 } from '../../mappers';
 import { ResizeImage, RemoveImage } from '../../utils';
 import ProfileModel from '../../database/model/profile/model';
-
-const generateDTOFromDatabase = model => {
-  const {
-    cuid,
-    name,
-    contactMe,
-    location,
-    friendlyLocation,
-    instruments,
-    videos,
-    description,
-    photo
-  } = model;
-  const locationDTO = CoordinatesToLocationMapper(location);
-  const contactDTO = ContactMethodMapper(contactMe);
-  return Profile.DTO(
-    cuid,
-    name,
-    locationDTO,
-    friendlyLocation,
-    contactDTO,
-    instruments,
-    videos,
-    description,
-    photo
-  );
-};
 
 const controller = {};
 
@@ -48,7 +20,7 @@ controller.provide = async identifier => {
     throw Error.DTO(Error.CODE_LOGIC_ERROR, Error.ECODE_ITEM_NOT_FOUND, Error.MSG_ITEM_NOT_FOUND);
   }
 
-  return generateDTOFromDatabase(model);
+  return ProfileDBToDTOMapper(model);
 };
 
 controller.update = async (cuid, model) => {
