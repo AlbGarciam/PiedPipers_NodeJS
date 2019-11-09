@@ -24,4 +24,21 @@ router.get('/profile', async (req, res, next) => {
   }
 });
 
+router.get('/local', async (req, res, next) => {
+  const { name, lat, long, price, limit, offset } = req.query;
+  try {
+    const result = await SearchController.searchLocal(
+      name,
+      lat,
+      long,
+      price,
+      parseInt(limit, 10) || 10,
+      parseInt(offset, 10) || 0
+    );
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 export default router;

@@ -5,5 +5,6 @@ import * as ContactMehtod from './contact-method';
 import * as Profile from './profile';
 import * as Instruments from './instruments';
 import * as List from './list';
+import * as Local from './local';
 
-export { Error, User, Location, ContactMehtod, Profile, Instruments, List };
+export { Error, User, Location, ContactMehtod, Profile, Instruments, List, Local };
