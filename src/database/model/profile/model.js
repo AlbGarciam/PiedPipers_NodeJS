@@ -1,7 +1,7 @@
 import { model as Model } from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 import { ProfileSchema } from '../../schema';
-import { Error as ErrorDTO } from '../../../dto';
+import { Error } from '../../../dto';
 
 const querySelect =
   'cuid dateAdded name location contactMe instruments photo videos description followers friendlyLocation -_id';
@@ -32,7 +32,7 @@ ProfileModel.getByCUID = async cuid => {
     const query = { cuid };
     return await ProfileModel.findOne(query).select(querySelect);
   } catch (err) {
-    throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);
+    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
   }
 };
 
@@ -41,7 +41,7 @@ ProfileModel.updateData = async (cuid, model) => {
     const query = { cuid };
     return await ProfileModel.updateOne(query, model);
   } catch (err) {
-    throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);
+    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
   }
 };
 
@@ -55,7 +55,7 @@ ProfileModel.search = async (filter, limit, skip) => {
     };
     return await ProfileModel.paginate(filter, options);
   } catch (err) {
-    throw ErrorDTO.DTO(ErrorDTO.CODE_SERVER_ERROR, ErrorDTO.ECODE_DATABASE_ERROR, err.message);
+    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
   }
 };
 

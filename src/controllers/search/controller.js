@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Model } from '../../database';
+import { Profile, Local } from '../../database/model';
 import { List } from '../../dto';
 import { ProfileDBToDTOMapper } from '../../mappers';
 
@@ -38,7 +38,32 @@ controller.searchProfile = async (
     // 10 km
   }
 
-  const { docs, totalDocs } = await Model.Profile.search(filter, limit, offset);
+  const { docs, totalDocs } = await Profile.search(filter, limit, offset);
+  return List.DTO(totalDocs, offset, docs.map(item => ProfileDBToDTOMapper(item)));
+};
+
+controller.searchLocal = async (name, lat, long, price, limit, offset) => {
+  let filter = {};
+
+  if (!_.isNil(name)) {
+    filter.name = new RegExp(`^${name.toLowerCase()}`, 'i');
+  }
+
+  if (!_.isNil(price)) {
+    filter.price = { $lte: price };
+  }
+
+  if (!_.isNil(lat) && !_.isNil(long)) {
+    filter = {
+      ...filter,
+      location: {
+        $geoWithin: { $centerSphere: [[parseFloat(lat), parseFloat(long)], 10 / 6378.1] }
+      }
+    };
+    // 10 km
+  }
+
+  const { docs, totalDocs } = await Local.search(filter, limit, offset);
   return List.DTO(totalDocs, offset, docs.map(item => ProfileDBToDTOMapper(item)));
 };
 
