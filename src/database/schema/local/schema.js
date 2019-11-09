@@ -13,10 +13,10 @@ export default Schema(
     },
     dateAdded: { type: 'Date', default: Date.now, required: true },
     name: { type: String, index: true },
-    location: { type: PositionSchema, required: true },
-    price: { type: Number, required: true },
+    location: { type: PositionSchema, required: true, index: true },
+    price: { type: Number, required: true, index: true },
     contact: { type: ContactMethodSchema, required: true },
-    photos: { type: [String], required: true },
+    photos: { type: [String], default: [], required: true },
     description: { type: String, required: true }
   },
   { collection: 'Locals' }
