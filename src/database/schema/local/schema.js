@@ -15,7 +15,7 @@ export default Schema(
     name: { type: String, index: true },
     location: { type: PositionSchema, required: true },
     price: { type: Number, required: true },
-    contactMe: { type: ContactMethodSchema, required: true },
+    contact: { type: ContactMethodSchema, required: true },
     photo: { type: [String], required: true },
     description: { type: String, required: true }
   },
