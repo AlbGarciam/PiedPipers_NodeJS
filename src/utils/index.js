@@ -4,6 +4,8 @@ import ValidateInstruments from './validate-instruments';
 import { ValidateEquality, GenerateSalt, HashItem } from './hash';
 import ResizeImage from './resize-image';
 import RemoveImage from './remove-image';
+import ValidateEmail from './validate-email';
+import ValidatePhone from './validate-phone';
 
 export {
   ServerPort,
@@ -14,5 +16,7 @@ export {
   HashItem,
   ValidateInstruments,
   ResizeImage,
-  RemoveImage
+  RemoveImage,
+  ValidateEmail,
+  ValidatePhone
 };

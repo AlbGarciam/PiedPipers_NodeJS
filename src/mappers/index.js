@@ -5,6 +5,7 @@ import DatabaseInstrumentsMapper from './instruments';
 import FileToBufferMapper from './file-to-buffer';
 import ProfileDBToDTOMapper from './profile-database-to-dto';
 import LocalDBToDTOMapper from './local-database-to-dto';
+import ContactToDBMapper from './contact-to-db';
 
 export {
   LocationToCoordinatesMapper,
@@ -13,5 +14,6 @@ export {
   DatabaseInstrumentsMapper,
   FileToBufferMapper,
   ProfileDBToDTOMapper,
-  LocalDBToDTOMapper
+  LocalDBToDTOMapper,
+  ContactToDBMapper
 };
