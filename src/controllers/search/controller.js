@@ -22,7 +22,7 @@ controller.searchProfile = async (
   }
 
   if (!_.isNil(instruments)) {
-    const array = instruments.split(',');
+    const array = instruments.split(',').map(item => item.toLowerCase());
     filter.instruments = { $in: array };
   }
   if (!_.isNil(friendlyLocation))
