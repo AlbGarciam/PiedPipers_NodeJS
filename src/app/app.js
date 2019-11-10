@@ -38,6 +38,7 @@ app.use((err, req, res, next) => {
   if (!_.isNil(err) && !_.isNil(err.code)) {
     res.status(err.code).json(err);
   } else {
+    console.error(error);
     const dto = Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_UNKNOWN_ERROR, err.msg);
     res.status(500).json(dto);
   }
