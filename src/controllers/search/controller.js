@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Profile, Local } from '../../database/model';
 import { List } from '../../dto';
-import { ProfileDBToDTOMapper } from '../../mappers';
+import { ProfileDBToDTOMapper, LocalDBToDTOMapper } from '../../mappers';
 
 const controller = {};
 
@@ -65,7 +65,7 @@ controller.searchLocal = async (name, lat, long, price, limit, offset) => {
   }
 
   const { docs, totalDocs } = await Local.search(filter, limit, offset);
-  return List.DTO(totalDocs, offset, docs.map(item => ProfileDBToDTOMapper(item)));
+  return List.DTO(totalDocs, offset, docs.map(item => LocalDBToDTOMapper(item)));
 };
 
 export default controller;
