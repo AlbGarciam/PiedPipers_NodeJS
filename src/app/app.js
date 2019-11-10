@@ -1,4 +1,5 @@
 import { createError } from 'http-errors';
+import _ from 'lodash';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -33,7 +34,11 @@ app.use((req, res, next) => {
 
 // error handler
 app.use((err, req, res, next) => {
-  res.status(err.code).json(err);
+  if (!_.isNil(err) && !_.isNil(err.code)) {
+    res.status(err.code).json(err);
+  } else {
+    res.status(500).json(err);
+  }
 });
 
 export default app;
