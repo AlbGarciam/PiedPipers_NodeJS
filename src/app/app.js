@@ -1,10 +1,10 @@
 import { createError } from 'http-errors';
-import { Error } from '../dto';
 import _ from 'lodash';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { DBConnection } from '../database';
+import { Error } from '../dto';
 
 import {
   User as UsersRouter,
