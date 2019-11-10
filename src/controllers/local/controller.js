@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Cuid from 'cuid';
 import { Local } from '../../database/model';
 import { LocationToCoordinatesMapper, LocalDBToDTOMapper } from '../../mappers';
+import { Error } from '../../dto';
 
 const controller = {};
 
@@ -32,7 +33,6 @@ controller.create = async (name, location, price, contact, photos, description) 
 };
 
 controller.update = async (cuid, model) => {
-  console.log('UPDATE!!!');
   const dbModel = model;
   const { location } = model;
   dbModel.location = LocationToCoordinatesMapper(location);

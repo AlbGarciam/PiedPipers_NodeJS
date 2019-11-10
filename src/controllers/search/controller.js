@@ -25,6 +25,7 @@ controller.searchProfile = async (
     const array = instruments.split(',').map(item => item.toLowerCase());
     filter.instruments = { $in: array };
   }
+
   if (!_.isNil(friendlyLocation))
     filter.friendlyLocation = new RegExp(`^${friendlyLocation.toLowerCase()}`, 'i');
 
