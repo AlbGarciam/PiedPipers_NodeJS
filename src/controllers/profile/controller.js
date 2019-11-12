@@ -10,6 +10,8 @@ import {
 } from '../../mappers';
 import { ResizeImage, RemoveImage } from '../../utils';
 
+const avatarDir = path.resolve('./public/img');
+
 const controller = {};
 
 controller.provide = async identifier => {
@@ -38,7 +40,6 @@ controller.instruments = () => {
 };
 
 controller.updateAvatar = async (cuid, file) => {
-  const avatarDir = path.resolve('./public/img');
   const buffer = FileToBufferMapper(file);
 
   await RemoveImage(avatarDir, cuid);
@@ -48,6 +49,11 @@ controller.updateAvatar = async (cuid, file) => {
 
   const profile = await controller.update(cuid, query);
   return profile;
+};
+
+controller.remove = async cuid => {
+  await RemoveImage(avatarDir, cuid);
+  await Model.Profile.clean(cuid);
 };
 
 export default controller;

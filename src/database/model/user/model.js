@@ -43,4 +43,12 @@ UserModel.updatePassword = async (cuid, password) => {
   }
 };
 
+UserModel.clean = async cuid => {
+  try {
+    await UserModel.deleteOne({ cuid });
+  } catch (err) {
+    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+  }
+};
+
 export default UserModel;

@@ -59,4 +59,12 @@ ProfileModel.search = async (filter, limit, skip) => {
   }
 };
 
+ProfileModel.clean = async cuid => {
+  try {
+    await ProfileModel.deleteOne({ cuid });
+  } catch (err) {
+    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+  }
+};
+
 export default ProfileModel;
