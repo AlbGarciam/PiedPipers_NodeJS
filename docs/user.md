@@ -85,3 +85,31 @@ Yes
 ### Error response
 
 [Error DTO](./DTO/error.md)
+
+## Delete
+
+This method allows you to delete a user on the server
+
+### Endpoint
+
+`/users`
+
+### Method
+
+DELETE
+
+### Authorized
+
+YES
+
+### Params
+
+No parameters
+
+### Success response
+
+HTTP status code 200
+
+### Error response
+
+[Error DTO](./DTO/error.md)

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 import _ from 'lodash';
-import { UserController, TokenController } from '../../controllers';
-import { TokenMiddleware, ValidationMiddleware } from '../../middlewares';
+import { UserController, TokenController, ProfileController } from '../../controllers';
+import { TokenMiddleware, ValidationMiddleware, UserActionMiddleware } from '../../middlewares';
 
 const router = Router();
 
@@ -70,16 +70,28 @@ router.patch(
   updateValidations,
   ValidationMiddleware(),
   TokenMiddleware(),
+  UserActionMiddleware(),
   async (req, res, next) => {
-    const { userAction, id } = res.locals.decodedToken;
+    const { id } = res.locals.decodedToken;
     const { password } = req.body;
     try {
-      const result = await UserController.updatePassword(id, password, userAction);
+      const result = await UserController.updatePassword(id, password);
       res.status(200).json(result);
     } catch (err) {
       next(err);
     }
   }
 );
+
+router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, next) => {
+  const { id } = res.locals.decodedToken;
+  try {
+    await ProfileController.remove(id);
+    await UserController.remove(id);
+    res.status(200).json({});
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default router;
