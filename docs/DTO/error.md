@@ -34,6 +34,7 @@ const ECODE_UNKNOWN_ERROR = 1004;
 const ECODE_DUPLICATED_ITEM = 1005;
 const ECODE_LOGIN_REQUIRED = 1006;
 const ECODE_VALIDATION_ERROR = 1007;
+const ECODE_CORRUPTED_TOKEN = 1008;
 
 /** MESSAGES */
 const MSG_ITEM_NOT_FOUND = 'Item was not found';
@@ -46,4 +47,5 @@ const MSG_VALIDATION_ERROR = 'One or more parameters are invalid';
 const MSG_INVALID_INSTRUMENTS_ERROR = 'Provided instruments are invalid';
 const MSG_INVALID_LOCATION_ERROR = 'Provided location is invalid';
 const MSG_INVALID_IMAGE_BUFFER = 'Please provide an image';
+const MSG_CORRUPTED_TOKEN = 'Token was corrupted and cannot be parsed try to regenerate a new one';
 ```

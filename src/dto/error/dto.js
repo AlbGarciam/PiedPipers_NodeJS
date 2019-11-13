@@ -6,8 +6,6 @@ const DTO = (code, ecode, message) => {
   };
 };
 
-export { DTO };
-
 /** CODES */
 const CODE_SERVER_ERROR = 500;
 const CODE_LOGIC_ERROR = 404;
