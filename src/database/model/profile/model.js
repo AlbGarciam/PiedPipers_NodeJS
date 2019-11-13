@@ -17,13 +17,9 @@ ProfileModel.create = async cuid => {
     return await model.save();
   } catch (err) {
     if (err.code === 11000) {
-      throw Error.DTO(
-        Error.CODE_AUTHORIZATION_ERROR,
-        Error.ECODE_DUPLICATED_ITEM,
-        Error.MSG_DUPLICATED_ITEM
-      );
+      throw Error.Builder.DUPLICATED;
     }
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.errmsg);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -41,7 +37,7 @@ ProfileModel.updateData = async (cuid, model) => {
     const query = { cuid };
     return await ProfileModel.updateOne(query, model);
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -55,7 +51,7 @@ ProfileModel.search = async (filter, limit, skip) => {
     };
     return await ProfileModel.paginate(filter, options);
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -63,7 +59,7 @@ ProfileModel.clean = async cuid => {
   try {
     await ProfileModel.deleteOne({ cuid });
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 

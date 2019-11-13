@@ -1,2 +1,3 @@
-import model from "./model";
+import model from './model';
+
 export default model;

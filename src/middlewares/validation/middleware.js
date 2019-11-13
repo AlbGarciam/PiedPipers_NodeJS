@@ -1,16 +1,10 @@
-import { validationResult } from "express-validator";
-import { Error } from "../../dto";
-import _ from "lodash";
+import _ from 'lodash';
+import { validationResult } from 'express-validator';
+import { Error } from '../../dto';
 
 export default () => async (req, res, next) => {
-  if (!validationResult(req).isEmpty()) {
-    next(
-      Error.DTO(
-        Error.CODE_VALIDATION_ERROR,
-        Error.ECODE_VALIDATION_ERROR,
-        Error.MSG_VALIDATION_ERROR
-      )
-    );
+  if (!_.isEmpty(!validationResult(req))) {
+    next(Error.Builder.VALIDATION(Error.MSG_VALIDATION_ERROR));
   } else {
     next();
   }

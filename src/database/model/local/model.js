@@ -14,7 +14,7 @@ LocalModel.getByCUID = async cuid => {
   try {
     return await LocalModel.findOne({ cuid }).select(querySelect);
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -24,13 +24,9 @@ LocalModel.create = async item => {
     return await model.save();
   } catch (err) {
     if (err.code === 11000) {
-      throw Error.DTO(
-        Error.CODE_AUTHORIZATION_ERROR,
-        Error.ECODE_DUPLICATED_ITEM,
-        Error.MSG_DUPLICATED_ITEM
-      );
+      throw Error.Builder.DUPLICATED;
     }
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.errmsg);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -39,7 +35,7 @@ LocalModel.updateData = async (cuid, model) => {
     const query = { cuid };
     return await LocalModel.updateOne(query, model);
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -53,7 +49,7 @@ LocalModel.search = async (filter, limit, skip) => {
     };
     return await LocalModel.paginate(filter, options);
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 

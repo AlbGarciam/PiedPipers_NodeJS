@@ -8,7 +8,7 @@ UserModel.getByEmail = async email => {
   try {
     return await UserModel.findOne({ email }).select('email password cuid dateAdded salt -_id');
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -16,7 +16,7 @@ UserModel.getByCuid = async cuid => {
   try {
     return await UserModel.findOne({ cuid }).select('email password cuid dateAdded salt -_id');
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -24,14 +24,11 @@ UserModel.createUser = async user => {
   try {
     return await user.save();
   } catch (err) {
+    console.log(err);
     if (err.code === 11000) {
-      throw Error.DTO(
-        Error.CODE_AUTHORIZATION_ERROR,
-        Error.ECODE_DUPLICATED_ITEM,
-        Error.MSG_DUPLICATED_ITEM
-      );
+      throw Error.Builder.DUPLICATED;
     }
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.errmsg);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -39,7 +36,7 @@ UserModel.updatePassword = async (cuid, password) => {
   try {
     return await UserModel.updateOne({ cuid }, { password });
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 
@@ -47,7 +44,7 @@ UserModel.clean = async cuid => {
   try {
     await UserModel.deleteOne({ cuid });
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 

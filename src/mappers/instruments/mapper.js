@@ -10,11 +10,7 @@ export default model => {
   const lowerCasedInstruments = model.map(item => item.toLowerCase());
 
   if (!ValidateInstruments(lowerCasedInstruments)) {
-    throw Error.DTO(
-      Error.CODE_VALIDATION_ERROR,
-      Error.ECODE_VALIDATION_ERROR,
-      Error.MSG_INVALID_INSTRUMENTS_ERROR
-    );
+    throw Error.Builder.VALIDATION(Error.MSG_INVALID_INSTRUMENTS_ERROR);
   }
 
   return lowerCasedInstruments;
