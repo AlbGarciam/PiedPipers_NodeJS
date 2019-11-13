@@ -38,7 +38,7 @@ app.use((err, req, res, next) => {
   if (!_.isNil(err) && !_.isNil(err.code)) {
     res.status(err.code).json(err);
   } else {
-    const dto = Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_UNKNOWN_ERROR, err.msg);
+    const dto = Error.Builder.UNKNOWN(err.message);
     res.status(500).json(dto);
   }
 });

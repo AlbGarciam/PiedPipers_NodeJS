@@ -10,7 +10,7 @@ controller.provide = async identifier => {
   const model = await Local.getByCUID(identifier);
 
   if (_.isNil(model)) {
-    throw Error.DTO(Error.CODE_LOGIC_ERROR, Error.ECODE_ITEM_NOT_FOUND, Error.MSG_ITEM_NOT_FOUND);
+    throw Error.Builder.ITEM_NOT_FOUND;
   }
 
   return LocalDBToDTOMapper(model);
