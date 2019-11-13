@@ -24,7 +24,6 @@ UserModel.createUser = async user => {
   try {
     return await user.save();
   } catch (err) {
-    console.log(err);
     if (err.code === 11000) {
       throw Error.Builder.DUPLICATED;
     }
