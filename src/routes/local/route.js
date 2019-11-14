@@ -26,7 +26,6 @@ router.post('/', async (req, res, next) => {
 router.patch('/:cuid', async (req, res, next) => {
   const { name, location, price, contact, photos, description } = req.body;
   const { cuid } = req.params;
-  console.log(cuid);
   const model = { name, location, price, contact, photos, description };
   try {
     const result = await LocalController.update(cuid, model); // It throws an error if not found
