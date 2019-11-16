@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import CoordinatesToLocationMapper from '../coordinates-to-location';
 import ContactMethodMapper from '../contact-method';
+import VideoIdTODTOMapper from '../video-id-to-dto';
 import { Profile } from '../../dto';
 
 export default model => {
@@ -20,6 +21,7 @@ export default model => {
   } = model;
   const locationDTO = CoordinatesToLocationMapper(location);
   const contactDTO = ContactMethodMapper(contactMe);
+  const videoDTO = VideoIdTODTOMapper(videos);
   return Profile.DTO(
     cuid,
     name,
@@ -27,7 +29,7 @@ export default model => {
     friendlyLocation,
     contactDTO,
     instruments,
-    videos,
+    videoDTO,
     description,
     photo
   );
