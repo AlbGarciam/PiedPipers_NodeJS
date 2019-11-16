@@ -51,3 +51,4 @@ In order to deploy this project you should follow these steps:
 - [Users](./docs/user.md)
 - [Profile](./docs/profile.md)
 - [Search](./docs/search.md)
+- [Locals](./docs/local.md)
