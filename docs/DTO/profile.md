@@ -7,7 +7,7 @@ This DTO represents a profile on the server. It has the following values
 - **location**: _[Location](./location.md)_ User's location
 - **contact**: _[Contact](./contact.md)_ User's contact
 - **instruments**: _[String]_ User's skills
-- **videos**: _[String]_ User's examples
+- **videos**: _[[VideoDTO](DTO/video.md)]_ User's examples
 - **description**: _String_ User's description
 - **photo**: _String_ User's relative path to its avatar
 - **friendlyLocation**: _String_ User's friendly location

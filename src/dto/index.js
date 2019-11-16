@@ -6,5 +6,6 @@ import * as Profile from './profile';
 import * as Instruments from './instruments';
 import * as List from './list';
 import * as Local from './local';
+import * as Video from './video';
 
-export { Error, User, Location, ContactMehtod, Profile, Instruments, List, Local };
+export { Error, User, Location, ContactMehtod, Profile, Instruments, List, Local, Video };

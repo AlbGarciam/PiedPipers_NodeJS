@@ -7,16 +7,9 @@ const router = Router();
 router.use(TokenMiddleware());
 
 router.post('/', async (req, res, next) => {
-  const { name, location, price, contact, photos, description } = req.body;
+  const { name, location, price, contact, description } = req.body;
   try {
-    const result = await LocalController.create(
-      name,
-      location,
-      price,
-      contact,
-      photos,
-      description
-    );
+    const result = await LocalController.create(name, location, price, contact, [], description);
     res.status(200).json(result);
   } catch (err) {
     next(err);
@@ -26,7 +19,6 @@ router.post('/', async (req, res, next) => {
 router.patch('/:cuid', async (req, res, next) => {
   const { name, location, price, contact, photos, description } = req.body;
   const { cuid } = req.params;
-  console.log(cuid);
   const model = { name, location, price, contact, photos, description };
   try {
     const result = await LocalController.update(cuid, model); // It throws an error if not found
