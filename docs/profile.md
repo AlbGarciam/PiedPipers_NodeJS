@@ -75,7 +75,7 @@ YES
 ### Params
 
 - **name** _String_ User's name
-- **location** \_[LocationDTO](DTO/location.md) User's location
+- **location** _[LocationDTO](DTO/location.md)_ User's location
 - **contact** _[ContactDTO](DTO/contact.md)_ User's contact method
 - **description** _String_ User's description
 - **videos** _[String]_ User's videos (only video identifiers)
