@@ -1,6 +1,6 @@
-# Contact
+# Video
 
-This DTO represents a contact method on the server. It has the following values
+This DTO represents a video method on the server. It has the following values
 - **id** _String_ (_Mandatory_) Video's video
 - **video** _String_ (_Mandatory_) Video's original url
 - **embedVideo** _String_ (_Mandatory_) Video's embed url
