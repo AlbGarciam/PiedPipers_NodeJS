@@ -1,12 +1,12 @@
 # List
 
-This DTO represents a contact method on the server. It has the following values
+This DTO represents a List of Profiles and Locals on the server. It has the following values
 
 - **total**: _Int_ (_Mandatory_) Total items
 - **offset**: _Int_ (_Mandatory_) Offset
 - **items**: _[Object]_ (Mandatory) found items
 
-## Example
+## Example for *Profile*
 
 ```javascript
 {
@@ -36,3 +36,31 @@ This DTO represents a contact method on the server. It has the following values
     ]
 }
 ```
+
+## Example for *Locals*
+
+```javascript
+{
+    "total": 2,
+    "offset": 1,
+    "items": [
+        {
+            "cuid": "ck2rib3ih0000jl4g67j1c675",
+            "dateAdded": "2019-11-09T11:49:44.222Z",
+            "name": "Sala mandra!",
+            "location": {
+                "lat": 40.33,
+                "long": 0.5
+            },
+            "price": 20,
+            "contact": {
+                "type": "phone",
+                "data": "+34671646356"
+            },
+            "photos": [],
+            "description": "Lorem ipsum dolor ..."
+        }
+    ]
+}
+```
+
