@@ -1,6 +1,6 @@
-# User
+# Local
 
-This DTO represents an local inside server. It has the following values
+This DTO represents an Local inside server. It has the following values
 
 - **cuid**: _String_ (_Mandatory_) Local's unique identifier
 - **name**: _String_ (_Mandatory_) Local's name
