@@ -60,15 +60,4 @@ router.post('/photo/:cuid', UploadMiddleware.single('photo'), async (req, res, n
   }
 });
 
-// router.post('/photo', UploadMiddleware.single('photo'), async (req, res, next) => {
-//   const { id } = res.locals.decodedToken;
-//   const { file } = req;
-//   try {
-//     const result = await ProfileController.updateAvatar(id, file);
-//     res.status(200).json(result);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
 export default router;

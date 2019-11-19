@@ -42,12 +42,10 @@ controller.update = async (cuid, model) => {
 };
 
 controller.remove = async cuid => {
-  const local = await controller.provide(cuid);
-
+  const local = await Local.getByCUID(cuid);
   (local.photos || []).forEach(async element => {
-    await RemoveImage(element, cuid);
+    await RemoveImage(PATH.IMAGES_PATH, element);
   });
-
   await Local.clean(cuid);
 };
 
