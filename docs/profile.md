@@ -117,3 +117,48 @@ YES
 ### Error response
 
 [Error DTO](DTO/error.md)
+
+## Get Instruments
+
+This method give you a list of posible instruments
+
+### Endpoint
+
+`/profile/tags`
+
+### Method
+
+GET
+
+### Authorized
+
+YES
+
+### Params 
+
+None
+
+### Success response
+
+items: [String]
+
+*Example:*
+
+```
+{
+    "items": [
+        "guitarra",
+        "bateria",
+        "bajo",
+        "contrabajo",
+        "violín",
+        "pandero",
+        "castañuelas"
+    ]
+}
+```
+
+### Error response
+
+[Error DTO](DTO/error.md)
+
