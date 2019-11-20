@@ -74,9 +74,7 @@ LocalModel.insertImage = async (cuid, image) => {
 
 LocalModel.removeImage = async (cuid, image) => {
   try {
-    console.log(image);
     const local = await LocalModel.getByCUID(cuid);
-    console.log(local);
     const { photos = [] } = local;
     await LocalModel.updateData(cuid, { photos: photos.filter(item => item !== image) });
   } catch (err) {

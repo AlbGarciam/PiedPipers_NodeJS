@@ -64,7 +64,6 @@ controller.insertImage = async (cuid, file) => {
 controller.removeImage = async (cuid, image) => {
   const filename = GetFilename(image);
 
-  console.log(`Remove image!!!!=> ${filename}`);
   await Local.removeImage(cuid, filename);
   await RemoveImage(PATH.IMAGES_PATH, filename);
   return controller.provide(cuid);
