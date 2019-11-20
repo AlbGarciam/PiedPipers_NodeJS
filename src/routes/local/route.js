@@ -42,7 +42,7 @@ router.delete('/photo/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
   const { image } = req.body;
   try {
-    const result = await LocalController.insertImage(cuid, image);
+    const result = await LocalController.removeImage(cuid, image);
     res.status(200).json(result);
   } catch (err) {
     next(err);

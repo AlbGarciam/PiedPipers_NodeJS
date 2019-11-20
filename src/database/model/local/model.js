@@ -1,7 +1,7 @@
 import { model as Model } from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 import { LocalSchema } from '../../schema';
-import { Error, Local } from '../../../dto';
+import { Error } from '../../../dto';
 
 const querySelect = 'cuid dateAdded name location price contact photos description -_id';
 
@@ -74,7 +74,9 @@ LocalModel.insertImage = async (cuid, image) => {
 
 LocalModel.removeImage = async (cuid, image) => {
   try {
+    console.log(image);
     const local = await LocalModel.getByCUID(cuid);
+    console.log(local);
     const { photos = [] } = local;
     await LocalModel.updateData(cuid, { photos: photos.filter(item => item !== image) });
   } catch (err) {

@@ -3,7 +3,7 @@ import Cuid from 'cuid';
 import { Local } from '../../database/model';
 import { LocationToCoordinatesMapper, LocalDBToDTOMapper, FileToBufferMapper } from '../../mappers';
 import { Error } from '../../dto';
-import { RemoveImage, ResizeImage } from '../../utils';
+import { RemoveImage, ResizeImage, GetFilename } from '../../utils';
 import { PATH } from '../../constants';
 
 const controller = {};
@@ -62,9 +62,9 @@ controller.insertImage = async (cuid, file) => {
 };
 
 controller.removeImage = async (cuid, image) => {
-  const filename = image.replace(/^.*[\\\/]/, '');
+  const filename = GetFilename(image);
 
-  console.log(`Remove image!!!!=> ${image}`);
+  console.log(`Remove image!!!!=> ${filename}`);
   await Local.removeImage(cuid, filename);
   await RemoveImage(PATH.IMAGES_PATH, filename);
   return controller.provide(cuid);
