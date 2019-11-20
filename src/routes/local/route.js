@@ -16,6 +16,16 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.get('/:cuid', async (req, res, next) => {
+  const { cuid } = req.params;
+  try {
+    const result = await LocalController.provide(cuid);
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.patch('/:cuid', async (req, res, next) => {
   const { name, location, price, contact, photos, description } = req.body;
   const { cuid } = req.params;
