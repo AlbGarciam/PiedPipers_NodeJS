@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import path from 'path';
 import { Model } from '../../database';
 import { Error, Profile, Instruments } from '../../dto';
 import {
@@ -9,8 +8,7 @@ import {
   ProfileDBToDTOMapper
 } from '../../mappers';
 import { ResizeImage, RemoveImage } from '../../utils';
-
-const avatarDir = path.resolve('./public/img');
+import { PATH } from '../../constants';
 
 const controller = {};
 
@@ -42,17 +40,17 @@ controller.instruments = () => {
 controller.updateAvatar = async (cuid, file) => {
   const buffer = FileToBufferMapper(file);
 
-  await RemoveImage(avatarDir, cuid);
-  const filename = await ResizeImage(avatarDir, cuid, buffer);
+  await RemoveImage(PATH.IMAGES_PATH, cuid);
+  const filename = await ResizeImage(PATH.IMAGES_PATH, cuid, buffer);
 
-  const query = { photo: path.relative('./public', filename) };
+  const query = { photo: PATH.relative(filename) };
 
   const profile = await controller.update(cuid, query);
   return profile;
 };
 
 controller.remove = async cuid => {
-  await RemoveImage(avatarDir, cuid);
+  await RemoveImage(PATH.IMAGES_PATH, cuid);
   await Model.Profile.clean(cuid);
 };
 

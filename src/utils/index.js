@@ -6,6 +6,7 @@ import ResizeImage from './resize-image';
 import RemoveImage from './remove-image';
 import ValidateEmail from './validate-email';
 import ValidatePhone from './validate-phone';
+import GetFilename from './get-filename';
 
 export {
   ServerPort,
@@ -18,5 +19,6 @@ export {
   ResizeImage,
   RemoveImage,
   ValidateEmail,
-  ValidatePhone
+  ValidatePhone,
+  GetFilename
 };

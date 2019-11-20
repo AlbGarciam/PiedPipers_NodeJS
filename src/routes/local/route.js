@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { LocalController } from '../../controllers';
-import { TokenMiddleware } from '../../middlewares';
+import { TokenMiddleware, UploadMiddleware } from '../../middlewares';
 
 const router = Router();
 
@@ -28,15 +28,36 @@ router.patch('/:cuid', async (req, res, next) => {
   }
 });
 
-// router.post('/photo', UploadMiddleware.single('photo'), async (req, res, next) => {
-//   const { id } = res.locals.decodedToken;
-//   const { file } = req;
-//   try {
-//     const result = await ProfileController.updateAvatar(id, file);
-//     res.status(200).json(result);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+router.delete('/:cuid', async (req, res, next) => {
+  const { cuid } = req.params;
+  try {
+    const result = await LocalController.remove(cuid); // It throws an error if not found
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/photo/:cuid', async (req, res, next) => {
+  const { cuid } = req.params;
+  const { image } = req.body;
+  try {
+    const result = await LocalController.removeImage(cuid, image);
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/photo/:cuid', UploadMiddleware.single('photo'), async (req, res, next) => {
+  const { cuid } = req.params;
+  const { file } = req;
+  try {
+    const result = await LocalController.insertImage(cuid, file);
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default router;
