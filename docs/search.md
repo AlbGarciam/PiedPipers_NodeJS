@@ -23,6 +23,7 @@ Yes
 - **friendlyLocation**: _String_ User's friendly location
 - **lat**: _Float_ Latitude (must be present if sending long)
 - **long**: _Float_ Longitude (must be present if sending lat)
+- **maxDistance**: _Float_ Max distance of search (in kilometers)
 - **limit**: _Int_ Maximum number of results
 - **offset**: _Int_ Results offset
 
@@ -56,6 +57,7 @@ Yes
 - **price**: _Number_ Max price of local
 - **lat**: _Float_ Latitude (must be present if sending long)
 - **long**: _Float_ Longitude (must be present if sending lat)
+- **maxDistance**: _Float_ Max distance of search (in kilometers)
 - **limit**: _Int_ Maximum number of results
 - **offset**: _Int_ Results offset
 
