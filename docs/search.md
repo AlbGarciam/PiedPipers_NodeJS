@@ -20,7 +20,6 @@ Yes
 
 - **name**: _String_ User's name
 - **instruments**: _String_ User's skills separated by commas
-- **friendlyLocation**: _String_ User's friendly location
 - **lat**: _Float_ Latitude (must be present if sending long)
 - **long**: _Float_ Longitude (must be present if sending lat)
 - **maxDistance**: _Float_ Max distance of search (in kilometers)
