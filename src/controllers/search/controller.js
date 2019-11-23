@@ -10,6 +10,7 @@ controller.searchProfile = async (
   instruments,
   lat,
   long,
+  maxDistance,
   friendlyLocation,
   limit,
   offset
@@ -29,21 +30,22 @@ controller.searchProfile = async (
   if (!_.isNil(friendlyLocation))
     filter.friendlyLocation = new RegExp(`^${friendlyLocation.toLowerCase()}`, 'i');
 
-  if (!_.isNil(lat) && !_.isNil(long)) {
+  if (!_.isNil(lat) && !_.isNil(long) && !_.isNil(maxDistance)) {
     filter = {
       ...filter,
       location: {
-        $geoWithin: { $centerSphere: [[parseFloat(lat), parseFloat(long)], 10 / 6378.1] }
+        $geoWithin: {
+          $centerSphere: [[parseFloat(lat), parseFloat(long)], parseFloat(maxDistance) / 6378.1]
+        }
       }
     };
-    // 10 km
   }
 
   const { docs, totalDocs } = await Profile.search(filter, limit, offset);
   return List.DTO(totalDocs, offset, docs.map(item => ProfileDBToDTOMapper(item)));
 };
 
-controller.searchLocal = async (name, lat, long, price, limit, offset) => {
+controller.searchLocal = async (name, lat, long, maxDistance, price, limit, offset) => {
   let filter = {};
 
   if (!_.isNil(name)) {
@@ -54,14 +56,15 @@ controller.searchLocal = async (name, lat, long, price, limit, offset) => {
     filter.price = { $lte: price };
   }
 
-  if (!_.isNil(lat) && !_.isNil(long)) {
+  if (!_.isNil(lat) && !_.isNil(long) && !_.isNil(maxDistance)) {
     filter = {
       ...filter,
       location: {
-        $geoWithin: { $centerSphere: [[parseFloat(lat), parseFloat(long)], 10 / 6378.1] }
+        $geoWithin: {
+          $centerSphere: [[parseFloat(lat), parseFloat(long)], parseFloat(maxDistance) / 6378.1]
+        }
       }
     };
-    // 10 km
   }
 
   const { docs, totalDocs } = await Local.search(filter, limit, offset);
