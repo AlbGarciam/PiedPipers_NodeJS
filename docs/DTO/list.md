@@ -29,7 +29,12 @@ This DTO represents a List of Profiles and Locals on the server. It has the foll
                 "bateria"
             ],
             "videos": [
-                "https://www.youtube.com/watch?v=41DH065Lfeo&list=RD41DH065Lfeo&start_radio=1"
+                { 
+                    "id": "idrarodeYT",
+                    "video": "https://www.youtube.com/watch?v=41DH065Lfeo&list=RD41DH065Lfeo&start_radio=1",
+                    "embedVideo": "",
+                    "thumbnail": "thumb.jpg"
+                }
             ],
             "description": "Lorem ipsum dolor ..."
         }
