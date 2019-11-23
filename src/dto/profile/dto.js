@@ -34,7 +34,8 @@ const INSTRUMENTS = [
   'contrabajo',
   'violín',
   'pandero',
-  'castañuelas'
+  'castañuelas',
+  'zambomba'
 ];
 
 export { INSTRUMENTS };
