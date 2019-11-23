@@ -134,18 +134,20 @@ GET
 
 YES
 
-### Params 
+### Params
 
 None
 
 ### Success response
 
-items: [String]
+[List DTO](./DTO/list.md) with a String
 
-*Example:*
+_Example:_
 
 ```
 {
+    "total": 8,
+    "offset": 0,
     "items": [
         "guitarra",
         "bateria",
@@ -153,7 +155,8 @@ items: [String]
         "contrabajo",
         "violín",
         "pandero",
-        "castañuelas"
+        "castañuelas",
+        "zambomba"
     ]
 }
 ```
@@ -161,4 +164,3 @@ items: [String]
 ### Error response
 
 [Error DTO](DTO/error.md)
-
