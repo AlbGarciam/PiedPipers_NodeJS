@@ -6,7 +6,7 @@ export default model => {
   if (_.isNil(model)) {
     return null;
   }
-
+  console.error(model);
   const lowerCasedInstruments = model.map(item => item.toLowerCase());
 
   if (!ValidateInstruments(lowerCasedInstruments)) {
