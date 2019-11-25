@@ -1,10 +1,7 @@
 import { Router } from 'express';
 import { SearchController } from '../../controllers';
-import { TokenMiddleware } from '../../middlewares';
 
 const router = Router();
-
-router.use(TokenMiddleware());
 
 router.get('/profile', async (req, res, next) => {
   const { name, instruments, lat, long, maxDistance, friendlyLocation, limit, offset } = req.query;
