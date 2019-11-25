@@ -34,6 +34,8 @@ ProfileModel.getByCUID = async cuid => {
 
 ProfileModel.updateData = async (cuid, model) => {
   try {
+    console.log('Model to update!!!');
+    console.log(model);
     const query = { cuid };
     return await ProfileModel.updateOne(query, model);
   } catch (err) {
