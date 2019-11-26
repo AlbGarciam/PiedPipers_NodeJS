@@ -60,7 +60,6 @@ router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, nex
     instruments,
     friendlyLocation
   };
-  console.error(model);
   try {
     const result = await ProfileController.update(id, model); // It throws an error if not found
     res.status(200).json(result);
