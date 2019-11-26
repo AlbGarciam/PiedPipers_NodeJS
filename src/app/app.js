@@ -35,10 +35,12 @@ app.use((req, res, next) => {
 
 // error handler
 app.use((err, req, res, next) => {
-  console.error(err.stack);
   if (!_.isNil(err) && !_.isNil(err.code)) {
     res.status(err.code).json(err);
   } else {
+    console.error(Date());
+    console.error(req);
+    console.error(err.stack);
     const dto = Error.Builder.UNKNOWN(err.message);
     res.status(500).json(dto);
   }
