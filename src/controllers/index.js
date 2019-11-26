@@ -3,5 +3,13 @@ import TokenController from './tokens';
 import ProfileController from './profile';
 import SearchController from './search';
 import LocalController from './local';
+import NotificationController from './notifications';
 
-export { UserController, TokenController, ProfileController, SearchController, LocalController };
+export {
+  UserController,
+  TokenController,
+  ProfileController,
+  SearchController,
+  LocalController,
+  NotificationController
+};

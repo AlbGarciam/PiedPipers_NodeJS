@@ -35,6 +35,7 @@ const MSG_INVALID_INSTRUMENTS_ERROR = 'Provided instruments are invalid';
 const MSG_INVALID_LOCATION_ERROR = 'Provided location is invalid';
 const MSG_INVALID_IMAGE_BUFFER = 'Please provide an image';
 const MSG_CORRUPTED_TOKEN = 'Token was corrupted and cannot be parsed try to regenerate a new one';
+const MSG_MISSING_USER_ID = 'Body does not contain userId';
 
 export {
   MSG_ITEM_NOT_FOUND,
@@ -47,7 +48,8 @@ export {
   MSG_INVALID_INSTRUMENTS_ERROR,
   MSG_INVALID_LOCATION_ERROR,
   MSG_INVALID_IMAGE_BUFFER,
-  MSG_CORRUPTED_TOKEN
+  MSG_CORRUPTED_TOKEN,
+  MSG_MISSING_USER_ID
 };
 
 const Builder = {

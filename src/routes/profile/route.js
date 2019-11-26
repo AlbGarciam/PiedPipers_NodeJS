@@ -1,7 +1,12 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { ProfileController } from '../../controllers';
-import { TokenMiddleware, ValidationMiddleware, UploadMiddleware } from '../../middlewares';
+import { ProfileController, NotificationController } from '../../controllers';
+import {
+  TokenMiddleware,
+  ValidationMiddleware,
+  UploadMiddleware,
+  FollowNotificationMiddleware
+} from '../../middlewares';
 
 const router = Router();
 
@@ -74,5 +79,38 @@ router.post('/avatar', UploadMiddleware.single('photo'), async (req, res, next) 
     next(err);
   }
 });
+
+const followValidations = [
+  check('userId')
+    .isString()
+    .trim()
+];
+
+router.post(
+  '/follow',
+  followValidations,
+  ValidationMiddleware(),
+  FollowNotificationMiddleware(),
+  async (req, res, next) => {
+    const { id } = res.locals.decodedToken;
+    const { userId } = req.body;
+
+    try {
+      const result = await NotificationController.createFollow(id, userId);
+      res.status(200).json(result);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+/**
+ * PENDING WORK
+ *
+ * Create a router for notifications. This will be in charge of handle notifications operations
+ * Create unfollow route on profile to remove followers
+ * Add a method on ProfileController to register/deregister a user on followers
+ * Update db models to handle an array of followers
+ */
 
 export default router;
