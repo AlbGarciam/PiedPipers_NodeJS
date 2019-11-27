@@ -55,4 +55,10 @@ controller.remove = async cuid => {
   await Model.Profile.clean(cuid);
 };
 
+controller.appendInvite = async (origin, destination) => {
+  const { cuid, invitations = [] } = origin;
+  invitations.push(destination);
+  return controller.update(cuid, { invitations });
+};
+
 export default controller;

@@ -24,7 +24,8 @@ export default Schema(
     photo: { type: String },
     videos: [{ type: String }],
     description: { type: String },
-    followers: [{ type: String }]
+    invitations: { type: [String], default: [], required: true },
+    followers: { type: [String], default: [], required: true }
   },
   { collection: 'Profile' }
 );

@@ -39,18 +39,13 @@ NotificationModel.clean = async cuid => {
   }
 };
 
-NotificationModel.follow = async (origin, destination) => {
-  const item = {
-    destination,
-    notificationType: 'follow',
-    data: {
-      origin,
-      destination
-    }
-  };
-  const model = NotificationModel(item);
+NotificationModel.create = async (destination, model) => {
+  const item = NotificationModel({
+    ...model,
+    destination
+  });
   try {
-    return await model.save();
+    return await item.save();
   } catch (err) {
     if (err.code === 11000) {
       throw Error.Builder.DUPLICATED;

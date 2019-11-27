@@ -9,7 +9,9 @@ const DTO = (
   instruments,
   videos,
   description,
-  photo
+  photo,
+  followers,
+  invitations
 ) => {
   const model = {
     cuid,
@@ -20,7 +22,9 @@ const DTO = (
     instruments,
     videos,
     description,
-    photo
+    photo,
+    followers,
+    invitations
   };
   return _.omitBy(model, _.isNil);
 };

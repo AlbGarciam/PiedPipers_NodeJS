@@ -50,7 +50,16 @@ const patchValidations = [
 
 router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, next) => {
   const { id } = res.locals.decodedToken;
-  const { name, location, contact, description, videos, instruments, friendlyLocation } = req.body;
+  const {
+    name,
+    location,
+    contact,
+    description,
+    videos,
+    instruments,
+    friendlyLocation,
+    invitations
+  } = req.body;
   const model = {
     name,
     location,
@@ -58,7 +67,8 @@ router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, nex
     description,
     videos,
     instruments,
-    friendlyLocation
+    friendlyLocation,
+    invitations
   };
   try {
     const result = await ProfileController.update(id, model); // It throws an error if not found
@@ -91,12 +101,12 @@ router.post(
   ValidationMiddleware(),
   FollowNotificationMiddleware(),
   async (req, res, next) => {
-    const { id } = res.locals.decodedToken;
-    const { userId } = req.body;
-
+    const { destinationUser, originUser } = res.locals;
+    const { cuid: destinationId } = destinationUser;
     try {
-      const result = await NotificationController.createFollow(id, userId);
-      res.status(200).json(result);
+      const profile = await ProfileController.appendInvite(originUser, destinationId);
+      await NotificationController.follow(originUser, destinationUser);
+      res.status(200).json(profile);
     } catch (err) {
       next(err);
     }
@@ -106,10 +116,8 @@ router.post(
 /**
  * PENDING WORK
  *
- * Create a router for notifications. This will be in charge of handle notifications operations
  * Create unfollow route on profile to remove followers
  * Add a method on ProfileController to register/deregister a user on followers
- * Update db models to handle an array of followers
  */
 
 export default router;

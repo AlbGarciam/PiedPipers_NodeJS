@@ -17,7 +17,9 @@ export default model => {
     instruments,
     videos,
     description,
-    photo
+    photo,
+    followers = [],
+    invitations = []
   } = model;
   const locationDTO = CoordinatesToLocationMapper(location);
   const contactDTO = ContactMethodMapper(contactMe);
@@ -31,6 +33,8 @@ export default model => {
     instruments,
     videoDTO,
     description,
-    photo
+    photo,
+    followers,
+    invitations
   );
 };
