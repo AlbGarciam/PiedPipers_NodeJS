@@ -41,7 +41,7 @@ router.get('/redeem/:cuid', RedeemNotification(), async (req, res, next) => {
         await ProfileController.finalizeFollow(data);
         break;
       default:
-        return {};
+        break;
     }
     res.status(200).json(notification);
   } catch (err) {
