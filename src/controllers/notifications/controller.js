@@ -47,9 +47,9 @@ controller.list = async (userId, limit = 10, offset = 0) => {
 controller.redeem = async cuid => {
   const notification = await controller.provide(cuid);
 
-  // if (notification.state === NOTIFICATION_STATES.REDEEMED) {
-  //   throw Error.Builder.NOTIFICATION_ALREADY_REDEEMED;
-  // }
+  if (notification.state === NOTIFICATION_STATES.REDEEMED) {
+    throw Error.Builder.NOTIFICATION_ALREADY_REDEEMED;
+  }
 
   return controller.update(cuid, { state: NOTIFICATION_STATES.REDEEMED });
 };
