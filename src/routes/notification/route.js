@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { NotificationController } from '../../controllers';
-import { TokenMiddleware } from '../../middlewares';
+import { NotificationController, ProfileController } from '../../controllers';
+import { TokenMiddleware, RedeemNotification } from '../../middlewares';
+import { NOTIFICATION_TYPES } from '../../constants';
 
 const router = Router();
 
@@ -26,6 +27,23 @@ router.delete('/:cuid', async (req, res, next) => {
   try {
     const result = await NotificationController.remove(cuid);
     res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/redeem/:cuid', RedeemNotification(), async (req, res, next) => {
+  const { redeemedNotification: notification } = res.locals;
+  try {
+    const { notificationType = '', data } = notification;
+    switch (notificationType) {
+      case NOTIFICATION_TYPES.FOLLOW:
+        await ProfileController.finalizeFollow(data);
+        break;
+      default:
+        return {};
+    }
+    res.status(200).json(notification);
   } catch (err) {
     next(err);
   }

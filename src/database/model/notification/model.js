@@ -54,4 +54,13 @@ NotificationModel.create = async (destination, model) => {
   }
 };
 
+NotificationModel.updateData = async (cuid, model) => {
+  try {
+    const local = await NotificationModel.updateOne({ cuid }, model);
+    return local;
+  } catch (err) {
+    throw Error.Builder.DATABASE(err.message);
+  }
+};
+
 export default NotificationModel;

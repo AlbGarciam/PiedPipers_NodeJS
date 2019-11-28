@@ -61,4 +61,23 @@ controller.appendInvite = async (origin, destination) => {
   return controller.update(cuid, { invitations });
 };
 
+controller.finalizeFollow = async notificationData => {
+  const { origin, destination } = notificationData;
+  const originUser = await controller.provide(origin);
+  const destinationUser = await controller.provide(destination);
+
+  // Update origin ( move from invites to followers )
+  const { invitations: originInvitations, followers: originFollowers } = originUser;
+  originFollowers.push(destination);
+  await controller.update(origin, {
+    followers: originFollowers,
+    invitations: originInvitations.filter(item => item !== destination)
+  });
+
+  // Update destination ( add to followers )
+  const { followers: destFollowers } = destinationUser;
+  destFollowers.push(origin);
+  await controller.update(destination, { followers: destFollowers });
+};
+
 export default controller;
