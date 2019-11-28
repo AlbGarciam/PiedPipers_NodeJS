@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const DTO = (
+export default (
   cuid,
   name,
   location,
@@ -28,5 +28,3 @@ const DTO = (
   };
   return _.omitBy(model, _.isNil);
 };
-
-export { DTO };

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Model } from '../../database';
-import { Error, List } from '../../dto';
+import { Error, ListDTO } from '../../dto';
 import {
   LocationToCoordinatesMapper,
   DatabaseInstrumentsMapper,
@@ -35,7 +35,7 @@ controller.update = async (cuid, model) => {
 
 controller.instruments = () => {
   const instruments = DatabaseInstrumentsMapper(INSTRUMENTS);
-  return List.DTO(instruments.length, 0, instruments);
+  return ListDTO(instruments.length, 0, instruments);
 };
 
 controller.updateAvatar = async (cuid, file) => {

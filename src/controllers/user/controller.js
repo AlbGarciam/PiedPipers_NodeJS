@@ -1,7 +1,7 @@
 import Cuid from 'cuid';
 import _ from 'lodash';
 import { Model } from '../../database';
-import { Error, User } from '../../dto';
+import { Error, UserDTO } from '../../dto';
 import { ValidateEquality, GenerateSalt, HashItem } from '../../utils';
 
 const controller = {};
@@ -13,7 +13,7 @@ controller.login = async (mail, pwd) => {
     throw Error.Builder.ITEM_NOT_FOUND;
   }
   if (ValidateEquality(user.salt, pwd, user.password)) {
-    return User.DTO(user.email, user.cuid, user.dateAdded);
+    return UserDTO(user.email, user.cuid, user.dateAdded);
   }
   throw Error.Builder.INVALID_PASSWORD;
 };
@@ -29,7 +29,7 @@ controller.create = async (mail, pwd) => {
   });
   const { email, cuid, dateAdded } = await Model.User.createUser(model);
   await Model.Profile.create(cuid);
-  return User.DTO(email, cuid, dateAdded);
+  return UserDTO(email, cuid, dateAdded);
 };
 
 controller.updatePassword = async (cuid, password) => {
@@ -39,7 +39,7 @@ controller.updatePassword = async (cuid, password) => {
   }
   const hashedPwd = HashItem(password, salt);
   await Model.User.updatePassword(cuid, hashedPwd);
-  return User.DTO(email, cuid, dateAdded);
+  return UserDTO(email, cuid, dateAdded);
 };
 
 controller.remove = async cuid => {

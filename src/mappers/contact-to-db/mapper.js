@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { ValidateEmail, ValidatePhone } from '../../utils';
-import { ContactMehtod } from '../../dto';
+import { CONTACT_METHOD_TYPES } from '../../constants';
 
 export default model => {
   if (_.isNil(model)) {
@@ -9,14 +9,14 @@ export default model => {
 
   if (ValidateEmail(model)) {
     return {
-      type: ContactMehtod.EMAIL,
+      type: CONTACT_METHOD_TYPES.EMAIL,
       data: model
     };
   }
 
   if (ValidatePhone(model)) {
     return {
-      type: ContactMehtod.PHONE,
+      type: CONTACT_METHOD_TYPES.PHONE,
       data: model
     };
   }

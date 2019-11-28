@@ -1,3 +1,4 @@
 export default {
-  FOLLOW: 'follow'
+  FOLLOW: 'follow',
+  REDEEMED: 'redeemed'
 };

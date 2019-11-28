@@ -1,2 +1,3 @@
-import Controller from "./controller";
+import Controller from './controller';
+
 export default Controller;

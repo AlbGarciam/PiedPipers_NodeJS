@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createError } from 'http-errors';
 import _ from 'lodash';
 import express from 'express';
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   if (!_.isNil(err) && !_.isNil(err.code)) {
     res.status(err.code).json(err);

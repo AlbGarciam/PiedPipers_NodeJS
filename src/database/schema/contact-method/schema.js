@@ -1,10 +1,10 @@
 import { Schema } from 'mongoose';
-import { ContactMehtod } from '../../../dto';
+import { CONTACT_METHOD_TYPES } from '../../../constants';
 
 export default Schema({
   type: {
     type: String,
-    enum: [ContactMehtod.PHONE, ContactMehtod.EMAIL],
+    enum: [CONTACT_METHOD_TYPES.PHONE, CONTACT_METHOD_TYPES.EMAIL],
     required: true
   },
   data: { type: String, required: true }

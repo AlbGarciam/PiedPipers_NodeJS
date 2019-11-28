@@ -1,9 +1,7 @@
-const DTO = (total, offset, items) => {
+export default (total, offset, items) => {
   return {
     total,
     offset,
     items
   };
 };
-
-export { DTO };

@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Profile } from '../../../dto';
+import { INSTRUMENTS } from '../../../constants';
 import PositionSchema from '../position';
 import ContactMethodSchema from '../contact-method';
 
@@ -19,7 +19,7 @@ export default Schema(
     contactMe: { type: ContactMethodSchema },
     instruments: {
       type: [String],
-      enum: Profile.INSTRUMENTS
+      enum: INSTRUMENTS
     },
     photo: { type: String },
     videos: [{ type: String }],
