@@ -3,7 +3,7 @@ import mongoosePaginate from 'mongoose-paginate-v2';
 import { NotificationSchema } from '../../schema';
 import { Error } from '../../../dto';
 
-const querySelect = 'cuid dateAdded destination notificationType data -_id';
+const querySelect = 'cuid dateAdded destination notificationType state data -_id';
 
 NotificationSchema.plugin(mongoosePaginate);
 

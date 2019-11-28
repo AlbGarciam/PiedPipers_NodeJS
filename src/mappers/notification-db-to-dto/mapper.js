@@ -5,6 +5,6 @@ export default model => {
   if (_.isNil(model)) {
     return null;
   }
-  const { cuid, notificationType, destination, dateAdded, data } = model;
-  return NotificationDTO(cuid, notificationType, destination, dateAdded, data);
+  const { cuid, notificationType, destination, dateAdded, state, data } = model;
+  return NotificationDTO(cuid, notificationType, destination, dateAdded, state, data);
 };
