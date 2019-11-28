@@ -1,7 +1,5 @@
-const DTO = items => {
+export default items => {
   return {
     items
   };
 };
-
-export { DTO };

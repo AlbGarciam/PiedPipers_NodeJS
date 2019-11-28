@@ -1,7 +1,12 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { ProfileController } from '../../controllers';
-import { TokenMiddleware, ValidationMiddleware, UploadMiddleware } from '../../middlewares';
+import { ProfileController, NotificationController } from '../../controllers';
+import {
+  TokenMiddleware,
+  ValidationMiddleware,
+  UploadMiddleware,
+  FollowNotificationMiddleware
+} from '../../middlewares';
 
 const router = Router();
 
@@ -73,5 +78,36 @@ router.post('/avatar', UploadMiddleware.single('photo'), async (req, res, next) 
     next(err);
   }
 });
+
+const followValidations = [
+  check('userId')
+    .isString()
+    .trim()
+];
+
+router.post(
+  '/follow',
+  followValidations,
+  ValidationMiddleware(),
+  FollowNotificationMiddleware(),
+  async (req, res, next) => {
+    const { destinationUser, originUser } = res.locals;
+    const { cuid: destinationId } = destinationUser;
+    try {
+      const profile = await ProfileController.appendInvite(originUser, destinationId);
+      await NotificationController.follow(originUser, destinationUser);
+      res.status(200).json(profile);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+/**
+ * PENDING WORK
+ *
+ * Create unfollow route on profile to remove followers
+ * Add a method on ProfileController to register/deregister a user on followers
+ */
 
 export default router;

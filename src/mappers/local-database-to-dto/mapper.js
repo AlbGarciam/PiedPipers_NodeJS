@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import CoordinatesToLocationMapper from '../coordinates-to-location';
 import ContactMethodMapper from '../contact-method';
-import { Local } from '../../dto';
+import { LocalDTO } from '../../dto';
 import { PATH } from '../../constants';
 
 export default model => {
@@ -12,5 +12,5 @@ export default model => {
   const locationDTO = CoordinatesToLocationMapper(location);
   const contactDTO = ContactMethodMapper(contact);
   const photosURLs = photos.map(element => PATH.IMAGE(element));
-  return Local.DTO(cuid, dateAdded, name, locationDTO, price, contactDTO, photosURLs, description);
+  return LocalDTO(cuid, dateAdded, name, locationDTO, price, contactDTO, photosURLs, description);
 };

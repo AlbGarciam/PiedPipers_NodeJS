@@ -1,8 +1,6 @@
-const DTO = (lat, long) => {
+export default (lat, long) => {
   return {
     lat,
     long
   };
 };
-
-export { DTO };

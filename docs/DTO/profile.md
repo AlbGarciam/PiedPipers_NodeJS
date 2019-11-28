@@ -11,6 +11,8 @@ This DTO represents a profile on the server. It has the following values
 - **description**: _String_ User's description
 - **photo**: _String_ User's relative path to its avatar
 - **friendlyLocation**: _String_ User's friendly location
+- **followers**: _[String]_ (_Mandatory_) User ids who have accepted your invites
+- **invitations**: _[String]_ (_Mandatory_) User ids who have been invited but not accepted
 
 ## Example
 
@@ -34,6 +36,8 @@ This DTO represents a profile on the server. It has the following values
         "https://www.youtube.com/watch?v=41DH065Lfeo&list=RD41DH065Lfeo&start_radio=1"
     ],
     "description": "Lorem ipsum dolor ...",
-    "photo": "/Users/albertogarcia-munoz/Documents/Repositories/ProyectoFinal/PiedPipers/public/img/ck2g2765h0000q64g4y8tfk0a.png"
+    "photo": "/Users/albertogarcia-munoz/Documents/Repositories/ProyectoFinal/PiedPipers/public/img/ck2g2765h0000q64g4y8tfk0a.png",
+    "followers": ["asdjakdjnakdn998123a"],
+    "invitations": ["ck2g2765h0000q6ahsdbjasd8tfk0a"]
 }
 ```

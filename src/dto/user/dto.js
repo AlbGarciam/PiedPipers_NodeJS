@@ -1,9 +1,7 @@
-const DTO = (email, id, addDate) => {
+export default (email, id, addDate) => {
   return {
     email,
     id,
     addDate
   };
 };
-
-export { DTO };

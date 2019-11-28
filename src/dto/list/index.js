@@ -1,1 +1,3 @@
-export * from './dto';
+import DTO from './dto';
+
+export default DTO;

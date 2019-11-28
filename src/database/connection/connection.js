@@ -1,5 +1,5 @@
-import Mongoose from "mongoose";
-import { MongoRoute } from "../../utils";
+import Mongoose from 'mongoose';
+import { MongoRoute } from '../../utils';
 
 Mongoose.Promise = global.Promise;
 
@@ -13,9 +13,7 @@ const connection = async () => {
     });
     console.info(`Successfully connected to mongo at: ${route}!`);
   } catch (error) {
-    console.error(
-      `Failed when connecting to: ${route}\n error: ${error.message}`
-    );
+    console.error(`Failed when connecting to: ${route}\n error: ${error.message}`);
     process.exit(1);
   }
 };
