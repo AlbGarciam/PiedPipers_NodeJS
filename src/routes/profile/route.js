@@ -103,11 +103,21 @@ router.post(
   }
 );
 
-/**
- * PENDING WORK
- *
- * Create unfollow route on profile to remove followers
- * Add a method on ProfileController to register/deregister a user on followers
- */
+const unfollowValidations = [
+  check('cuid')
+    .isString()
+    .trim()
+];
+
+router.post('/unfollow', unfollowValidations, ValidationMiddleware(), async (req, res, next) => {
+  const { id: origin } = res.locals.decodedToken;
+  const { userId: destination } = req.body;
+  try {
+    const profile = await ProfileController.unfollow(origin, destination);
+    res.status(200).json(profile);
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default router;

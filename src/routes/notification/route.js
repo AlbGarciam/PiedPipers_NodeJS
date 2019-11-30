@@ -55,7 +55,6 @@ router.get('/redeem/:cuid', RedeemNotification(), async (req, res, next) => {
  * Create a router for notifications. This will be in charge of handle notifications operations
  * Create unfollow route on profile to remove followers
  * Add a method on ProfileController to register/deregister a user on followers
- * Update db models to handle an array of followers
  */
 
 export default router;

@@ -80,4 +80,23 @@ controller.finalizeFollow = async notificationData => {
   await controller.update(destination, { followers: destFollowers });
 };
 
+controller.unfollow = async (origin, destination) => {
+  const originUser = await controller.provide(origin);
+  const destinationUser = await controller.provide(destination);
+
+  // Update destination
+  const { followers: destFollowers } = destinationUser;
+  await controller.update(destination, {
+    followers: destFollowers.filter(item => item !== origin)
+  });
+
+  // Update origin
+  const { followers: originFollowers } = originUser;
+  originFollowers.push(destination);
+
+  return controller.update(origin, {
+    followers: originFollowers.filter(item => item !== destination)
+  });
+};
+
 export default controller;
