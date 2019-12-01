@@ -4,7 +4,7 @@ import { ProfileSchema } from '../../schema';
 import { Error } from '../../../dto';
 
 const querySelect =
-  'cuid dateAdded name location contactMe instruments photo videos description followers friendlyLocation -_id';
+  'cuid dateAdded name location contactMe instruments photo videos description followers invitations friendlyLocation -_id';
 
 ProfileSchema.index({ location: '2dsphere' });
 ProfileSchema.plugin(mongoosePaginate);
@@ -28,7 +28,7 @@ ProfileModel.getByCUID = async cuid => {
     const query = { cuid };
     return await ProfileModel.findOne(query).select(querySelect);
   } catch (err) {
-    throw Error.DTO(Error.CODE_SERVER_ERROR, Error.ECODE_DATABASE_ERROR, err.message);
+    throw Error.Builder.DATABASE(err.message);
   }
 };
 

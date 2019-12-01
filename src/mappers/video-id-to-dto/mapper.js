@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Video } from '../../dto';
+import { VideoDTO } from '../../dto';
 
 const idToThumbnail = id => `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
 const idToEmbedVideo = id =>
@@ -11,6 +11,6 @@ export default model => {
     return null;
   }
   return model.map(videoId =>
-    Video.DTO(videoId, idToVideo(videoId), idToEmbedVideo(videoId), idToThumbnail(videoId))
+    VideoDTO(videoId, idToVideo(videoId), idToEmbedVideo(videoId), idToThumbnail(videoId))
   );
 };

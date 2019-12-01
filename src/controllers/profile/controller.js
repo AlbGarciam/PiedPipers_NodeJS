@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Model } from '../../database';
-import { Error, List } from '../../dto';
+import { Error, ListDTO } from '../../dto';
 import {
   LocationToCoordinatesMapper,
   DatabaseInstrumentsMapper,
@@ -35,7 +35,7 @@ controller.update = async (cuid, model) => {
 
 controller.instruments = () => {
   const instruments = DatabaseInstrumentsMapper(INSTRUMENTS);
-  return List.DTO(instruments.length, 0, instruments);
+  return ListDTO(instruments.length, 0, instruments);
 };
 
 controller.updateAvatar = async (cuid, file) => {
@@ -53,6 +53,50 @@ controller.updateAvatar = async (cuid, file) => {
 controller.remove = async cuid => {
   await RemoveImage(PATH.IMAGES_PATH, cuid);
   await Model.Profile.clean(cuid);
+};
+
+controller.appendInvite = async (origin, destination) => {
+  const { cuid, invitations = [] } = origin;
+  invitations.push(destination);
+  return controller.update(cuid, { invitations });
+};
+
+controller.finalizeFollow = async notificationData => {
+  const { origin, destination } = notificationData;
+  const originUser = await controller.provide(origin);
+  const destinationUser = await controller.provide(destination);
+
+  // Update origin ( move from invites to followers )
+  const { invitations: originInvitations, followers: originFollowers } = originUser;
+  originFollowers.push(destination);
+  await controller.update(origin, {
+    followers: originFollowers,
+    invitations: originInvitations.filter(item => item !== destination)
+  });
+
+  // Update destination ( add to followers )
+  const { followers: destFollowers } = destinationUser;
+  destFollowers.push(origin);
+  await controller.update(destination, { followers: destFollowers });
+};
+
+controller.unfollow = async (origin, destination) => {
+  const originUser = await controller.provide(origin);
+  const destinationUser = await controller.provide(destination);
+
+  // Update destination
+  const { followers: destFollowers } = destinationUser;
+  await controller.update(destination, {
+    followers: destFollowers.filter(item => item !== origin)
+  });
+
+  // Update origin
+  const { followers: originFollowers } = originUser;
+  originFollowers.push(destination);
+
+  return controller.update(origin, {
+    followers: originFollowers.filter(item => item !== destination)
+  });
 };
 
 export default controller;

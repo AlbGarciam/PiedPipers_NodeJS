@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createError } from 'http-errors';
 import _ from 'lodash';
 import express from 'express';
@@ -10,7 +11,8 @@ import {
   User as UsersRouter,
   Profile as ProfileRouter,
   Search as SearchRouter,
-  Local as LocalRouter
+  Local as LocalRouter,
+  Notification as NotificationRouter
 } from '../routes';
 
 DBConnection();
@@ -27,6 +29,7 @@ app.use('/users', UsersRouter);
 app.use('/profile', ProfileRouter);
 app.use('/search', SearchRouter);
 app.use('/local', LocalRouter);
+app.use('/notification', NotificationRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -34,6 +37,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   if (!_.isNil(err) && !_.isNil(err.code)) {
     res.status(err.code).json(err);

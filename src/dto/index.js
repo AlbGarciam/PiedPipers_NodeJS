@@ -1,11 +1,27 @@
+/**
+ * This module represents the entire set of Data transfer objects presents on this backend
+ * @module DataTransferObject
+ */
 import * as Error from './error';
-import * as User from './user';
-import * as Location from './location';
-import * as ContactMehtod from './contact-method';
-import * as Profile from './profile';
-import * as Instruments from './instruments';
-import * as List from './list';
-import * as Local from './local';
-import * as Video from './video';
+import UserDTO from './user';
+import LocationDTO from './location';
+import ContactMehtodDTO from './contact-method';
+import ProfileDTO from './profile';
+import InstrumentsDTO from './instruments';
+import ListDTO from './list';
+import LocalDTO from './local';
+import VideoDTO from './video';
+import NotificationDTO from './notification';
 
-export { Error, User, Location, ContactMehtod, Profile, Instruments, List, Local, Video };
+export {
+  Error,
+  UserDTO,
+  LocationDTO,
+  ContactMehtodDTO,
+  ProfileDTO,
+  InstrumentsDTO,
+  ListDTO,
+  LocalDTO,
+  VideoDTO,
+  NotificationDTO
+};

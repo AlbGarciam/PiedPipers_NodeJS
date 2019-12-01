@@ -1,2 +1,3 @@
-import Connection from "./connection";
+import Connection from './connection';
+
 export default Connection;

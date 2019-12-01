@@ -6,7 +6,8 @@
     "preparedb": "mkdir -p database && rm -rf ./database/db && mkdir ./database/db && mkdir -p ./public/img",
     "database": "mongod --config ./etc/mongo.conf",
     "start": "babel-node ./src",
-    "start:dev": "nodemon --exec babel-node ./src"
+    "start:dev": "nodemon --exec babel-node ./src",
+    "doc": "./node_modules/.bin/jsdoc -c jsdoc.json -R README.md"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -27,6 +28,7 @@
     "sharp": "^0.23.2"
   },
   "devDependencies": {
+    "docdash": "^1.0.1",
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
     "@babel/node": "^7.0.0",
@@ -45,7 +47,9 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "eslint-plugin-standard": "^4.0.1",
+    "jsdoc": "^3.6.3",
     "nodemon": "^1.19.4",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "jsdoc-route-plugin": "^0.1.0"
   }
 }

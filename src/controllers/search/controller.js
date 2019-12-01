@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Profile, Local } from '../../database/model';
-import { List } from '../../dto';
+import { ListDTO } from '../../dto';
 import { ProfileDBToDTOMapper, LocalDBToDTOMapper } from '../../mappers';
 
 const controller = {};
@@ -42,7 +42,7 @@ controller.searchProfile = async (
   }
 
   const { docs, totalDocs } = await Profile.search(filter, limit, offset);
-  return List.DTO(totalDocs, offset, docs.map(item => ProfileDBToDTOMapper(item)));
+  return ListDTO(totalDocs, offset, docs.map(item => ProfileDBToDTOMapper(item)));
 };
 
 controller.searchLocal = async (name, lat, long, maxDistance, price, limit, offset) => {
@@ -68,7 +68,7 @@ controller.searchLocal = async (name, lat, long, maxDistance, price, limit, offs
   }
 
   const { docs, totalDocs } = await Local.search(filter, limit, offset);
-  return List.DTO(totalDocs, offset, docs.map(item => LocalDBToDTOMapper(item)));
+  return ListDTO(totalDocs, offset, docs.map(item => LocalDBToDTOMapper(item)));
 };
 
 export default controller;
