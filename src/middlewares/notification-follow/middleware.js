@@ -6,8 +6,13 @@ export default () => async (req, res, next) => {
   const { userId: destinationId } = req.body;
   const { id: originId } = res.locals.decodedToken;
 
-  if (_.isNil(destinationId) || _.isNil(originId) || originId === destinationId) {
+  if (_.isNil(destinationId) || _.isNil(originId)) {
     next(Error.Builder.VALIDATION(Error.MSG_MISSING_USER_ID));
+    return;
+  }
+
+  if (originId === destinationId) {
+    next(Error.Builder.VALIDATION(Error.MSG_NOTIFICATION_INVALID_RECIPIENT));
     return;
   }
 

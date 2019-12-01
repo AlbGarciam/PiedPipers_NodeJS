@@ -1,3 +1,8 @@
+/** Express router providing user related routes
+ * @namespace UserRouter
+ * @alias UserRouter
+ * @memberof module:Routes
+ */
 import { Router } from 'express';
 import { check } from 'express-validator';
 import _ from 'lodash';
@@ -16,6 +21,16 @@ const loginValidations = [
     .trim()
 ];
 
+/**
+ * Route serving user's login.
+ * @memberof UserRouter
+ * @name Login
+ * @route {POST} user/login
+ * @bodyparam {string} email - User's email
+ * @bodyparam {string} password - User's password. It must have 5 or more characters
+ * @see Success response {@link User}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.post('/login', loginValidations, ValidationMiddleware(), async (req, res, next) => {
   const { email, password } = req.body;
   try {
@@ -42,6 +57,16 @@ const createValidations = [
     .trim()
 ];
 
+/**
+ * Route serving authorization token generation process
+ * @memberof UserRouter
+ * @name Create user
+ * @route {POST} user/create
+ * @bodyparam {string} email - User's email
+ * @bodyparam {string} password - User's password. It must have 5 or more characters
+ * @see Success response {@link User}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.post('/create', createValidations, ValidationMiddleware(), async (req, res, next) => {
   const { email, password } = req.body;
   try {
@@ -65,6 +90,16 @@ const updateValidations = [
     .isLength({ min: 5 })
 ];
 
+/**
+ * Route serving user's password change.
+ * @memberof UserRouter
+ * @name Update password
+ * @route {PATCH} user/update
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user.
+ * @bodyparam {string} password - User's password. It must have 5 or more characters
+ * @see Success response {@link User}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.patch(
   '/update',
   updateValidations,
@@ -83,6 +118,16 @@ router.patch(
   }
 );
 
+/**
+ * Route serving user's removal process.
+ * @memberof UserRouter
+ * @name Remove user
+ * @route {DELETE} user/
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @bodyparam {string} password - User's password. It must have 5 or more characters
+ * @see Success response: HTTP 200 OK
+ * @see Error response: {@link module:dto/error ErrorDTO}
+ */
 router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, next) => {
   const { id } = res.locals.decodedToken;
   try {

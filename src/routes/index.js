@@ -1,3 +1,7 @@
+/**
+ * This module represents the entire set of routes that are exposed on this backend
+ * @module Routes
+ */
 import User from './user';
 import Profile from './profile';
 import Search from './search';

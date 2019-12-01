@@ -1,3 +1,8 @@
+/** Express router providing notification related routes
+ * @namespace NotificationRouter
+ * @alias NotificationRouter
+ * @memberof module:Routes
+ */
 import { Router } from 'express';
 import { NotificationController, ProfileController } from '../../controllers';
 import { TokenMiddleware, RedeemNotification } from '../../middlewares';
@@ -7,6 +12,17 @@ const router = Router();
 
 router.use(TokenMiddleware());
 
+/**
+ * Route serving list of user notifications.
+ * @memberof NotificationRouter
+ * @name List notifications
+ * @route {GET} /notification
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @queryparam {?number} limit - Maximun number of notifications. By default it takes 10
+ * @queryparam {?number} offset - Skips notifications
+ * @see Success response {@link List} of {@link Notification}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.get('/', async (req, res, next) => {
   const { id } = res.locals.decodedToken;
   const { limit, offset } = req.query;
@@ -22,6 +38,16 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving notifications removal process
+ * @memberof NotificationRouter
+ * @name Delete notification
+ * @route {DELETE} /notification/:cuid
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @routeparam {string} cuid - Notification unique identifier
+ * @see HTTP 200 OK
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.delete('/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
   try {
@@ -32,6 +58,16 @@ router.delete('/:cuid', async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving notifications redeem process
+ * @memberof NotificationRouter
+ * @name Redeem notification
+ * @route {GET} /notification/redeem/:cuid
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @routeparam {string} cuid - Notification unique identifier
+ * @see Success response {@link Notification}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.get('/redeem/:cuid', RedeemNotification(), async (req, res, next) => {
   const { redeemedNotification: notification } = res.locals;
   try {
@@ -48,14 +84,5 @@ router.get('/redeem/:cuid', RedeemNotification(), async (req, res, next) => {
     next(err);
   }
 });
-
-/**
- * PENDING WORK
- *
- * Create a router for notifications. This will be in charge of handle notifications operations
- * Create unfollow route on profile to remove followers
- * Add a method on ProfileController to register/deregister a user on followers
- * Update db models to handle an array of followers
- */
 
 export default router;
