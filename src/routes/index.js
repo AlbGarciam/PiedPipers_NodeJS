@@ -1,10 +1,6 @@
 /**
- * @namespace Routes
- * @property {module:routes/user} UserRouter Prepares routes for users
- * @property {module:routes/profile} ProfileRouter Prepares routes for profiles
- * @property {module:routes/local} LocalRouter Prepares routes for locals
- * @property {module:routes/search} SearchRouter Prepares routes for searchs
- * @property {module:routes/notification} NotificationRouter Prepares routes for notifications
+ * This module represents the entire set of routes that are exposed on this backend
+ * @module Routes
  */
 import User from './user';
 import Profile from './profile';

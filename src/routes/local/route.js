@@ -1,5 +1,7 @@
 /** Express router providing local related routes
- * @module routes/local
+ * @namespace LocalRouter
+ * @alias LocalRouter
+ * @memberof module:Routes
  */
 import { Router } from 'express';
 import { LocalController } from '../../controllers';
@@ -9,6 +11,7 @@ const router = Router();
 
 /**
  * Route serving local's creation process.
+ * @memberof LocalRouter
  * @name Create local
  * @route {POST} local
  * @bodyparam {string} name - User's email

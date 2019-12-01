@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>routes/local/route.js - Documentation</title>
+    <title>routes/profile/route.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">routes/local/route.js</h1>
+    <h1 class="page-title">routes/profile/route.js</h1>
     
 
     
@@ -42,98 +42,132 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** Express router providing local related routes
- * @namespace LocalRouter
- * @alias LocalRouter
+            <pre class="prettyprint source linenums"><code>/** Express router providing profile related routes
+ * @namespace ProfileRouter
+ * @alias ProfileRouter
  * @memberof module:Routes
  */
 import { Router } from 'express';
-import { LocalController } from '../../controllers';
-import { TokenMiddleware, UploadMiddleware } from '../../middlewares';
+import { check } from 'express-validator';
+import { ProfileController, NotificationController } from '../../controllers';
+import {
+  TokenMiddleware,
+  ValidationMiddleware,
+  UploadMiddleware,
+  FollowNotificationMiddleware
+} from '../../middlewares';
 
 const router = Router();
 
-/**
- * Route serving local's creation process.
- * @memberof LocalRouter
- * @name Create local
- * @route {POST} local
- * @bodyparam {string} name - User's email
- * @bodyparam {string} location - User's email
- * @bodyparam {number} price - User's email
- * @bodyparam {string} contact - User's email
- * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link module:dto/user UserDTO}
- * @see Error response {@link module:dto/error ErrorDTO}
- */
-router.post('/', TokenMiddleware(), async (req, res, next) => {
-  const { name, location, price, contact, description } = req.body;
+router.use(TokenMiddleware());
+
+router.get('/', async (req, res, next) => {
+  const { id } = res.locals.decodedToken;
   try {
-    const result = await LocalController.create(name, location, price, contact, [], description);
+    const result = await ProfileController.provide(id); // It throws an error if not found
     res.status(200).json(result);
   } catch (err) {
     next(err);
   }
 });
 
-router.get('/:cuid', TokenMiddleware(), async (req, res, next) => {
+router.get('/tags', async (req, res) => {
+  const result = ProfileController.instruments();
+  res.status(200).json(result);
+});
+
+router.get('/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
   try {
-    const result = await LocalController.provide(cuid);
+    const result = await ProfileController.provide(cuid); // It throws an error if not found
     res.status(200).json(result);
   } catch (err) {
     next(err);
   }
 });
 
-router.patch('/:cuid', TokenMiddleware(), async (req, res, next) => {
-  const { name, location, price, contact, photos, description } = req.body;
-  const { cuid } = req.params;
-  const model = { name, location, price, contact, photos, description };
+const patchValidations = [
+  check('name')
+    .optional()
+    .isString()
+    .trim(),
+  check('description')
+    .optional()
+    .isString()
+    .trim()
+];
+
+router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, next) => {
+  const { id } = res.locals.decodedToken;
+  const { name, location, contact, description, videos, instruments, friendlyLocation } = req.body;
+  const model = {
+    name,
+    location,
+    contactMe: contact,
+    description,
+    videos,
+    instruments,
+    friendlyLocation
+  };
   try {
-    const result = await LocalController.update(cuid, model); // It throws an error if not found
+    const result = await ProfileController.update(id, model); // It throws an error if not found
     res.status(200).json(result);
   } catch (err) {
     next(err);
   }
 });
 
-router.delete('/:cuid', TokenMiddleware(), async (req, res, next) => {
-  const { cuid } = req.params;
+router.post('/avatar', UploadMiddleware.single('photo'), async (req, res, next) => {
+  const { id } = res.locals.decodedToken;
+  const { file } = req;
   try {
-    const result = await LocalController.remove(cuid); // It throws an error if not found
+    const result = await ProfileController.updateAvatar(id, file);
     res.status(200).json(result);
   } catch (err) {
     next(err);
   }
 });
 
-router.delete('/photo/:cuid', TokenMiddleware(), async (req, res, next) => {
-  const { cuid } = req.params;
-  const { image } = req.body;
-  try {
-    const result = await LocalController.removeImage(cuid, image);
-    res.status(200).json(result);
-  } catch (err) {
-    next(err);
-  }
-});
+const followValidations = [
+  check('userId')
+    .isString()
+    .trim()
+];
 
 router.post(
-  '/photo/:cuid',
-  TokenMiddleware(),
-  UploadMiddleware.single('photo'),
+  '/follow',
+  followValidations,
+  ValidationMiddleware(),
+  FollowNotificationMiddleware(),
   async (req, res, next) => {
-    const { cuid } = req.params;
-    const { file } = req;
+    const { destinationUser, originUser } = res.locals;
+    const { cuid: destinationId } = destinationUser;
     try {
-      const result = await LocalController.insertImage(cuid, file);
-      res.status(200).json(result);
+      const profile = await ProfileController.appendInvite(originUser, destinationId);
+      await NotificationController.follow(originUser, destinationUser);
+      res.status(200).json(profile);
     } catch (err) {
       next(err);
     }
   }
 );
+
+const unfollowValidations = [
+  check('cuid')
+    .isString()
+    .trim()
+];
+
+router.post('/unfollow', unfollowValidations, ValidationMiddleware(), async (req, res, next) => {
+  const { id: origin } = res.locals.decodedToken;
+  const { userId: destination } = req.body;
+  try {
+    const profile = await ProfileController.unfollow(origin, destination);
+    res.status(200).json(profile);
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default router;
 </code></pre>

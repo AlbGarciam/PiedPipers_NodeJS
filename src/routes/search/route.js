@@ -1,5 +1,7 @@
 /** Express router providing search related routes
- * @module routes/search
+ * @namespace SearchRouter
+ * @alias SearchRouter
+ * @memberof module:Routes
  */
 import { Router } from 'express';
 import { SearchController } from '../../controllers';
@@ -8,6 +10,7 @@ const router = Router();
 
 /**
  * Route serving profile searching process. This this API is authenticated, it won't response the current profile. If not, current profile can be added to the response
+ * @memberof SearchRouter
  * @name Search profiles
  * @route {GET} serach/profile
  * @authentication OPTIONAL This route can use JWT verification. If you don't have the JWT you need to sign in with a valid user
@@ -43,6 +46,7 @@ router.get('/profile', async (req, res, next) => {
 
 /**
  * Route serving local searching process.
+ * @memberof SearchRouter
  * @name Search locals
  * @route {GET} serach/local
  * @queryparam {?string} name - Local's name

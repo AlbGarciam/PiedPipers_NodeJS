@@ -1,3 +1,8 @@
+/** Express router providing profile related routes
+ * @namespace ProfileRouter
+ * @alias ProfileRouter
+ * @memberof module:Routes
+ */
 import { Router } from 'express';
 import { check } from 'express-validator';
 import { ProfileController, NotificationController } from '../../controllers';

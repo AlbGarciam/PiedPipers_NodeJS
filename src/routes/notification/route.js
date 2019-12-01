@@ -1,5 +1,7 @@
 /** Express router providing notification related routes
- * @module routes/notification
+ * @namespace NotificationRouter
+ * @alias NotificationRouter
+ * @memberof module:Routes
  */
 import { Router } from 'express';
 import { NotificationController, ProfileController } from '../../controllers';
@@ -12,6 +14,7 @@ router.use(TokenMiddleware());
 
 /**
  * Route serving list of user notifications.
+ * @memberof NotificationRouter
  * @name List notifications
  * @route {GET} /notification
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
@@ -37,6 +40,7 @@ router.get('/', async (req, res, next) => {
 
 /**
  * Route serving notifications removal process
+ * @memberof NotificationRouter
  * @name Delete notification
  * @route {DELETE} /notification/:cuid
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
@@ -56,6 +60,7 @@ router.delete('/:cuid', async (req, res, next) => {
 
 /**
  * Route serving notifications redeem process
+ * @memberof NotificationRouter
  * @name Redeem notification
  * @route {GET} /notification/redeem/:cuid
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user

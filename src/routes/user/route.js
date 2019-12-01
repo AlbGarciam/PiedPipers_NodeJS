@@ -1,5 +1,7 @@
 /** Express router providing user related routes
- * @module routes/user
+ * @namespace UserRouter
+ * @alias UserRouter
+ * @memberof module:Routes
  */
 import { Router } from 'express';
 import { check } from 'express-validator';
@@ -21,6 +23,7 @@ const loginValidations = [
 
 /**
  * Route serving user's login.
+ * @memberof UserRouter
  * @name Login
  * @route {POST} user/login
  * @bodyparam {string} email - User's email
@@ -56,6 +59,7 @@ const createValidations = [
 
 /**
  * Route serving authorization token generation process
+ * @memberof UserRouter
  * @name Create user
  * @route {POST} user/create
  * @bodyparam {string} email - User's email
@@ -88,6 +92,7 @@ const updateValidations = [
 
 /**
  * Route serving user's password change.
+ * @memberof UserRouter
  * @name Update password
  * @route {PATCH} user/update
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user.
@@ -115,6 +120,7 @@ router.patch(
 
 /**
  * Route serving user's removal process.
+ * @memberof UserRouter
  * @name Remove user
  * @route {DELETE} user/
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
