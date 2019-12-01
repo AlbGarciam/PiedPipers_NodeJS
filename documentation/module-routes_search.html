@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>routes/notification - Documentation</title>
+    <title>routes/search - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">routes/notification</h1>
+    <h1 class="page-title">routes/search</h1>
     
 
     
@@ -69,7 +69,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_notification_route.js.html">routes/notification/route.js</a>, <a href="routes_notification_route.js.html#line1">line 1</a>
+        <a href="routes_search_route.js.html">routes/search/route.js</a>, <a href="routes_search_route.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -157,7 +157,7 @@
 
         
             
-<h4 class="name" id="Deletenotification"><span class="type-signature">(route) </span>Delete notification<span class="type-signature"></span></h4>
+<h4 class="name" id="Searchlocals"><span class="type-signature">(route) </span>Search locals<span class="type-signature"></span></h4>
 
 
 
@@ -168,7 +168,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_notification_route.js.html">routes/notification/route.js</a>, <a href="routes_notification_route.js.html#line38">line 38</a>
+        <a href="routes_search_route.js.html">routes/search/route.js</a>, <a href="routes_search_route.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -202,110 +202,9 @@
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li>HTTP 200 OK</li>
+            <li>Success response ListDTO of LocalDTO</li>
         
-            <li>Error response ErrorDTO</li>
-        </ul>
-    </dd>
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <h5>Route:</h5>
-                            <table class="params">
-                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
-                            <tr>
-                            <td class="type">DELETE</td>
-                            <td class="name last">/notification/:cuid</td>
-                            </tr>
-                            </table>
-                            Route serving notifications removal process
-                          <h5>Authentication</h5>
-                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
-                            <h5>Route Parameters:</h5>
-          <table class="params">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                
-                
-                <th class="last">Description</th>
-              </tr>
-            </thead>
-            <tr>
-            <td class="name">cuid</td>
-            <td class="type">string</td>
-            
-            
-            <td class="description last">Notification unique identifier</td>
-          </tr>
-          </table>
-</div>
-
-
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="Listnotifications"><span class="type-signature">(route) </span>List notifications<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_notification_route.js.html">routes/notification/route.js</a>, <a href="routes_notification_route.js.html#line13">line 13</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>Success response ListDTO of NotificationDTO</li>
-        
-            <li>Error response ErrorDTO</li>
+            <li>Error response: ErrorDTO</li>
         </ul>
     </dd>
     
@@ -323,12 +222,10 @@
                             <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
                             <tr>
                             <td class="type">GET</td>
-                            <td class="name last">/notification</td>
+                            <td class="name last">serach/local</td>
                             </tr>
                             </table>
-                            Route serving list of user notifications.
-                          <h5>Authentication</h5>
-                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            Route serving local searching process.
                             <h5>Query Parameters:</h5>
           <table class="params">
             <thead>
@@ -341,17 +238,47 @@
               </tr>
             </thead>
             <tr>
+            <td class="name">name</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Local's name</td>
+          </tr><tr>
+            <td class="name">price</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Local's max price</td>
+          </tr><tr>
+            <td class="name">lat</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Profile's latitude. Must be present if long or maxDistance exists</td>
+          </tr><tr>
+            <td class="name">long</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Profile's longitude. Must be present if lat or maxDistance exists</td>
+          </tr><tr>
+            <td class="name">maxDistance</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Profile's search radius (in km). Must be present if long or maxDistance exists</td>
+          </tr><tr>
             <td class="name">limit</td>
             <td class="type">number</td>
             
             
-            <td class="description last">Maximun number of notifications. By default it takes 10</td>
+            <td class="description last">Maximun number of profiles. By default it takes 10</td>
           </tr><tr>
             <td class="name">offset</td>
             <td class="type">number</td>
             
             
-            <td class="description last">Skips notifications</td>
+            <td class="description last">Skips profiles</td>
           </tr>
           </table>
 </div>
@@ -365,7 +292,7 @@
 
         
             
-<h4 class="name" id="Redeemnotification"><span class="type-signature">(route) </span>Redeem notification<span class="type-signature"></span></h4>
+<h4 class="name" id="Searchprofiles"><span class="type-signature">(route) </span>Search profiles<span class="type-signature"></span></h4>
 
 
 
@@ -376,7 +303,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_notification_route.js.html">routes/notification/route.js</a>, <a href="routes_notification_route.js.html#line57">line 57</a>
+        <a href="routes_search_route.js.html">routes/search/route.js</a>, <a href="routes_search_route.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -410,9 +337,9 @@
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li>Success response NotificationDTO</li>
+            <li>Success response ListDTO of ProfileDTO</li>
         
-            <li>Error response ErrorDTO</li>
+            <li>Error response: ErrorDTO</li>
         </ul>
     </dd>
     
@@ -430,13 +357,13 @@
                             <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
                             <tr>
                             <td class="type">GET</td>
-                            <td class="name last">/notification/redeem/:cuid</td>
+                            <td class="name last">serach/profile</td>
                             </tr>
                             </table>
-                            Route serving notifications redeem process
+                            Route serving profile searching process. This this API is authenticated, it won't response the current profile. If not, current profile can be added to the response
                           <h5>Authentication</h5>
-                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
-                            <h5>Route Parameters:</h5>
+                          <p>OPTIONAL This route can use JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Query Parameters:</h5>
           <table class="params">
             <thead>
               <tr>
@@ -448,11 +375,53 @@
               </tr>
             </thead>
             <tr>
-            <td class="name">cuid</td>
+            <td class="name">name</td>
             <td class="type">string</td>
             
             
-            <td class="description last">Notification unique identifier</td>
+            <td class="description last">Profile's name</td>
+          </tr><tr>
+            <td class="name">instruments</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Profile's skills separated by commas</td>
+          </tr><tr>
+            <td class="name">lat</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Profile's latitude. Must be present if long or maxDistance exists</td>
+          </tr><tr>
+            <td class="name">long</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Profile's longitude. Must be present if lat or maxDistance exists</td>
+          </tr><tr>
+            <td class="name">maxDistance</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Profile's search radius (in km). Must be present if long or maxDistance exists</td>
+          </tr><tr>
+            <td class="name">friendlyLocation</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Profile's friendly location.</td>
+          </tr><tr>
+            <td class="name">limit</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Maximun number of profiles. By default it takes 10</td>
+          </tr><tr>
+            <td class="name">offset</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Skips profiles</td>
           </tr>
           </table>
 </div>
