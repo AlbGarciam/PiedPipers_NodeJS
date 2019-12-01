@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataTransferObject.html">DataTransferObject</a></li><li><a href="module-Routes.html">Routes</a></li></ul><h3>Namespaces</h3><ul><li><a href="ContactMethod.html">ContactMethod</a></li><li><a href="LocalRouter.html">LocalRouter</a></li><li><a href="NotificationRouter.html">NotificationRouter</a></li><li><a href="ProfileRouter.html">ProfileRouter</a></li><li><a href="SearchRouter.html">SearchRouter</a></li><li><a href="User.html">User</a></li><li><a href="UserRouter.html">UserRouter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CODE_SERVER_ERROR">CODE_SERVER_ERROR</a></li><li><a href="global.html#ECODE_DATABASE_ERROR">ECODE_DATABASE_ERROR</a></li><li><a href="global.html#MSG_ITEM_NOT_FOUND">MSG_ITEM_NOT_FOUND</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataTransferObject.html">DataTransferObject</a></li><li><a href="module-Routes.html">Routes</a></li></ul><h3>Namespaces</h3><ul><li><a href="ContactMethod.html">ContactMethod</a></li><li><a href="Error.html">Error</a></li><li><a href="Instruments.html">Instruments</a></li><li><a href="List.html">List</a></li><li><a href="Local.html">Local</a></li><li><a href="LocalRouter.html">LocalRouter</a></li><li><a href="Location.html">Location</a></li><li><a href="Notification.html">Notification</a></li><li><a href="NotificationRouter.html">NotificationRouter</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileRouter.html">ProfileRouter</a></li><li><a href="SearchRouter.html">SearchRouter</a></li><li><a href="User.html">User</a></li><li><a href="UserRouter.html">UserRouter</a></li><li><a href="Video.html">Video</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CODE_AUTHORIZATION_ERROR">CODE_AUTHORIZATION_ERROR</a></li><li><a href="global.html#CODE_LOGIC_ERROR">CODE_LOGIC_ERROR</a></li><li><a href="global.html#CODE_SERVER_ERROR">CODE_SERVER_ERROR</a></li><li><a href="global.html#CODE_VALIDATION_ERROR">CODE_VALIDATION_ERROR</a></li><li><a href="global.html#ECODE_DATABASE_ERROR">ECODE_DATABASE_ERROR</a></li><li><a href="global.html#MSG_ITEM_NOT_FOUND">MSG_ITEM_NOT_FOUND</a></li></ul>
 </nav>
 
 <div id="main">
@@ -58,12 +58,13 @@ const router = Router();
  * @memberof LocalRouter
  * @name Create local
  * @route {POST} local
- * @bodyparam {string} name - User's email
- * @bodyparam {string} location - User's email
- * @bodyparam {number} price - User's email
- * @bodyparam {string} contact - User's email
- * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link module:dto/user UserDTO}
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @bodyparam {string} name - Local's name
+ * @bodyparam {Location} location - Local's location
+ * @bodyparam {number} price - Local's price
+ * @bodyparam {ContactMethod} contact - Local's contact method
+ * @bodyparam {string} description - Local's description
+ * @see Success response {@link Local}
  * @see Error response {@link module:dto/error ErrorDTO}
  */
 router.post('/', TokenMiddleware(), async (req, res, next) => {
@@ -76,7 +77,16 @@ router.post('/', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
-router.get('/:cuid', TokenMiddleware(), async (req, res, next) => {
+/**
+ * Route serving locals by their cuid.
+ * @memberof LocalRouter
+ * @name Get local
+ * @route {GET} local
+ * @routeparam {string} cuid - Local's unique identifier
+ * @see Success response {@link Local}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
+router.get('/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
   try {
     const result = await LocalController.provide(cuid);
@@ -86,6 +96,20 @@ router.get('/:cuid', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving local's update process.
+ * @memberof LocalRouter
+ * @name Update local
+ * @route {PATCH} local
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @bodyparam {string} name - Local's name
+ * @bodyparam {Location} location - Local's location
+ * @bodyparam {number} price - Local's price
+ * @bodyparam {ContactMethod} contact - Local's contact method
+ * @bodyparam {string} description - Local's description
+ * @see Success response {@link Local}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.patch('/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { name, location, price, contact, photos, description } = req.body;
   const { cuid } = req.params;
@@ -98,6 +122,16 @@ router.patch('/:cuid', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving local's removal process.
+ * @memberof LocalRouter
+ * @name Delete local
+ * @route {DELETE} local
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @routeparam {string} cuid - Local's unique identifier
+ * @see Success response: HTTP 200
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.delete('/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { cuid } = req.params;
   try {
@@ -108,6 +142,17 @@ router.delete('/:cuid', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving local's image removal process.
+ * @memberof LocalRouter
+ * @name Delete local image
+ * @route {DELETE} local
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @routeparam {string} cuid - Local's unique identifier
+ * @bodyparam {string} image - Image unique identifier
+ * @see Success response {@link Local}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.delete('/photo/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { cuid } = req.params;
   const { image } = req.body;
@@ -119,6 +164,17 @@ router.delete('/photo/:cuid', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving local's image removal process.
+ * @memberof LocalRouter
+ * @name Add local image
+ * @route {POST} local
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @routeparam {string} cuid - Local's unique identifier
+ * @bodyparam {file} image - Image
+ * @see Success response {@link Local}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.post(
   '/photo/:cuid',
   TokenMiddleware(),
@@ -150,7 +206,7 @@ export default router;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 01 2019 11:56:12 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 01 2019 12:44:06 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

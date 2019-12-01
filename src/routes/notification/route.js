@@ -20,7 +20,7 @@ router.use(TokenMiddleware());
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @queryparam {?number} limit - Maximun number of notifications. By default it takes 10
  * @queryparam {?number} offset - Skips notifications
- * @see Success response {@link module:dto/list ListDTO} of {@link module:dto/notification NotificationDTO}
+ * @see Success response {@link List} of {@link Notification}
  * @see Error response {@link module:dto/error ErrorDTO}
  */
 router.get('/', async (req, res, next) => {
@@ -65,7 +65,7 @@ router.delete('/:cuid', async (req, res, next) => {
  * @route {GET} /notification/redeem/:cuid
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @routeparam {string} cuid - Notification unique identifier
- * @see Success response {@link module:dto/notification NotificationDTO}
+ * @see Success response {@link Notification}
  * @see Error response {@link module:dto/error ErrorDTO}
  */
 router.get('/redeem/:cuid', RedeemNotification(), async (req, res, next) => {

@@ -1,3 +1,11 @@
+/** DTO representing an error on server
+ * @namespace Error
+ * @alias Error
+ * @memberof module:DataTransferObject
+ * @property {number} code HTTP error code
+ * @property {number} ecode Extended error code
+ * @property {string} message Error message
+ */
 const DTO = (code, ecode, message) => {
   return {
     code,
@@ -7,9 +15,13 @@ const DTO = (code, ecode, message) => {
 };
 
 /** CODES */
+/** @constant {number} */
 const CODE_SERVER_ERROR = 500;
+/** @constant {number} */
 const CODE_LOGIC_ERROR = 404;
+/** @constant {number} */
 const CODE_AUTHORIZATION_ERROR = 403;
+/** @constant {number} */
 const CODE_VALIDATION_ERROR = 422;
 
 /** ECODES */

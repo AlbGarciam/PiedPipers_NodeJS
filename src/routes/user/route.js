@@ -28,7 +28,7 @@ const loginValidations = [
  * @route {POST} user/login
  * @bodyparam {string} email - User's email
  * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link module:dto/user UserDTO}
+ * @see Success response {@link User}
  * @see Error response {@link module:dto/error ErrorDTO}
  */
 router.post('/login', loginValidations, ValidationMiddleware(), async (req, res, next) => {
@@ -64,7 +64,7 @@ const createValidations = [
  * @route {POST} user/create
  * @bodyparam {string} email - User's email
  * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link module:dto/user UserDTO}
+ * @see Success response {@link User}
  * @see Error response {@link module:dto/error ErrorDTO}
  */
 router.post('/create', createValidations, ValidationMiddleware(), async (req, res, next) => {
@@ -97,7 +97,7 @@ const updateValidations = [
  * @route {PATCH} user/update
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user.
  * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link module:dto/user UserDTO}
+ * @see Success response {@link User}
  * @see Error response {@link module:dto/error ErrorDTO}
  */
 router.patch(

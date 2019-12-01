@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataTransferObject.html">DataTransferObject</a></li><li><a href="module-Routes.html">Routes</a></li></ul><h3>Namespaces</h3><ul><li><a href="ContactMethod.html">ContactMethod</a></li><li><a href="LocalRouter.html">LocalRouter</a></li><li><a href="NotificationRouter.html">NotificationRouter</a></li><li><a href="ProfileRouter.html">ProfileRouter</a></li><li><a href="SearchRouter.html">SearchRouter</a></li><li><a href="User.html">User</a></li><li><a href="UserRouter.html">UserRouter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CODE_SERVER_ERROR">CODE_SERVER_ERROR</a></li><li><a href="global.html#ECODE_DATABASE_ERROR">ECODE_DATABASE_ERROR</a></li><li><a href="global.html#MSG_ITEM_NOT_FOUND">MSG_ITEM_NOT_FOUND</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataTransferObject.html">DataTransferObject</a></li><li><a href="module-Routes.html">Routes</a></li></ul><h3>Namespaces</h3><ul><li><a href="ContactMethod.html">ContactMethod</a></li><li><a href="Error.html">Error</a></li><li><a href="Instruments.html">Instruments</a></li><li><a href="List.html">List</a></li><li><a href="Local.html">Local</a></li><li><a href="LocalRouter.html">LocalRouter</a></li><li><a href="Location.html">Location</a></li><li><a href="Notification.html">Notification</a></li><li><a href="NotificationRouter.html">NotificationRouter</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileRouter.html">ProfileRouter</a></li><li><a href="SearchRouter.html">SearchRouter</a></li><li><a href="User.html">User</a></li><li><a href="UserRouter.html">UserRouter</a></li><li><a href="Video.html">Video</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CODE_AUTHORIZATION_ERROR">CODE_AUTHORIZATION_ERROR</a></li><li><a href="global.html#CODE_LOGIC_ERROR">CODE_LOGIC_ERROR</a></li><li><a href="global.html#CODE_SERVER_ERROR">CODE_SERVER_ERROR</a></li><li><a href="global.html#CODE_VALIDATION_ERROR">CODE_VALIDATION_ERROR</a></li><li><a href="global.html#ECODE_DATABASE_ERROR">ECODE_DATABASE_ERROR</a></li><li><a href="global.html#MSG_ITEM_NOT_FOUND">MSG_ITEM_NOT_FOUND</a></li></ul>
 </nav>
 
 <div id="main">
@@ -124,6 +124,715 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="Follow"><span class="type-signature">(route) </span>Follow<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_profile_route.js.html">routes/profile/route.js</a>, <a href="routes_profile_route.js.html#line147">line 147</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Profile.html">Profile</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">profile/follow</td>
+                            </tr>
+                            </table>
+                            Route serving profile's following process
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">userId</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Profile's unique identifier to follow</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Getavailableprofileskills"><span class="type-signature">(route) </span>Get available profile skills<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_profile_route.js.html">routes/profile/route.js</a>, <a href="routes_profile_route.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="List.html">List</a> of <a href="Instruments.html">Instruments</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">profile/tags</td>
+                            </tr>
+                            </table>
+                            Route serving available profile skills
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Getcurrentprofile"><span class="type-signature">(route) </span>Get current profile<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_profile_route.js.html">routes/profile/route.js</a>, <a href="routes_profile_route.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Profile.html">Profile</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">profile/</td>
+                            </tr>
+                            </table>
+                            Route serving current profile
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Getprofile"><span class="type-signature">(route) </span>Get profile<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_profile_route.js.html">routes/profile/route.js</a>, <a href="routes_profile_route.js.html#line53">line 53</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Profile.html">Profile</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">profile/:cuid</td>
+                            </tr>
+                            </table>
+                            Route serving profile by its cuid
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">cuid</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Profile's unique identifier</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Unfollow"><span class="type-signature">(route) </span>Unfollow<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_profile_route.js.html">routes/profile/route.js</a>, <a href="routes_profile_route.js.html#line181">line 181</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Profile.html">Profile</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">profile/unfollow</td>
+                            </tr>
+                            </table>
+                            Route serving profile's unfollowing process
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">userId</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Profile's unique identifier to unfollow</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Updateavatar"><span class="type-signature">(route) </span>Update avatar<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_profile_route.js.html">routes/profile/route.js</a>, <a href="routes_profile_route.js.html#line120">line 120</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Profile.html">Profile</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">profile/avatar</td>
+                            </tr>
+                            </table>
+                            Route serving profile's avatar update process
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">file</td>
+            <td class="type">file</td>
+            
+            
+            <td class="description last">Image</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Updatecurrentprofile"><span class="type-signature">(route) </span>Update current profile<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_profile_route.js.html">routes/profile/route.js</a>, <a href="routes_profile_route.js.html#line84">line 84</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Profile.html">Profile</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">PATCH</td>
+                            <td class="name last">profile/</td>
+                            </tr>
+                            </table>
+                            Route serving profile update process
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">name</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Profile's name</td>
+          </tr><tr>
+            <td class="name">location</td>
+            <td class="type">Location</td>
+            
+            
+            <td class="description last">Profile's location</td>
+          </tr><tr>
+            <td class="name">contact</td>
+            <td class="type">ContactMethod</td>
+            
+            
+            <td class="description last">Profile's contact method</td>
+          </tr><tr>
+            <td class="name">description</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Profile's description</td>
+          </tr><tr>
+            <td class="name">videos</td>
+            <td class="type">Array.string</td>
+            
+            
+            <td class="description last">Profile's videos identifiers</td>
+          </tr><tr>
+            <td class="name">instruments</td>
+            <td class="type">Array.string</td>
+            
+            
+            <td class="description last">Profile's skills</td>
+          </tr><tr>
+            <td class="name">friendlyLocation</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Profile's friendly location</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+    
 
     
 
@@ -144,7 +853,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 01 2019 11:56:12 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 01 2019 12:44:06 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

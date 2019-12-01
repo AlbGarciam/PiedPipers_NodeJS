@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataTransferObject.html">DataTransferObject</a></li><li><a href="module-Routes.html">Routes</a></li></ul><h3>Namespaces</h3><ul><li><a href="ContactMethod.html">ContactMethod</a></li><li><a href="LocalRouter.html">LocalRouter</a></li><li><a href="NotificationRouter.html">NotificationRouter</a></li><li><a href="ProfileRouter.html">ProfileRouter</a></li><li><a href="SearchRouter.html">SearchRouter</a></li><li><a href="User.html">User</a></li><li><a href="UserRouter.html">UserRouter</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CODE_SERVER_ERROR">CODE_SERVER_ERROR</a></li><li><a href="global.html#ECODE_DATABASE_ERROR">ECODE_DATABASE_ERROR</a></li><li><a href="global.html#MSG_ITEM_NOT_FOUND">MSG_ITEM_NOT_FOUND</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DataTransferObject.html">DataTransferObject</a></li><li><a href="module-Routes.html">Routes</a></li></ul><h3>Namespaces</h3><ul><li><a href="ContactMethod.html">ContactMethod</a></li><li><a href="Error.html">Error</a></li><li><a href="Instruments.html">Instruments</a></li><li><a href="List.html">List</a></li><li><a href="Local.html">Local</a></li><li><a href="LocalRouter.html">LocalRouter</a></li><li><a href="Location.html">Location</a></li><li><a href="Notification.html">Notification</a></li><li><a href="NotificationRouter.html">NotificationRouter</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileRouter.html">ProfileRouter</a></li><li><a href="SearchRouter.html">SearchRouter</a></li><li><a href="User.html">User</a></li><li><a href="UserRouter.html">UserRouter</a></li><li><a href="Video.html">Video</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CODE_AUTHORIZATION_ERROR">CODE_AUTHORIZATION_ERROR</a></li><li><a href="global.html#CODE_LOGIC_ERROR">CODE_LOGIC_ERROR</a></li><li><a href="global.html#CODE_SERVER_ERROR">CODE_SERVER_ERROR</a></li><li><a href="global.html#CODE_VALIDATION_ERROR">CODE_VALIDATION_ERROR</a></li><li><a href="global.html#ECODE_DATABASE_ERROR">ECODE_DATABASE_ERROR</a></li><li><a href="global.html#MSG_ITEM_NOT_FOUND">MSG_ITEM_NOT_FOUND</a></li></ul>
 </nav>
 
 <div id="main">
@@ -128,6 +128,126 @@
 
         
             
+<h4 class="name" id="Addlocalimage"><span class="type-signature">(route) </span>Add local image<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_local_route.js.html">routes/local/route.js</a>, <a href="routes_local_route.js.html#line123">line 123</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Local.html">Local</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">local</td>
+                            </tr>
+                            </table>
+                            Route serving local's image removal process.
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">image</td>
+            <td class="type">file</td>
+            
+            
+            <td class="description last">Image</td>
+          </tr>
+          </table>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">cuid</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Local's unique identifier</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
 <h4 class="name" id="Createlocal"><span class="type-signature">(route) </span>Create local<span class="type-signature"></span></h4>
 
 
@@ -173,7 +293,7 @@
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li>Success response UserDTO</li>
+            <li>Success response <a href="Local.html">Local</a></li>
         
             <li>Error response ErrorDTO</li>
         </ul>
@@ -197,6 +317,8 @@
                             </tr>
                             </table>
                             Route serving local's creation process.
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
                             <h5>Body Parameters:</h5>
           <table class="params">
             <thead>
@@ -213,31 +335,476 @@
             <td class="type">string</td>
             
             
-            <td class="description last">User's email</td>
+            <td class="description last">Local's name</td>
           </tr><tr>
             <td class="name">location</td>
-            <td class="type">string</td>
+            <td class="type">Location</td>
             
             
-            <td class="description last">User's email</td>
+            <td class="description last">Local's location</td>
           </tr><tr>
             <td class="name">price</td>
             <td class="type">number</td>
             
             
-            <td class="description last">User's email</td>
+            <td class="description last">Local's price</td>
           </tr><tr>
             <td class="name">contact</td>
-            <td class="type">string</td>
+            <td class="type">ContactMethod</td>
             
             
-            <td class="description last">User's email</td>
+            <td class="description last">Local's contact method</td>
           </tr><tr>
-            <td class="name">password</td>
+            <td class="name">description</td>
             <td class="type">string</td>
             
             
-            <td class="description last">User's password. It must have 5 or more characters</td>
+            <td class="description last">Local's description</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Deletelocal"><span class="type-signature">(route) </span>Delete local<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_local_route.js.html">routes/local/route.js</a>, <a href="routes_local_route.js.html#line81">line 81</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response: HTTP 200</li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">DELETE</td>
+                            <td class="name last">local</td>
+                            </tr>
+                            </table>
+                            Route serving local's removal process.
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">cuid</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Local's unique identifier</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Deletelocalimage"><span class="type-signature">(route) </span>Delete local image<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_local_route.js.html">routes/local/route.js</a>, <a href="routes_local_route.js.html#line101">line 101</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Local.html">Local</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">DELETE</td>
+                            <td class="name last">local</td>
+                            </tr>
+                            </table>
+                            Route serving local's image removal process.
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">image</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Image unique identifier</td>
+          </tr>
+          </table>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">cuid</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Local's unique identifier</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Getlocal"><span class="type-signature">(route) </span>Get local<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_local_route.js.html">routes/local/route.js</a>, <a href="routes_local_route.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Local.html">Local</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">local</td>
+                            </tr>
+                            </table>
+                            Route serving locals by their cuid.
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">cuid</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Local's unique identifier</td>
+          </tr>
+          </table>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="Updatelocal"><span class="type-signature">(route) </span>Update local<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_local_route.js.html">routes/local/route.js</a>, <a href="routes_local_route.js.html#line55">line 55</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response <a href="Local.html">Local</a></li>
+        
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">PATCH</td>
+                            <td class="name last">local</td>
+                            </tr>
+                            </table>
+                            Route serving local's update process.
+                          <h5>Authentication</h5>
+                          <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">name</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Local's name</td>
+          </tr><tr>
+            <td class="name">location</td>
+            <td class="type">Location</td>
+            
+            
+            <td class="description last">Local's location</td>
+          </tr><tr>
+            <td class="name">price</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">Local's price</td>
+          </tr><tr>
+            <td class="name">contact</td>
+            <td class="type">ContactMethod</td>
+            
+            
+            <td class="description last">Local's contact method</td>
+          </tr><tr>
+            <td class="name">description</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">Local's description</td>
           </tr>
           </table>
 </div>
@@ -271,7 +838,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 01 2019 11:56:12 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 01 2019 12:44:06 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

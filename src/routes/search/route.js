@@ -22,7 +22,7 @@ const router = Router();
  * @queryparam {?string} friendlyLocation - Profile's friendly location.
  * @queryparam {?number} limit - Maximun number of profiles. By default it takes 10
  * @queryparam {?number} offset - Skips profiles
- * @see Success response {@link module:dto/list ListDTO} of {@link module:dto/profile ProfileDTO}
+ * @see Success response {@link List} of {@link Profile}
  * @see Error response: {@link module:dto/error ErrorDTO}
  */
 router.get('/profile', async (req, res, next) => {
@@ -56,7 +56,7 @@ router.get('/profile', async (req, res, next) => {
  * @queryparam {?number} maxDistance - Profile's search radius (in km). Must be present if long or lat exists
  * @queryparam {?number} limit - Maximun number of profiles. By default it takes 10
  * @queryparam {?number} offset - Skips profiles
- * @see Success response {@link module:dto/list ListDTO} of {@link module:dto/local LocalDTO}
+ * @see Success response {@link List} of {@link Local}
  * @see Error response: {@link module:dto/error ErrorDTO}
  */
 router.get('/local', async (req, res, next) => {

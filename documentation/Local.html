@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>ContactMethod - Documentation</title>
+    <title>Local - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">ContactMethod</h1>
+    <h1 class="page-title">Local</h1>
     
 
     
@@ -47,7 +47,7 @@
         <h2>
             <span class="ancestors"><a href="module-DataTransferObject.html">DataTransferObject</a></span>
         
-        ContactMethod
+        Local
         </h2>
         
     
@@ -64,7 +64,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dto_contact-method_dto.js.html">dto/contact-method/dto.js</a>, <a href="dto_contact-method_dto.js.html#line1">line 1</a>
+        <a href="dto_local_dto.js.html">dto/local/dto.js</a>, <a href="dto_local_dto.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -127,33 +127,7 @@
 
         <tr>
             
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">phone</span>
-|
-
-<span class="param-type">email</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Contact method type</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>cuid</code></td>
             
 
             <td class="type">
@@ -169,7 +143,168 @@
 
             
 
-            <td class="description last">Contact method data</td>
+            <td class="description last">Local's unique identifier</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dateAdded</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Local's registration date (yyyy-MM-dd'T'HH:mm:ss.SSS'Z')</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Local's name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>location</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Location.html">Location</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Local's location</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>price</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Local's price</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>items</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ContactMethod.html">ContactMethod</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Local's contact method</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>photos</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;string></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Local's photos</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>description</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Local's description</td>
         </tr>
 
     
@@ -181,7 +316,7 @@
 
 
             
-                <div class="description">DTO representing a contact on database</div>
+                <div class="description">DTO representing a local on database</div>
             
 
             

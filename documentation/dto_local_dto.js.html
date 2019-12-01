@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>dto/contact-method/dto.js - Documentation</title>
+    <title>dto/local/dto.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">dto/contact-method/dto.js</h1>
+    <h1 class="page-title">dto/local/dto.js</h1>
     
 
     
@@ -42,18 +42,21 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** DTO representing a contact on database
- * @namespace ContactMethod
- * @alias ContactMethod
+            <pre class="prettyprint source linenums"><code>/** DTO representing a local on database
+ * @namespace Local
+ * @alias Local
  * @memberof module:DataTransferObject
- * @property {(phone|email)} type Contact method type
- * @property {string} data Contact method data
+ * @property {string} cuid Local's unique identifier
+ * @property {string} dateAdded Local's registration date (yyyy-MM-dd'T'HH:mm:ss.SSS'Z')
+ * @property {string} name Local's name
+ * @property {Location} location Local's location
+ * @property {number} price Local's price
+ * @property {ContactMethod} items Local's contact method
+ * @property {string[]} photos Local's photos
+ * @property {string} description Local's description
  */
-export default (type, data) => {
-  return {
-    type,
-    data
-  };
+export default (cuid, dateAdded, name, location, price, contact, photos, description) => {
+  return { cuid, dateAdded, name, location, price, contact, photos, description };
 };
 </code></pre>
         </article>

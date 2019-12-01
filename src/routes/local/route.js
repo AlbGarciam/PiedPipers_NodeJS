@@ -14,12 +14,13 @@ const router = Router();
  * @memberof LocalRouter
  * @name Create local
  * @route {POST} local
- * @bodyparam {string} name - User's email
- * @bodyparam {string} location - User's email
- * @bodyparam {number} price - User's email
- * @bodyparam {string} contact - User's email
- * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link module:dto/user UserDTO}
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @bodyparam {string} name - Local's name
+ * @bodyparam {Location} location - Local's location
+ * @bodyparam {number} price - Local's price
+ * @bodyparam {ContactMethod} contact - Local's contact method
+ * @bodyparam {string} description - Local's description
+ * @see Success response {@link Local}
  * @see Error response {@link module:dto/error ErrorDTO}
  */
 router.post('/', TokenMiddleware(), async (req, res, next) => {
@@ -32,7 +33,16 @@ router.post('/', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
-router.get('/:cuid', TokenMiddleware(), async (req, res, next) => {
+/**
+ * Route serving locals by their cuid.
+ * @memberof LocalRouter
+ * @name Get local
+ * @route {GET} local
+ * @routeparam {string} cuid - Local's unique identifier
+ * @see Success response {@link Local}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
+router.get('/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
   try {
     const result = await LocalController.provide(cuid);
@@ -42,6 +52,20 @@ router.get('/:cuid', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving local's update process.
+ * @memberof LocalRouter
+ * @name Update local
+ * @route {PATCH} local
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @bodyparam {string} name - Local's name
+ * @bodyparam {Location} location - Local's location
+ * @bodyparam {number} price - Local's price
+ * @bodyparam {ContactMethod} contact - Local's contact method
+ * @bodyparam {string} description - Local's description
+ * @see Success response {@link Local}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.patch('/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { name, location, price, contact, photos, description } = req.body;
   const { cuid } = req.params;
@@ -54,6 +78,16 @@ router.patch('/:cuid', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving local's removal process.
+ * @memberof LocalRouter
+ * @name Delete local
+ * @route {DELETE} local
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @routeparam {string} cuid - Local's unique identifier
+ * @see Success response: HTTP 200
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.delete('/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { cuid } = req.params;
   try {
@@ -64,6 +98,17 @@ router.delete('/:cuid', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving local's image removal process.
+ * @memberof LocalRouter
+ * @name Delete local image
+ * @route {DELETE} local
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @routeparam {string} cuid - Local's unique identifier
+ * @bodyparam {string} image - Image unique identifier
+ * @see Success response {@link Local}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.delete('/photo/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { cuid } = req.params;
   const { image } = req.body;
@@ -75,6 +120,17 @@ router.delete('/photo/:cuid', TokenMiddleware(), async (req, res, next) => {
   }
 });
 
+/**
+ * Route serving local's image removal process.
+ * @memberof LocalRouter
+ * @name Add local image
+ * @route {POST} local
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @routeparam {string} cuid - Local's unique identifier
+ * @bodyparam {file} image - Image
+ * @see Success response {@link Local}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
 router.post(
   '/photo/:cuid',
   TokenMiddleware(),
