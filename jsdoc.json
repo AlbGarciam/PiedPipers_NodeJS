@@ -4,7 +4,7 @@
     "dictionaries": ["jsdoc", "closure"]
   },
   "source": {
-    "include": ["./src/routes", "./src/dto"],
+    "include": ["./src/routes", "./src/dto", "./src/constants"],
     "exclude": [
       "node_modules",
       "etc",
