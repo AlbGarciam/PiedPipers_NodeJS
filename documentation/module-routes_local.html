@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Global - Documentation</title>
+    <title>routes/local - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">routes/local</h1>
     
 
     
@@ -44,9 +44,8 @@
 
 <header>
     
-        <h2>
         
-        </h2>
+            
         
     
 </header>
@@ -56,9 +55,22 @@
         <div class="container-overview">
         
             
+                <div class="description">Express router providing local related routes</div>
+            
+
+            
+                
+
+
+
 
 <dl class="details">
 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="routes_local_route.js.html">routes/local/route.js</a>, <a href="routes_local_route.js.html#line1">line 1</a>
+    </li></ul></dd>
     
 
     
@@ -95,7 +107,33 @@
 
 
 
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
         
@@ -119,7 +157,7 @@
 
         
             
-<h4 class="name" id="CODE_SERVER_ERROR"><span class="type-signature">(constant) </span>CODE_SERVER_ERROR<span class="type-signature"></span></h4>
+<h4 class="name" id="Createlocal"><span class="type-signature">(route) </span>Create local<span class="type-signature"></span></h4>
 
 
 
@@ -130,7 +168,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dto_error_dto.js.html">dto/error/dto.js</a>, <a href="dto_error_dto.js.html#line10">line 10</a>
+        <a href="routes_local_route.js.html">routes/local/route.js</a>, <a href="routes_local_route.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -161,68 +199,14 @@
     
 
     
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    CODES
-</div>
-
-
-
-
-
-
-
-
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>Success response UserDTO</li>
         
-            
-<h4 class="name" id="ECODE_DATABASE_ERROR"><span class="type-signature">(constant) </span>ECODE_DATABASE_ERROR<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dto_error_dto.js.html">dto/error/dto.js</a>, <a href="dto_error_dto.js.html#line16">line 16</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
+            <li>Error response ErrorDTO</li>
+        </ul>
+    </dd>
     
 
     
@@ -233,70 +217,58 @@
 
 
 <div class="description">
-    ECODES
-</div>
-
-
-
-
-
-
-
-
-        
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">local</td>
+                            </tr>
+                            </table>
+                            Route serving local's creation process.
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">name</td>
+            <td class="type">string</td>
             
-<h4 class="name" id="MSG_ITEM_NOT_FOUND"><span class="type-signature">(constant) </span>MSG_ITEM_NOT_FOUND<span class="type-signature"></span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dto_error_dto.js.html">dto/error/dto.js</a>, <a href="dto_error_dto.js.html#line29">line 29</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    MESSAGES
+            
+            <td class="description last">User's email</td>
+          </tr><tr>
+            <td class="name">location</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">User's email</td>
+          </tr><tr>
+            <td class="name">price</td>
+            <td class="type">number</td>
+            
+            
+            <td class="description last">User's email</td>
+          </tr><tr>
+            <td class="name">contact</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">User's email</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">string</td>
+            
+            
+            <td class="description last">User's password. It must have 5 or more characters</td>
+          </tr>
+          </table>
 </div>
 
 

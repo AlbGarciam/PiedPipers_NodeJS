@@ -1,4 +1,4 @@
-/** Express router providing notification related routes
+/** Express router providing search related routes
  * @module routes/search
  */
 import { Router } from 'express';

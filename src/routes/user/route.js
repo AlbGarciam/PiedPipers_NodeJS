@@ -1,4 +1,4 @@
-/** Express router providing notification related routes
+/** Express router providing user related routes
  * @module routes/user
  */
 import { Router } from 'express';

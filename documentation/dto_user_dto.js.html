@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>dto/user/dto.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,80 +32,34 @@
 
 <div id="main">
     
+    <h1 class="page-title">dto/user/dto.js</h1>
+    
 
     
 
 
 
     
-
-
-    <section class="package">
-        <h3> </h3>		
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** DTO representing a contact on database
+ * @namespace User
+ * @alias User
+ * @memberof module:DataTransferObject
+ * @property {string} email - User's email
+ * @property {id} id - User's unique identifier (same as profile identifier)
+ * @property {string} addDate - Indicates when user was added to database
+ */
+export default (email, id, addDate) => {
+  return {
+    email,
+    id,
+    addDate
+  };
+};
+</code></pre>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    <section class="readme">
-        <article><h1>PiedPipers_NodeJS</h1>
-<h2>Requirements</h2>
-<p>What things you need to install the software and how to install them</p>
-<ul>
-<li>nodejs - v10.14.1</li>
-<li>mongoDB - v4.0.1</li>
-<li>@babel/cli - ^7.1.5</li>
-<li>@babel/core - ^7.1.6</li>
-<li>@babel/node - ^7.0.0</li>
-</ul>
-<h2>Installation</h2>
-<p>In order to deploy this project you should follow these steps:</p>
-<ol>
-<li>Clone this repository:</li>
-</ol>
-<pre class="prettyprint source lang-bash"><code>  git clone https://github.com/AlbGarciam/PiedPipers_NodeJS.git
-</code></pre>
-<ol start="2">
-<li>Configure <code>.env</code> file. You have an example on <code>.env.variables</code></li>
-<li>Update <code>etc/keys/private.key</code> and <code>etc/keys/public.pem</code> to secure JWT</li>
-<li>Install dependencies</li>
-</ol>
-<pre class="prettyprint source lang-bash"><code>  npm install
-</code></pre>
-<ol start="4">
-<li>Run script to prepare database. This script will create a directory/subdirectory at <code>database/db</code></li>
-</ol>
-<pre class="prettyprint source lang-bash"><code>  npm run preparedb
-</code></pre>
-<ol start="5">
-<li>Run script to start database. It will use mongo configuration at <code>etc/mongo.conf</code></li>
-</ol>
-<pre class="prettyprint source lang-bash"><code>  npm run database
-</code></pre>
-<ol start="6">
-<li>Run script to start server. This script will run a nodemon to run the server</li>
-</ol>
-<pre class="prettyprint source lang-bash"><code>  npm run start
-</code></pre>
-<h2>API</h2>
-<ul>
-<li><a href="./docs/user.md">Users</a></li>
-<li><a href="./docs/profile.md">Profile</a></li>
-<li><a href="./docs/search.md">Search</a></li>
-<li><a href="./docs/local.md">Locals</a></li>
-</ul></article>
-    </section>
-
-
 
 
 
