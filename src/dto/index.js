@@ -11,7 +11,7 @@ import InstrumentsDTO from './instruments';
 import ListDTO from './list';
 import LocalDTO from './local';
 import VideoDTO from './video';
-import NotificationDTO from './notification';
+import NotificationDTO, { NotificationBuilder } from './notification';
 
 export {
   Error,
@@ -23,5 +23,6 @@ export {
   ListDTO,
   LocalDTO,
   VideoDTO,
-  NotificationDTO
+  NotificationDTO,
+  NotificationBuilder
 };

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>dto/notification/dto.js - Documentation</title>
+    <title>Types - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,71 +32,114 @@
 
 <div id="main">
     
-    <h1 class="page-title">dto/notification/dto.js</h1>
+    <h1 class="page-title">Types</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import _ from 'lodash';
-/** DTO representing notification on database
- * @namespace Notification
- * @alias Notification
- * @memberof module:DataTransferObject
- * @property {string} cuid Notification's unique identifier
- * @property {string} dateAdded Notification's registration date (yyyy-MM-dd'T'HH:mm:ss.SSS'Z')
- * @property {NotificationType} notificationType Notification's type
- * @property {string} destination Notification's destination. It is a user identifier
- * @property {(pending|redeemed)} state Notification's status
- * @property {Object} data Notification's data
- */
-export default (cuid, notificationType, destination, dateAdded, state, data) => {
-  const model = {
-    cuid,
-    notificationType,
-    data,
-    destination,
-    dateAdded,
-    state
-  };
-  return _.omitBy(model, _.isNil);
-};
+        <h2>
+            <span class="ancestors"><a href="module-DataTransferObject.html">DataTransferObject</a><a href="Notification.html">Notification</a>.</span>
+        
+        Types
+        </h2>
+        
+    
+</header>
 
-/** Notification types
- * @namespace Types
- * @memberof Notification
- */
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-/** DTO representing follow notification data
- * @namespace FollowNotification
- * @alias FollowNotification
- * @memberof Notification.Types
- * @property {string} image Origin's profile avatar
- * @property {string} origin Origin's profile id
- * @property {string} originName  Origin's profile name
- * @property {string} destination  Destination's profile id
- * @property {string} destinationName  Destination's profile name
- */
-const FOLLOW_NOTIFICATION = (image, origin, originName, destination, destinationName) => ({
-  image,
-  origin,
-  originName,
-  destination,
-  destinationName
-});
+<dl class="details">
 
-const Builder = {
-  FOLLOW: FOLLOW_NOTIFICATION
-};
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dto_notification_dto.js.html">dto/notification/dto.js</a>, <a href="dto_notification_dto.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
 
-export { Builder };
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description">Notification types</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="FollowNotification.html">FollowNotification</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
