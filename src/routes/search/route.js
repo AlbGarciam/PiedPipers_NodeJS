@@ -5,8 +5,11 @@
  */
 import { Router } from 'express';
 import { SearchController } from '../../controllers';
+import { TokenMiddleware } from '../../middlewares';
 
 const router = Router();
+
+router.use(TokenMiddleware());
 
 /**
  * Route serving profile searching process. This this API is authenticated, it won't response the current profile. If not, current profile can be added to the response
@@ -27,8 +30,10 @@ const router = Router();
  */
 router.get('/profile', async (req, res, next) => {
   const { name, instruments, lat, long, maxDistance, friendlyLocation, limit, offset } = req.query;
+  const { id } = res.locals.decodedToken;
   try {
     const result = await SearchController.searchProfile(
+      id,
       name,
       instruments,
       lat,
