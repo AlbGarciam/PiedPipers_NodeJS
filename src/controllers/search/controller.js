@@ -6,6 +6,7 @@ import { ProfileDBToDTOMapper, LocalDBToDTOMapper } from '../../mappers';
 const controller = {};
 
 controller.searchProfile = async (
+  cuid,
   name,
   instruments,
   lat,
@@ -16,6 +17,10 @@ controller.searchProfile = async (
   offset
 ) => {
   let filter = {};
+  if (!_.isNil(cuid)) {
+    filter.cuid = { $ne: cuid };
+  }
+
   if (!_.isNil(name)) {
     filter.name = new RegExp(`^${name.toLowerCase()}`, 'i');
   } else {

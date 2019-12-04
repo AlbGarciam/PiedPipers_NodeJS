@@ -5,15 +5,18 @@
  */
 import { Router } from 'express';
 import { SearchController } from '../../controllers';
+import { TokenMiddleware } from '../../middlewares';
 
 const router = Router();
+
+router.use(TokenMiddleware());
 
 /**
  * Route serving profile searching process. This this API is authenticated, it won't response the current profile. If not, current profile can be added to the response
  * @memberof SearchRouter
  * @name Search profiles
  * @route {GET} serach/profile
- * @authentication OPTIONAL This route can use JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @authentication This route can use JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @queryparam {?string} name - Profile's name
  * @queryparam {?string} instruments - Profile's skills separated by commas
  * @queryparam {?number} lat - Profile's latitude. Must be present if long or maxDistance exists
@@ -27,8 +30,10 @@ const router = Router();
  */
 router.get('/profile', async (req, res, next) => {
   const { name, instruments, lat, long, maxDistance, friendlyLocation, limit, offset } = req.query;
+  const { id } = res.locals.decodedToken;
   try {
     const result = await SearchController.searchProfile(
+      id,
       name,
       instruments,
       lat,
@@ -49,6 +54,7 @@ router.get('/profile', async (req, res, next) => {
  * @memberof SearchRouter
  * @name Search locals
  * @route {GET} serach/local
+ * @authentication This route can use JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @queryparam {?string} name - Local's name
  * @queryparam {?number} price - Local's max price
  * @queryparam {?number} lat - Profile's latitude. Must be present if long or maxDistance exists
