@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Notification } from '../../database/model';
-import { ListDTO, Error } from '../../dto';
+import { ListDTO, Error, NotificationBuilder } from '../../dto';
 import { NOTIFICATION_TYPES, NOTIFICATION_STATES } from '../../constants';
 import { NotificationDBToDTOMapper } from '../../mappers';
 
@@ -22,15 +22,19 @@ controller.update = async (cuid, model) => {
 };
 
 controller.follow = async (origin, destination) => {
-  const { cuid: destinationId } = destination;
-  const { cuid: originId } = origin;
+  const { cuid: destinationId, name: destinationName } = destination;
+  const { cuid: originId, photo, name: originName } = origin;
+  const data = NotificationBuilder.FOLLOW(
+    photo,
+    originId,
+    originName,
+    destinationId,
+    destinationName
+  );
 
   const item = {
     notificationType: NOTIFICATION_TYPES.FOLLOW,
-    data: {
-      origin: originId,
-      destination: destinationId
-    }
+    data
   };
 
   const notification = await Notification.create(destinationId, item);
