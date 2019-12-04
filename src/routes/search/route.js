@@ -16,7 +16,7 @@ router.use(TokenMiddleware());
  * @memberof SearchRouter
  * @name Search profiles
  * @route {GET} serach/profile
- * @authentication OPTIONAL This route can use JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @authentication This route can use JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @queryparam {?string} name - Profile's name
  * @queryparam {?string} instruments - Profile's skills separated by commas
  * @queryparam {?number} lat - Profile's latitude. Must be present if long or maxDistance exists
@@ -54,6 +54,7 @@ router.get('/profile', async (req, res, next) => {
  * @memberof SearchRouter
  * @name Search locals
  * @route {GET} serach/local
+ * @authentication This route can use JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @queryparam {?string} name - Local's name
  * @queryparam {?number} price - Local's max price
  * @queryparam {?number} lat - Profile's latitude. Must be present if long or maxDistance exists
