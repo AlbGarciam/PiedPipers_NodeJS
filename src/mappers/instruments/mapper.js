@@ -6,7 +6,7 @@ export default model => {
   if (_.isNil(model)) {
     return null;
   }
-  const lowerCasedInstruments = model.map(item => item.toLowerCase());
+  const lowerCasedInstruments = model.map(item => item.toLowerCase()).sorted();
 
   if (!ValidateInstruments(lowerCasedInstruments)) {
     throw Error.Builder.VALIDATION(Error.MSG_INVALID_INSTRUMENTS_ERROR);
