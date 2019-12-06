@@ -1,10 +1,16 @@
 export default [
-  'guitarra',
-  'bateria',
-  'bajo',
-  'contrabajo',
-  'violín',
-  'pandero',
-  'castañuelas',
+  'piano',
+  'saxophone',
+  'cello',
+  'flute',
+  'clarinet',
+  'trumpet',
+  'guitar',
+  'drums',
+  'bass guitar',
+  'contrabass',
+  'violin',
+  'tambourine',
+  'castanets',
   'zambomba'
 ];
