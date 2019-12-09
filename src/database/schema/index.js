@@ -4,6 +4,7 @@ import ProfileSchema from './profile';
 import LocalSchema from './local';
 import UserSchema from './user';
 import NotificationSchema from './notification';
+import NotificationToken from './notification-token';
 
 export {
   PositionSchema,
@@ -11,5 +12,6 @@ export {
   ProfileSchema,
   LocalSchema,
   UserSchema,
-  NotificationSchema
+  NotificationSchema,
+  NotificationToken
 };

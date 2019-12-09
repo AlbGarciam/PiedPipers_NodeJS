@@ -125,4 +125,5 @@ public/
 
 # End of https://www.gitignore.io/api/node,macos
 
-database/
+/database/
+/etc/keys/firebaseAccountKey.json
