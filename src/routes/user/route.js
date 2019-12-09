@@ -139,4 +139,23 @@ router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, n
   }
 });
 
+/**
+ * Route serving user's email from a given id.
+ * @memberof UserRouter
+ * @name Remove user
+ * @route {GET} user/email
+ * @routeParam {string} cuid - User's unique identifier. It must have 5 or more characters
+ * @see Success response: {@link module:dto/user UserDTO}
+ * @see Error response: {@link module:dto/error ErrorDTO}
+ */
+router.delete('/email/:cuid', async (req, res, next) => {
+  const { cuid } = res.params;
+  try {
+    const result = await ProfileController.get(cuid);
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 export default router;
