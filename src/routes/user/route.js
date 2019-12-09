@@ -142,7 +142,7 @@ router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, n
 /**
  * Route serving user's email from a given id.
  * @memberof UserRouter
- * @name Remove user
+ * @name Get user from cuid
  * @route {GET} user/email
  * @routeParam {string} cuid - User's unique identifier. It must have 5 or more characters
  * @see Success response: {@link module:dto/user UserDTO}
