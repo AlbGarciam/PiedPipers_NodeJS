@@ -49,7 +49,8 @@ In order to deploy this project you should follow these steps:
 
 ## API
 
-- [Users](./docs/user.md)
-- [Profile](./docs/profile.md)
-- [Search](./docs/search.md)
-- [Locals](./docs/local.md)
+To generate documentation run the following command:
+
+```bash
+npm run doc
+```
