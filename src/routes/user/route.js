@@ -148,7 +148,7 @@ router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, n
  * @see Success response: {@link module:dto/user UserDTO}
  * @see Error response: {@link module:dto/error ErrorDTO}
  */
-router.delete('/email/:cuid', async (req, res, next) => {
+router.get('/email/:cuid', async (req, res, next) => {
   const { cuid } = res.params;
   try {
     const result = await ProfileController.get(cuid);
