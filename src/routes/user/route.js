@@ -149,7 +149,7 @@ router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, n
  * @see Error response: {@link module:dto/error ErrorDTO}
  */
 router.get('/email/:cuid', async (req, res, next) => {
-  const { cuid } = res.params;
+  const { cuid } = req.params;
   try {
     const result = await ProfileController.get(cuid);
     res.status(200).json(result);
