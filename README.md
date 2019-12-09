@@ -22,7 +22,8 @@ In order to deploy this project you should follow these steps:
 
 2. Configure `.env` file. You have an example on `.env.variables`
 3. Update `etc/keys/private.key` and `etc/keys/public.pem` to secure JWT
-4. Install dependencies
+4. Update `etc/keys/firebaseAccountKey.json` with your own key
+5. Install dependencies
 
 ```bash
   npm install
