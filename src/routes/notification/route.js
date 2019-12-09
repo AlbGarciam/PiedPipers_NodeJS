@@ -4,8 +4,9 @@
  * @memberof module:Routes
  */
 import { Router } from 'express';
+import { check } from 'express-validator';
 import { NotificationController, ProfileController } from '../../controllers';
-import { TokenMiddleware, RedeemNotification } from '../../middlewares';
+import { TokenMiddleware, RedeemNotification, ValidationMiddleware } from '../../middlewares';
 import { NOTIFICATION_TYPES } from '../../constants';
 
 const router = Router();
@@ -85,24 +86,62 @@ router.get('/redeem/:cuid', RedeemNotification(), async (req, res, next) => {
   }
 });
 
+const registerUnregisterValidations = [
+  check('token')
+    .isString()
+    .trim()
+];
+
 /**
  * Route serving push notification token registration process
  * @memberof NotificationRouter
  * @name Redeem notification
- * @route {GET} /notification/register
+ * @route {POST} /notification/register
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} cuid - Notification token
  * @see Success response: HTTP 200 OK
  * @see Error response {@link module:dto/error ErrorDTO}
  */
-router.post('/register', async (req, res, next) => {
-  const { id } = res.locals.decodedToken;
-  const { token } = req.body;
-  try {
-    res.status(200).json(notification);
-  } catch (err) {
-    next(err);
+router.post(
+  '/register',
+  registerUnregisterValidations,
+  ValidationMiddleware(),
+  async (req, res, next) => {
+    const { id } = res.locals.decodedToken;
+    const { token } = req.body;
+    try {
+      const result = await NotificationController.register(token, id);
+      res.status(200).json(result);
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
+
+/**
+ * Route serving push notification token unregistration process
+ * @memberof NotificationRouter
+ * @name Redeem notification
+ * @route {DELETE} /notification/unregister
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @bodyparam {string} cuid - Notification token
+ * @see Success response: HTTP 200 OK
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
+router.delete(
+  '/unregister',
+  registerUnregisterValidations,
+  ValidationMiddleware(),
+  async (req, res, next) => {
+    const { id } = res.locals.decodedToken;
+    const { token } = req.body;
+    try {
+      await NotificationController.unregister(token, id);
+      res.status(200).json({});
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 export default router;
