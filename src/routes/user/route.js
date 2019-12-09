@@ -151,7 +151,7 @@ router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, n
 router.get('/email/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
   try {
-    const result = await ProfileController.get(cuid);
+    const result = await UserController.get(cuid);
     res.status(200).json(result);
   } catch (err) {
     next(err);
