@@ -7,6 +7,7 @@ import RemoveImage from './remove-image';
 import ValidateEmail from './validate-email';
 import ValidatePhone from './validate-phone';
 import GetFilename from './get-filename';
+import SendPush from './send-push';
 
 export {
   ServerPort,
@@ -20,5 +21,6 @@ export {
   RemoveImage,
   ValidateEmail,
   ValidatePhone,
-  GetFilename
+  GetFilename,
+  SendPush
 };

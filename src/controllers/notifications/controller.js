@@ -1,8 +1,9 @@
 import _ from 'lodash';
-import { Notification } from '../../database/model';
+import { Notification, NotificationToken } from '../../database/model';
 import { ListDTO, Error, NotificationBuilder } from '../../dto';
 import { NOTIFICATION_TYPES, NOTIFICATION_STATES } from '../../constants';
 import { NotificationDBToDTOMapper } from '../../mappers';
+import { SendPush } from '../../utils';
 
 const controller = {};
 
@@ -25,11 +26,11 @@ controller.follow = async (origin, destination) => {
   const { cuid: destinationId, name: destinationName } = destination;
   const { cuid: originId, photo, name: originName } = origin;
   const data = NotificationBuilder.FOLLOW(
-    photo,
-    originId,
-    originName,
-    destinationId,
-    destinationName
+    photo || '',
+    originId || '',
+    originName || '',
+    destinationId || '',
+    destinationName || ''
   );
 
   const item = {
@@ -38,8 +39,8 @@ controller.follow = async (origin, destination) => {
   };
 
   const notification = await Notification.create(destinationId, item);
+  SendPush(destinationId, { ...data, notificationType: NOTIFICATION_TYPES.FOLLOW });
   return NotificationDBToDTOMapper(notification);
-  // In a future here we have to send the notification to firebase
 };
 
 controller.list = async (userId, limit = 10, offset = 0) => {
@@ -60,5 +61,13 @@ controller.redeem = async cuid => {
 
 controller.remove = async cuid => {
   return Notification.clean(cuid);
+};
+
+controller.register = async (token, user) => {
+  return NotificationToken.register(user, token);
+};
+
+controller.unregister = async (token, user) => {
+  await NotificationToken.unregister(user, token);
 };
 export default controller;
