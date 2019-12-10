@@ -26,7 +26,7 @@ router.use(TokenMiddleware());
  * @queryparam {?number} limit - Maximun number of profiles. By default it takes 10
  * @queryparam {?number} offset - Skips profiles
  * @see Success response {@link List} of {@link Profile}
- * @see Error response: {@link module:dto/error ErrorDTO}
+ * @see Error response: {@link Error}
  */
 router.get('/profile', async (req, res, next) => {
   const { name, instruments, lat, long, maxDistance, friendlyLocation, limit, offset } = req.query;
@@ -63,7 +63,7 @@ router.get('/profile', async (req, res, next) => {
  * @queryparam {?number} limit - Maximun number of profiles. By default it takes 10
  * @queryparam {?number} offset - Skips profiles
  * @see Success response {@link List} of {@link Local}
- * @see Error response: {@link module:dto/error ErrorDTO}
+ * @see Error response: {@link Error}
  */
 router.get('/local', async (req, res, next) => {
   const { name, lat, long, price, maxDistance, limit, offset } = req.query;

@@ -22,7 +22,7 @@ router.use(TokenMiddleware());
  * @queryparam {?number} limit - Maximun number of notifications. By default it takes 10
  * @queryparam {?number} offset - Skips notifications
  * @see Success response {@link List} of {@link Notification}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.get('/', async (req, res, next) => {
   const { id } = res.locals.decodedToken;
@@ -47,7 +47,7 @@ router.get('/', async (req, res, next) => {
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @routeparam {string} cuid - Notification unique identifier
  * @see HTTP 200 OK
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.delete('/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
@@ -67,7 +67,7 @@ router.delete('/:cuid', async (req, res, next) => {
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @routeparam {string} cuid - Notification unique identifier
  * @see Success response {@link Notification}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.get('/redeem/:cuid', RedeemNotification(), async (req, res, next) => {
   const { redeemedNotification: notification } = res.locals;
@@ -100,7 +100,7 @@ const registerUnregisterValidations = [
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} cuid - Notification token
  * @see Success response: HTTP 200 OK
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.post(
   '/register',
@@ -126,7 +126,7 @@ router.post(
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} cuid - Notification token
  * @see Success response: HTTP 200 OK
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.delete(
   '/unregister',
