@@ -53,7 +53,7 @@ router.get('/tags', async (req, res) => {
 /**
  * Route serving current profile's band
  * @memberof ProfileRouter
- * @name Get current profile
+ * @name Get current profile band
  * @route {GET} profile/my-band
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @see Success response {@link List} of {@link Profile}
