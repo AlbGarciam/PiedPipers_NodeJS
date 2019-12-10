@@ -46,4 +46,9 @@ controller.remove = async cuid => {
   await Model.User.clean(cuid);
 };
 
+controller.get = async cuid => {
+  const { email, dateAdded } = await Model.User.getByCuid(cuid);
+  return UserDTO(email, cuid, dateAdded);
+};
+
 export default controller;
