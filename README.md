@@ -49,6 +49,8 @@ In order to deploy this project you should follow these steps:
 
 ## API
 
+Documentation can be found [here](https://albgarciam.github.io/PiedPipers_NodeJS/)
+
 To generate documentation run the following command:
 
 ```bash
