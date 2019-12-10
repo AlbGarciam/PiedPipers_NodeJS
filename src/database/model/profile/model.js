@@ -63,4 +63,13 @@ ProfileModel.clean = async cuid => {
   }
 };
 
+ProfileModel.getMultipleIds = async cuids => {
+  const conditions = cuids.map(item => ({ cuid: item }));
+  try {
+    return await ProfileModel.find({ $or: conditions });
+  } catch (err) {
+    throw Error.Builder.DATABASE(err.message);
+  }
+};
+
 export default ProfileModel;

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Model } from '../../database';
+import { Profile } from '../../database/model';
 import { Error, ListDTO } from '../../dto';
 import {
   LocationToCoordinatesMapper,
@@ -13,7 +13,7 @@ import { PATH, INSTRUMENTS } from '../../constants';
 const controller = {};
 
 controller.provide = async identifier => {
-  const model = await Model.Profile.getByCUID(identifier);
+  const model = await Profile.getByCUID(identifier);
 
   if (_.isNil(model)) {
     throw Error.Builder.ITEM_NOT_FOUND;
@@ -29,7 +29,7 @@ controller.update = async (cuid, model) => {
   dbModel.instruments = DatabaseInstrumentsMapper(instruments);
   dbModel.location = LocationToCoordinatesMapper(location);
 
-  await Model.Profile.updateData(cuid, _.omitBy(dbModel, _.isNil));
+  await Profile.updateData(cuid, _.omitBy(dbModel, _.isNil));
   return controller.provide(cuid);
 };
 
@@ -52,7 +52,7 @@ controller.updateAvatar = async (cuid, file) => {
 
 controller.remove = async cuid => {
   await RemoveImage(PATH.IMAGES_PATH, cuid);
-  await Model.Profile.clean(cuid);
+  await Profile.clean(cuid);
 };
 
 controller.appendInvite = async (origin, destination) => {
@@ -99,4 +99,9 @@ controller.unfollow = async (origin, destination) => {
   });
 };
 
+controller.followers = async cuid => {
+  const { followers: followerIds = [] } = await controller.provide(cuid);
+  const followers = (await Profile.getMultipleIds(followerIds)) || [];
+  return ListDTO(followers.length, 0, followers.map(item => ProfileDBToDTOMapper(item)));
+};
 export default controller;

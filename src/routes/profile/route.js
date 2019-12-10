@@ -51,6 +51,25 @@ router.get('/tags', async (req, res) => {
 });
 
 /**
+ * Route serving current profile's band
+ * @memberof ProfileRouter
+ * @name Get current profile
+ * @route {GET} profile/my-band
+ * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
+ * @see Success response {@link List} of {@link Profile}
+ * @see Error response {@link module:dto/error ErrorDTO}
+ */
+router.get('/my-band', async (req, res, next) => {
+  const { id } = res.locals.decodedToken;
+  try {
+    const result = await ProfileController.followers(id);
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
  * Route serving profile by its cuid
  * @memberof ProfileRouter
  * @name Get profile
