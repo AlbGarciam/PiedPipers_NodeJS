@@ -29,7 +29,7 @@ const loginValidations = [
  * @bodyparam {string} email - User's email
  * @bodyparam {string} password - User's password. It must have 5 or more characters
  * @see Success response {@link User}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.post('/login', loginValidations, ValidationMiddleware(), async (req, res, next) => {
   const { email, password } = req.body;
@@ -65,7 +65,7 @@ const createValidations = [
  * @bodyparam {string} email - User's email
  * @bodyparam {string} password - User's password. It must have 5 or more characters
  * @see Success response {@link User}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.post('/create', createValidations, ValidationMiddleware(), async (req, res, next) => {
   const { email, password } = req.body;
@@ -98,7 +98,7 @@ const updateValidations = [
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user.
  * @bodyparam {string} password - User's password. It must have 5 or more characters
  * @see Success response {@link User}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.patch(
   '/update',
@@ -126,7 +126,7 @@ router.patch(
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} password - User's password. It must have 5 or more characters
  * @see Success response: HTTP 200 OK
- * @see Error response: {@link module:dto/error ErrorDTO}
+ * @see Error response: {@link Error}
  */
 router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, next) => {
   const { id } = res.locals.decodedToken;
@@ -146,7 +146,7 @@ router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, n
  * @route {GET} user/email
  * @routeParam {string} cuid - User's unique identifier. It must have 5 or more characters
  * @see Success response: {@link module:dto/user UserDTO}
- * @see Error response: {@link module:dto/error ErrorDTO}
+ * @see Error response: {@link Error}
  */
 router.get('/email/:cuid', async (req, res, next) => {
   const { cuid } = req.params;

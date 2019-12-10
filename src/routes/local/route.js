@@ -21,7 +21,7 @@ const router = Router();
  * @bodyparam {ContactMethod} contact - Local's contact method
  * @bodyparam {string} description - Local's description
  * @see Success response {@link Local}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.post('/', TokenMiddleware(), async (req, res, next) => {
   const { name, location, price, contact, description } = req.body;
@@ -40,7 +40,7 @@ router.post('/', TokenMiddleware(), async (req, res, next) => {
  * @route {GET} local
  * @routeparam {string} cuid - Local's unique identifier
  * @see Success response {@link Local}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.get('/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
@@ -64,7 +64,7 @@ router.get('/:cuid', async (req, res, next) => {
  * @bodyparam {ContactMethod} contact - Local's contact method
  * @bodyparam {string} description - Local's description
  * @see Success response {@link Local}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.patch('/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { name, location, price, contact, photos, description } = req.body;
@@ -86,7 +86,7 @@ router.patch('/:cuid', TokenMiddleware(), async (req, res, next) => {
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @routeparam {string} cuid - Local's unique identifier
  * @see Success response: HTTP 200
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.delete('/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { cuid } = req.params;
@@ -107,7 +107,7 @@ router.delete('/:cuid', TokenMiddleware(), async (req, res, next) => {
  * @routeparam {string} cuid - Local's unique identifier
  * @bodyparam {string} image - Image unique identifier
  * @see Success response {@link Local}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.delete('/photo/:cuid', TokenMiddleware(), async (req, res, next) => {
   const { cuid } = req.params;
@@ -129,7 +129,7 @@ router.delete('/photo/:cuid', TokenMiddleware(), async (req, res, next) => {
  * @routeparam {string} cuid - Local's unique identifier
  * @bodyparam {file} image - Image
  * @see Success response {@link Local}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.post(
   '/photo/:cuid',

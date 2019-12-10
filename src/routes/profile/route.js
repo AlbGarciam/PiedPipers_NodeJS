@@ -24,7 +24,7 @@ router.use(TokenMiddleware());
  * @route {GET} profile/
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @see Success response {@link Profile}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.get('/', async (req, res, next) => {
   const { id } = res.locals.decodedToken;
@@ -43,7 +43,7 @@ router.get('/', async (req, res, next) => {
  * @route {GET} profile/tags
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @see Success response {@link List} of {@link Instruments}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.get('/tags', async (req, res) => {
   const result = ProfileController.instruments();
@@ -57,7 +57,7 @@ router.get('/tags', async (req, res) => {
  * @route {GET} profile/my-band
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @see Success response {@link List} of {@link Profile}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.get('/my-band', async (req, res, next) => {
   const { id } = res.locals.decodedToken;
@@ -77,7 +77,7 @@ router.get('/my-band', async (req, res, next) => {
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @routeparam {string} cuid - Profile's unique identifier
  * @see Success response {@link Profile}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.get('/:cuid', async (req, res, next) => {
   const { cuid } = req.params;
@@ -114,7 +114,7 @@ const patchValidations = [
  * @bodyparam {Array.string} instruments - Profile's skills
  * @bodyparam {string} friendlyLocation - Profile's friendly location
  * @see Success response {@link Profile}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, next) => {
   const { id } = res.locals.decodedToken;
@@ -144,7 +144,7 @@ router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, nex
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {file} file - Image
  * @see Success response {@link Profile}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.post('/avatar', UploadMiddleware.single('photo'), async (req, res, next) => {
   const { id } = res.locals.decodedToken;
@@ -171,7 +171,7 @@ const followValidations = [
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} userId - Profile's unique identifier to follow
  * @see Success response {@link Profile}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.post(
   '/follow',
@@ -205,7 +205,7 @@ const unfollowValidations = [
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} userId - Profile's unique identifier to unfollow
  * @see Success response {@link Profile}
- * @see Error response {@link module:dto/error ErrorDTO}
+ * @see Error response {@link Error}
  */
 router.post('/unfollow', unfollowValidations, ValidationMiddleware(), async (req, res, next) => {
   const { id: origin } = res.locals.decodedToken;
