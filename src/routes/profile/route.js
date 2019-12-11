@@ -182,8 +182,8 @@ router.post(
     const { destinationUser, originUser } = res.locals;
     const { cuid: destinationId } = destinationUser;
     try {
-      const profile = await ProfileController.appendInvite(originUser, destinationId);
       await NotificationController.follow(originUser, destinationUser);
+      const profile = await ProfileController.appendInvite(originUser, destinationId);
       res.status(200).json(profile);
     } catch (err) {
       next(err);
