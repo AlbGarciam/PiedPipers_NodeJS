@@ -8,7 +8,7 @@ import _ from 'lodash';
  * @property {string} name Profile's name
  * @property {Location} location Profile's location
  * @property {string} friendlyLocation Profile's friendly location
- * @property {ContactMethod} items Profile's contact method
+ * @property {ContactMethod} contact Profile's contact method
  * @property {string[]} instruments Profile's skills
  * @property {Video[]} videos Profile's videos
  * @property {string} description Profile's description
