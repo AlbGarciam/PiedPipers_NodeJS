@@ -1,5 +1,4 @@
 import { Schema } from 'mongoose';
-import Cuid from 'cuid';
 import { NOTIFICATION_STATES } from '../../../constants';
 
 export default Schema(
@@ -9,8 +8,7 @@ export default Schema(
       unique: true,
       required: true,
       dropDups: true,
-      index: true,
-      default: Cuid()
+      index: true
     },
     dateAdded: { type: 'Date', default: Date.now, required: true },
     destination: { type: String, index: true, required: true },

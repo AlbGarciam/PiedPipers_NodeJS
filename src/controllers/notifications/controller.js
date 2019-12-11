@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import Cuid from 'cuid';
 import { Notification, NotificationToken } from '../../database/model';
 import { ListDTO, Error, NotificationBuilder } from '../../dto';
 import { NOTIFICATION_TYPES, NOTIFICATION_STATES } from '../../constants';
@@ -38,7 +39,7 @@ controller.follow = async (origin, destination) => {
     data
   };
 
-  const notification = await Notification.create(destinationId, item);
+  const notification = await controller.create(destinationId, item);
   SendPush(destinationId, { ...data, notificationType: NOTIFICATION_TYPES.FOLLOW });
   return NotificationDBToDTOMapper(notification);
 };
@@ -47,6 +48,11 @@ controller.list = async (userId, limit = 10, offset = 0) => {
   const { docs, totalDocs } = await Notification.getByDestination(userId, limit, offset);
   const dtoList = (docs || []).map(item => NotificationDBToDTOMapper(item));
   return ListDTO(totalDocs, offset, dtoList);
+};
+
+controller.create = async (destination, data) => {
+  const cuid = Cuid();
+  return Notification.create(cuid, destination, data);
 };
 
 controller.redeem = async cuid => {

@@ -39,10 +39,11 @@ NotificationModel.clean = async cuid => {
   }
 };
 
-NotificationModel.create = async (destination, model) => {
+NotificationModel.create = async (cuid, destination, model) => {
   const item = NotificationModel({
     ...model,
-    destination
+    destination,
+    cuid
   });
   try {
     return await item.save();
