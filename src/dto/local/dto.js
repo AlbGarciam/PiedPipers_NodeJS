@@ -7,7 +7,7 @@
  * @property {string} name Local's name
  * @property {Location} location Local's location
  * @property {number} price Local's price
- * @property {ContactMethod} items Local's contact method
+ * @property {ContactMethod} contact Local's contact method
  * @property {string[]} photos Local's photos
  * @property {string} description Local's description
  */

@@ -95,7 +95,7 @@ const registerUnregisterValidations = [
 /**
  * Route serving push notification token registration process
  * @memberof NotificationRouter
- * @name Redeem notification
+ * @name Register token
  * @route {POST} /notification/register
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} cuid - Notification token
@@ -121,7 +121,7 @@ router.post(
 /**
  * Route serving push notification token unregistration process
  * @memberof NotificationRouter
- * @name Redeem notification
+ * @name Unregister token
  * @route {DELETE} /notification/unregister
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} cuid - Notification token

@@ -347,7 +347,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_notification_route.js.html">routes/notification/route.js</a>, <a href="routes_notification_route.js.html#line121">line 121</a>
+        <a href="routes_notification_route.js.html">routes/notification/route.js</a>, <a href="routes_notification_route.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -381,7 +381,7 @@
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li>Success response: HTTP 200 OK</li>
+            <li>Success response <a href="Notification.html">Notification</a></li>
         
             <li>Error response <a href="Error.html">Error</a></li>
         </ul>
@@ -400,14 +400,14 @@
                             <table class="params">
                             <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
                             <tr>
-                            <td class="type">DELETE</td>
-                            <td class="name last">/notification/unregister</td>
+                            <td class="type">GET</td>
+                            <td class="name last">/notification/redeem/:cuid</td>
                             </tr>
                             </table>
-                            Route serving push notification token unregistration process
+                            Route serving notifications redeem process
                           <h5>Authentication</h5>
                           <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
-                            <h5>Body Parameters:</h5>
+                            <h5>Route Parameters:</h5>
           <table class="params">
             <thead>
               <tr>
@@ -423,7 +423,7 @@
             <td class="type">string</td>
             
             
-            <td class="description last">Notification token</td>
+            <td class="description last">Notification unique identifier</td>
           </tr>
           </table>
 </div>
@@ -437,7 +437,7 @@
 
         
             
-<h4 class="name" id="Redeemnotification"><span class="type-signature">(route) </span>Redeem notification<span class="type-signature"></span></h4>
+<h4 class="name" id="Registertoken"><span class="type-signature">(route) </span>Register token<span class="type-signature"></span></h4>
 
 
 
@@ -538,7 +538,7 @@
 
         
             
-<h4 class="name" id="Redeemnotification"><span class="type-signature">(route) </span>Redeem notification<span class="type-signature"></span></h4>
+<h4 class="name" id="Unregistertoken"><span class="type-signature">(route) </span>Unregister token<span class="type-signature"></span></h4>
 
 
 
@@ -549,7 +549,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="routes_notification_route.js.html">routes/notification/route.js</a>, <a href="routes_notification_route.js.html#line62">line 62</a>
+        <a href="routes_notification_route.js.html">routes/notification/route.js</a>, <a href="routes_notification_route.js.html#line121">line 121</a>
     </li></ul></dd>
     
 
@@ -583,7 +583,7 @@
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li>Success response <a href="Notification.html">Notification</a></li>
+            <li>Success response: HTTP 200 OK</li>
         
             <li>Error response <a href="Error.html">Error</a></li>
         </ul>
@@ -602,14 +602,14 @@
                             <table class="params">
                             <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
                             <tr>
-                            <td class="type">GET</td>
-                            <td class="name last">/notification/redeem/:cuid</td>
+                            <td class="type">DELETE</td>
+                            <td class="name last">/notification/unregister</td>
                             </tr>
                             </table>
-                            Route serving notifications redeem process
+                            Route serving push notification token unregistration process
                           <h5>Authentication</h5>
                           <p>This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user</p>
-                            <h5>Route Parameters:</h5>
+                            <h5>Body Parameters:</h5>
           <table class="params">
             <thead>
               <tr>
@@ -625,7 +625,7 @@
             <td class="type">string</td>
             
             
-            <td class="description last">Notification unique identifier</td>
+            <td class="description last">Notification token</td>
           </tr>
           </table>
 </div>
@@ -659,7 +659,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Dec 10 2019 19:03:34 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 20:16:21 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
