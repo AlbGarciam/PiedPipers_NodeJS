@@ -4,6 +4,7 @@ import NOTIFICATION_TYPES from './notifications-types';
 import NOTIFICATION_STATES from './notifications-states';
 import CONTACT_METHOD_TYPES from './contact-method';
 import FIREBASE_CONFIG from './firebase';
+import FILE_FORMATS from './supported-file-formats';
 
 export {
   PATH,
@@ -11,5 +12,6 @@ export {
   NOTIFICATION_TYPES,
   NOTIFICATION_STATES,
   CONTACT_METHOD_TYPES,
-  FIREBASE_CONFIG
+  FIREBASE_CONFIG,
+  FILE_FORMATS
 };

@@ -2,12 +2,12 @@ import ServerPort from './port';
 import MongoConfig, { route as MongoRoute } from './mongo';
 import ValidateInstruments from './validate-instruments';
 import { ValidateEquality, GenerateSalt, HashItem } from './hash';
-import ResizeImage from './resize-image';
-import RemoveImage from './remove-image';
 import ValidateEmail from './validate-email';
 import ValidatePhone from './validate-phone';
 import GetFilename from './get-filename';
 import SendPush from './send-push';
+import RemoveImageFromPath from './remove-image-from-path';
+import SaveImage from './save-image';
 
 export {
   ServerPort,
@@ -17,10 +17,10 @@ export {
   GenerateSalt,
   HashItem,
   ValidateInstruments,
-  ResizeImage,
-  RemoveImage,
   ValidateEmail,
   ValidatePhone,
   GetFilename,
-  SendPush
+  SendPush,
+  RemoveImageFromPath,
+  SaveImage
 };

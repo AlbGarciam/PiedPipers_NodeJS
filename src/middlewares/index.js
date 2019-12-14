@@ -4,6 +4,7 @@ import UploadMiddleware from './upload';
 import UserActionMiddleware from './token-modify-validity';
 import FollowNotificationMiddleware from './notification-follow';
 import RedeemNotification from './notification-redeem';
+import ValidateImageMiddleware from './validate-images';
 
 export {
   TokenMiddleware,
@@ -11,5 +12,6 @@ export {
   UploadMiddleware,
   UserActionMiddleware,
   FollowNotificationMiddleware,
-  RedeemNotification
+  RedeemNotification,
+  ValidateImageMiddleware
 };
