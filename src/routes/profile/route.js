@@ -10,7 +10,8 @@ import {
   TokenMiddleware,
   ValidationMiddleware,
   UploadMiddleware,
-  FollowNotificationMiddleware
+  FollowNotificationMiddleware,
+  ValidateImageMiddleware
 } from '../../middlewares';
 
 const router = Router();
@@ -146,16 +147,21 @@ router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, nex
  * @see Success response {@link Profile}
  * @see Error response {@link Error}
  */
-router.post('/avatar', UploadMiddleware.single('photo'), async (req, res, next) => {
-  const { id } = res.locals.decodedToken;
-  const { file } = req;
-  try {
-    const result = await ProfileController.updateAvatar(id, file);
-    res.status(200).json(result);
-  } catch (err) {
-    next(err);
+router.post(
+  '/avatar',
+  UploadMiddleware.single('photo'),
+  ValidateImageMiddleware(),
+  async (req, res, next) => {
+    const { id } = res.locals.decodedToken;
+    const { file } = req;
+    try {
+      const result = await ProfileController.updateAvatar(id, file);
+      res.status(200).json(result);
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 const followValidations = [
   check('userId')
