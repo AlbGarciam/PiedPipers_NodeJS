@@ -4,10 +4,9 @@ import { Error, ListDTO } from '../../dto';
 import {
   LocationToCoordinatesMapper,
   DatabaseInstrumentsMapper,
-  FileToBufferMapper,
   ProfileDBToDTOMapper
 } from '../../mappers';
-import { ResizeImage, RemoveImage } from '../../utils';
+import { SaveImage, RemoveImageFromPath } from '../../utils';
 import { PATH, INSTRUMENTS } from '../../constants';
 
 const controller = {};
@@ -39,19 +38,23 @@ controller.instruments = () => {
 };
 
 controller.updateAvatar = async (cuid, file) => {
-  const buffer = FileToBufferMapper(file);
+  const { photo } = await controller.provide(cuid);
+  if (!_.isNil(photo)) {
+    await RemoveImageFromPath(photo);
+  }
 
-  await RemoveImage(PATH.IMAGES_PATH, cuid);
-  const filename = await ResizeImage(PATH.IMAGES_PATH, cuid, buffer);
-
-  const query = { photo: PATH.relative(filename) };
+  const filepath = await SaveImage(file, cuid);
+  const query = { photo: filepath };
 
   const profile = await controller.update(cuid, query);
   return profile;
 };
 
 controller.remove = async cuid => {
-  await RemoveImage(PATH.IMAGES_PATH, cuid);
+  const { photo } = await controller.provide(cuid);
+  if (!_.isNil(photo)) {
+    await RemoveImageFromPath(photo);
+  }
   await Profile.clean(cuid);
 };
 
