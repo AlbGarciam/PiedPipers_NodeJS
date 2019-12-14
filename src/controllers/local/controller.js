@@ -1,10 +1,9 @@
 import _ from 'lodash';
 import Cuid from 'cuid';
 import { Local } from '../../database/model';
-import { LocationToCoordinatesMapper, LocalDBToDTOMapper, FileToBufferMapper } from '../../mappers';
+import { LocationToCoordinatesMapper, LocalDBToDTOMapper } from '../../mappers';
 import { Error } from '../../dto';
-import { RemoveImage, ResizeImage, GetFilename } from '../../utils';
-import { PATH } from '../../constants';
+import { RemoveImageFromPath, SaveImage } from '../../utils';
 
 const controller = {};
 
@@ -36,7 +35,9 @@ controller.create = async (name, location, price, contact, photos, description) 
 controller.update = async (cuid, model) => {
   const dbModel = model;
   const { location } = model;
-  dbModel.location = LocationToCoordinatesMapper(location);
+  if (!_.isNil(location)) {
+    dbModel.location = LocationToCoordinatesMapper(location);
+  }
   await Local.updateData(cuid, _.omitBy(dbModel, _.isNil));
   return controller.provide(cuid);
 };
@@ -44,29 +45,24 @@ controller.update = async (cuid, model) => {
 controller.remove = async cuid => {
   const local = await Local.getByCUID(cuid);
   (local.photos || []).forEach(async element => {
-    await RemoveImage(PATH.IMAGES_PATH, element);
+    await RemoveImageFromPath(element);
   });
   await Local.clean(cuid);
 };
 
 controller.insertImage = async (cuid, file) => {
-  const buffer = FileToBufferMapper(file);
-  const imageUID = Cuid();
-  const imageId = `${cuid}____${imageUID}`;
-  await Local.insertImage(cuid, imageId);
-
-  await RemoveImage(PATH.IMAGES_PATH, imageId);
-  await ResizeImage(PATH.IMAGES_PATH, imageId, buffer);
+  const filename = `${cuid}_${Cuid()}`;
+  const filepath = await SaveImage(file, filename);
+  await Local.insertImage(cuid, filepath);
 
   return controller.provide(cuid);
 };
 
-controller.removeImage = async (cuid, image) => {
-  const filename = GetFilename(image);
-
-  await Local.removeImage(cuid, filename);
-  await RemoveImage(PATH.IMAGES_PATH, filename);
-  return controller.provide(cuid);
+controller.removeImage = async (cuid, path) => {
+  let { photos } = await controller.provide(cuid);
+  photos = photos.filter(item => item !== path);
+  await RemoveImageFromPath(path);
+  return controller.update(cuid, { photos });
 };
 
 export default controller;

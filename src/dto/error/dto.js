@@ -79,6 +79,8 @@ const MSG_USER_ALREADY_INVITED = 'This user has been already invited';
 const MSG_NOTIFICATION_ALREADY_REDEEMED = 'This notification has been already redeemed';
 /** @constant {string} */
 const MSG_NOTIFICATION_INVALID_RECIPIENT = 'This recipient cannot be used';
+/** @constant {string} */
+const MSG_INVALID_FILE_FORMAT = 'Invalid file fomat';
 
 export {
   MSG_ITEM_NOT_FOUND,
@@ -93,7 +95,8 @@ export {
   MSG_INVALID_IMAGE_BUFFER,
   MSG_CORRUPTED_TOKEN,
   MSG_MISSING_USER_ID,
-  MSG_NOTIFICATION_INVALID_RECIPIENT
+  MSG_NOTIFICATION_INVALID_RECIPIENT,
+  MSG_INVALID_FILE_FORMAT
 };
 
 const Builder = {
