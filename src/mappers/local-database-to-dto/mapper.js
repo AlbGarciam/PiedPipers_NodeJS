@@ -15,7 +15,7 @@ export default model => {
     dateAdded,
     name,
     locationDTO,
-    parseFloat(price),
+    price.toFixed(2),
     contactDTO,
     photos,
     description
