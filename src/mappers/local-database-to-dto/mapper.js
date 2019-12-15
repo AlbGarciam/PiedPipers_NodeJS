@@ -10,5 +10,14 @@ export default model => {
   const { cuid, dateAdded, name, location, price, contact, photos, description } = model;
   const locationDTO = CoordinatesToLocationMapper(location);
   const contactDTO = ContactMethodMapper(contact);
-  return LocalDTO(cuid, dateAdded, name, locationDTO, price, contactDTO, photos, description);
+  return LocalDTO(
+    cuid,
+    dateAdded,
+    name,
+    locationDTO,
+    parseFloat(price),
+    contactDTO,
+    photos,
+    description
+  );
 };
