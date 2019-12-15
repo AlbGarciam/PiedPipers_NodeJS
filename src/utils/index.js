@@ -4,10 +4,10 @@ import ValidateInstruments from './validate-instruments';
 import { ValidateEquality, GenerateSalt, HashItem } from './hash';
 import ValidateEmail from './validate-email';
 import ValidatePhone from './validate-phone';
-import GetFilename from './get-filename';
 import SendPush from './send-push';
 import RemoveImageFromPath from './remove-image-from-path';
 import SaveImage from './save-image';
+import CoordinatesToAddress from './coordinates-to-address';
 
 export {
   ServerPort,
@@ -19,8 +19,8 @@ export {
   ValidateInstruments,
   ValidateEmail,
   ValidatePhone,
-  GetFilename,
   SendPush,
   RemoveImageFromPath,
-  SaveImage
+  SaveImage,
+  CoordinatesToAddress
 };

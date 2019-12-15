@@ -17,7 +17,8 @@ export default Schema(
     price: { type: Number, required: true, index: true },
     contact: { type: ContactMethodSchema, required: true },
     photos: { type: [String], default: [], required: true },
-    description: { type: String, required: true }
+    description: { type: String, required: true },
+    address: { type: String, required: true }
   },
   { collection: 'Locals' }
 );
