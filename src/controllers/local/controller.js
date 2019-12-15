@@ -3,7 +3,7 @@ import Cuid from 'cuid';
 import { Local } from '../../database/model';
 import { LocationToCoordinatesMapper, LocalDBToDTOMapper } from '../../mappers';
 import { Error } from '../../dto';
-import { RemoveImageFromPath, SaveImage } from '../../utils';
+import { RemoveImageFromPath, SaveImage, CoordinatesToAddress } from '../../utils';
 
 const controller = {};
 
@@ -19,6 +19,8 @@ controller.provide = async identifier => {
 controller.create = async (name, location, price, contact, photos, description) => {
   // It is not necessary to check each field because db will throw an error
   const cuid = Cuid();
+  const { lat, long } = location;
+  const address = await CoordinatesToAddress(lat, long);
   const model = {
     cuid,
     location: LocationToCoordinatesMapper(location),
@@ -26,7 +28,8 @@ controller.create = async (name, location, price, contact, photos, description) 
     price,
     contact,
     photos,
-    description
+    description,
+    address
   };
   const local = await Local.create(model);
   return LocalDBToDTOMapper(local);
@@ -36,7 +39,9 @@ controller.update = async (cuid, model) => {
   const dbModel = model;
   const { location } = model;
   if (!_.isNil(location)) {
+    const { lat, long } = location;
     dbModel.location = LocationToCoordinatesMapper(location);
+    dbModel.address = await CoordinatesToAddress(lat, long);
   }
   await Local.updateData(cuid, _.omitBy(dbModel, _.isNil));
   return controller.provide(cuid);

@@ -3,7 +3,7 @@ import mongoosePaginate from 'mongoose-paginate-v2';
 import { LocalSchema } from '../../schema';
 import { Error } from '../../../dto';
 
-const querySelect = 'cuid dateAdded name location price contact photos description -_id';
+const querySelect = 'cuid dateAdded name location price contact photos description address -_id';
 
 LocalSchema.index({ location: '2dsphere' });
 LocalSchema.plugin(mongoosePaginate);
