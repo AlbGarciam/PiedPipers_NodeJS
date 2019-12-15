@@ -143,7 +143,7 @@ router.patch('/', patchValidations, ValidationMiddleware(), async (req, res, nex
  * @name Update avatar
  * @route {POST} profile/avatar
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
- * @bodyparam {file} file - Image
+ * @bodyparam {file} photo - Image
  * @see Success response {@link Profile}
  * @see Error response {@link Error}
  */
