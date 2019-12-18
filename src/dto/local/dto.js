@@ -10,8 +10,31 @@
  * @property {ContactMethod} contact Local's contact method
  * @property {string[]} photos Local's photos
  * @property {string} description Local's description
+ * @property {string} shortDescription Local's description
  * @property {string} address Local's address
  */
-export default (cuid, dateAdded, name, location, price, contact, photos, description, address) => {
-  return { cuid, dateAdded, name, location, price, contact, photos, description, address };
+export default (
+  cuid,
+  dateAdded,
+  name,
+  location,
+  price,
+  contact,
+  photos,
+  description,
+  shortDescription,
+  address
+) => {
+  return {
+    cuid,
+    dateAdded,
+    name,
+    location,
+    price,
+    contact,
+    photos,
+    description,
+    shortDescription,
+    address
+  };
 };
