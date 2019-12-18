@@ -16,7 +16,15 @@ controller.provide = async identifier => {
   return LocalDBToDTOMapper(model);
 };
 
-controller.create = async (name, location, price, contact, photos, description) => {
+controller.create = async (
+  name,
+  location,
+  price,
+  contact,
+  photos,
+  description,
+  shortDescription
+) => {
   // It is not necessary to check each field because db will throw an error
   const cuid = Cuid();
   const { lat, long } = location;
@@ -29,6 +37,7 @@ controller.create = async (name, location, price, contact, photos, description) 
     contact,
     photos,
     description,
+    shortDescription,
     address
   };
   const local = await Local.create(model);

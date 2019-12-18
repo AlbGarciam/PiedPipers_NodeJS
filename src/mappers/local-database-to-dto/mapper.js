@@ -7,7 +7,18 @@ export default model => {
   if (_.isNil(model)) {
     return null;
   }
-  const { cuid, dateAdded, name, location, price, contact, photos, description, address } = model;
+  const {
+    cuid,
+    dateAdded,
+    name,
+    location,
+    price,
+    contact,
+    photos,
+    description,
+    shortDescription,
+    address
+  } = model;
   const locationDTO = CoordinatesToLocationMapper(location);
   const contactDTO = ContactMethodMapper(contact);
   return LocalDTO(
@@ -19,6 +30,7 @@ export default model => {
     contactDTO,
     photos,
     description,
+    shortDescription,
     address
   );
 };
