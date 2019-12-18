@@ -46,7 +46,9 @@ const ECODE_CORRUPTED_TOKEN = 1008;
 /** @constant {number} */
 const ECODE_USER_ALREADY_INVITED = 1009;
 /** @constant {number} */
-const ECODE_NOTIFICATION_ALREADY_REDEEMED = 1010;
+const ECODE_USER_ALREADY_FOLLOWING = 1010;
+/** @constant {number} */
+const ECODE_NOTIFICATION_ALREADY_REDEEMED = 1011;
 
 /** MESSAGES */
 /** @constant {string} */
@@ -75,6 +77,8 @@ const MSG_CORRUPTED_TOKEN = 'Token was corrupted and cannot be parsed try to reg
 const MSG_MISSING_USER_ID = 'Body does not contain userId';
 /** @constant {string} */
 const MSG_USER_ALREADY_INVITED = 'This user has been already invited';
+/** @constant {string} */
+const MSG_USER_ALREADY_FOLLOWING = 'This user has been already invited';
 /** @constant {string} */
 const MSG_NOTIFICATION_ALREADY_REDEEMED = 'This notification has been already redeemed';
 /** @constant {string} */
@@ -110,6 +114,11 @@ const Builder = {
   DATABASE: msg => DTO(CODE_SERVER_ERROR, ECODE_DATABASE_ERROR, msg),
   DUPLICATED: DTO(CODE_AUTHORIZATION_ERROR, ECODE_DUPLICATED_ITEM, MSG_DUPLICATED_ITEM),
   INVITED_USER: DTO(CODE_LOGIC_ERROR, ECODE_USER_ALREADY_INVITED, MSG_USER_ALREADY_INVITED),
+  ALREADY_FOLLOWING: DTO(
+    CODE_LOGIC_ERROR,
+    ECODE_USER_ALREADY_FOLLOWING,
+    MSG_USER_ALREADY_FOLLOWING
+  ),
   NOTIFICATION_ALREADY_REDEEMED: DTO(
     CODE_LOGIC_ERROR,
     ECODE_NOTIFICATION_ALREADY_REDEEMED,

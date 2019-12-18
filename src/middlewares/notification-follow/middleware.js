@@ -31,8 +31,13 @@ export default () => async (req, res, next) => {
   }
 
   const { invitations = [], followers = [] } = originUser;
-  if (invitations.includes(destinationId) || followers.includes(destinationId)) {
+  if (invitations.includes(destinationId)) {
     next(Error.Builder.INVITED_USER);
+    return;
+  }
+
+  if (followers.includes(destinationId)) {
+    next(Error.Builder.ALREADY_FOLLOWING);
     return;
   }
 
