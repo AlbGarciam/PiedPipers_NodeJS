@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { createError } from 'http-errors';
+import createHttpError from 'http-errors';
 import _ from 'lodash';
 import express from 'express';
 import cookieParser from 'cookie-parser';
@@ -33,7 +33,7 @@ app.use('/notification', NotificationRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(404));
+  next(createHttpError(404));
 });
 
 // error handler
