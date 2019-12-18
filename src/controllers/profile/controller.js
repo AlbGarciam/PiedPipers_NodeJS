@@ -7,7 +7,7 @@ import {
   ProfileDBToDTOMapper
 } from '../../mappers';
 import { SaveImage, RemoveImageFromPath } from '../../utils';
-import { PATH, INSTRUMENTS } from '../../constants';
+import { INSTRUMENTS } from '../../constants';
 
 const controller = {};
 
@@ -104,6 +104,9 @@ controller.unfollow = async (origin, destination) => {
 
 controller.followers = async cuid => {
   const { followers: followerIds = [] } = await controller.provide(cuid);
+  if (_.isEmpty(followerIds)) {
+    return ListDTO(0, 0, []);
+  }
   const followers = (await Profile.getMultipleIds(followerIds)) || [];
   return ListDTO(followers.length, 0, followers.map(item => ProfileDBToDTOMapper(item)));
 };
