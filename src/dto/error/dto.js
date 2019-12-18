@@ -46,7 +46,7 @@ const ECODE_CORRUPTED_TOKEN = 1008;
 /** @constant {number} */
 const ECODE_USER_ALREADY_INVITED = 1009;
 /** @constant {number} */
-const ECODE_NOTIFICATION_ALREADY_REDEEMED = 1009;
+const ECODE_NOTIFICATION_ALREADY_REDEEMED = 1010;
 
 /** MESSAGES */
 /** @constant {string} */
