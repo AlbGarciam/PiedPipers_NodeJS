@@ -17,7 +17,7 @@ NotificationModel.getByCUID = async cuid => {
   }
 };
 
-NotificationModel.getByDestination = async (destination, limit, skip) => {
+NotificationModel.search = async (query, limit, skip) => {
   try {
     const options = {
       select: querySelect,
@@ -25,7 +25,7 @@ NotificationModel.getByDestination = async (destination, limit, skip) => {
       offset: skip,
       lean: false
     };
-    return await NotificationModel.paginate({ destination }, options);
+    return await NotificationModel.paginate(query, options);
   } catch (err) {
     throw Error.Builder.DATABASE(err.message);
   }
