@@ -8,6 +8,7 @@ import SendPush from './send-push';
 import RemoveImageFromPath from './remove-image-from-path';
 import SaveImage from './save-image';
 import CoordinatesToAddress from './coordinates-to-address';
+import CompareRegex from './compare-regex';
 
 export {
   ServerPort,
@@ -22,5 +23,6 @@ export {
   SendPush,
   RemoveImageFromPath,
   SaveImage,
-  CoordinatesToAddress
+  CoordinatesToAddress,
+  CompareRegex
 };
