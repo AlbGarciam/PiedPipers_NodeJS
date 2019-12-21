@@ -13,6 +13,14 @@ const locationQuery = (lat, long, maxDistance) => {
   };
 };
 
+const instrumentsQuery = instruments => {
+  if (!_.isNil(instruments) && !_.isEmpty(instruments)) {
+    const array = instruments.split(',').map(item => item.toLowerCase());
+    return { $in: array };
+  }
+  return null;
+};
+
 const controller = {};
 
 controller.searchProfile = async (filter, limit, offset) => {
@@ -22,12 +30,10 @@ controller.searchProfile = async (filter, limit, offset) => {
   query.cuid = _.isNil(cuid) ? null : { $ne: cuid };
   query.name = CompareRegex(name) || { $exists: true };
   query.photo = { $exists: true };
-  if (!_.isNil(instruments)) {
-    const array = instruments.split(',').map(item => item.toLowerCase());
-    query.instruments = { $in: array };
-  }
+  query.instruments = instrumentsQuery(instruments) || { $exists: true };
   query.friendlyLocation = CompareRegex(friendlyLocation);
   query.location = locationQuery(lat, long, maxDistance);
+  query['instruments.0'] = { $exists: true };
 
   const { docs, totalDocs } = await Profile.search(_.omitBy(query, _.isNil), limit, offset);
   return ListDTO(totalDocs, offset, docs.map(item => ProfileDBToDTOMapper(item)));
