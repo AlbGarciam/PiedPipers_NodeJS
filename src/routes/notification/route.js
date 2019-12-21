@@ -13,6 +13,18 @@ const router = Router();
 
 router.use(TokenMiddleware());
 
+const getNotificationsValidations = [
+  check('limit')
+    .optional()
+    .isNumeric(),
+  check('offset')
+    .optional()
+    .isNumeric(),
+  check('state')
+    .optional()
+    .isString()
+    .trim()
+];
 /**
  * Route serving list of user notifications.
  * @memberof NotificationRouter
@@ -21,15 +33,17 @@ router.use(TokenMiddleware());
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @queryparam {?number} limit - Maximun number of notifications. By default it takes 10
  * @queryparam {?number} offset - Skips notifications
+ * @queryparam {?redeem|pending} state - Notification state
  * @see Success response {@link List} of {@link Notification}
  * @see Error response {@link Error}
  */
-router.get('/', async (req, res, next) => {
+router.get('/', getNotificationsValidations, ValidationMiddleware(), async (req, res, next) => {
   const { id } = res.locals.decodedToken;
-  const { limit, offset } = req.query;
+  const { limit, offset, state } = req.query;
   try {
     const result = await NotificationController.list(
       id,
+      state,
       parseInt(limit, 10) || 10,
       parseInt(offset, 10) || 0
     );

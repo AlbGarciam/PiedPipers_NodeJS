@@ -44,8 +44,12 @@ controller.follow = async (origin, destination) => {
   return NotificationDBToDTOMapper(notification);
 };
 
-controller.list = async (userId, limit = 10, offset = 0) => {
-  const { docs, totalDocs } = await Notification.getByDestination(userId, limit, offset);
+controller.list = async (userId, state, limit = 10, offset = 0) => {
+  const query = {
+    destination: userId,
+    state
+  };
+  const { docs, totalDocs } = await Notification.search(_.omitBy(query, _.isNil), limit, offset);
   const dtoList = (docs || []).map(item => NotificationDBToDTOMapper(item));
   return ListDTO(totalDocs, offset, dtoList);
 };
