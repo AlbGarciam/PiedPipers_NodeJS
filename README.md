@@ -29,19 +29,19 @@ In order to deploy this project you should follow these steps:
   npm install
 ```
 
-4. Run script to prepare database. This script will create a directory/subdirectory at `database/db`
+6. Run script to prepare database. This script will create a directory/subdirectory at `database/db`
 
 ```bash
   npm run preparedb
 ```
 
-5. Run script to start database. It will use mongo configuration at `etc/mongo.conf`
+7. Run script to start database. It will use mongo configuration at `etc/mongo.conf`
 
 ```bash
   npm run database
 ```
 
-6. Run script to start server. This script will run a nodemon to run the server
+8. Run script to start server. This script will run a nodemon to run the server
 
 ```bash
   npm run start
