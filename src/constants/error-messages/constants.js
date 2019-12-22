@@ -105,7 +105,13 @@ const ErrorMessages = {
    * @type {string}
    * @default
    */
-  MSG_INVALID_FILE_FORMAT: 'Invalid file fomat'
+  MSG_INVALID_FILE_FORMAT: 'Invalid file fomat',
+  /**
+   * @constant
+   * @type {string}
+   * @default
+   */
+  MSG_INVALID_ENDPOINT: 'This endpoint is not exposed by this server'
 };
 
 export default ErrorMessages;

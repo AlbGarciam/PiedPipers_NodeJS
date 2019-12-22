@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Notification - Documentation</title>
+    <title>NotificationStates - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Notification</h1>
+    <h1 class="page-title">NotificationStates</h1>
     
 
     
@@ -45,9 +45,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-DataTransferObject.html">DataTransferObject</a></span>
+            <span class="ancestors"><a href="module-Constants.html">Constants</a>.</span>
         
-        Notification
+        NotificationStates
         </h2>
         
     
@@ -64,7 +64,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="dto_notification_dto.js.html">dto/notification/dto.js</a>, <a href="dto_notification_dto.js.html#line2">line 2</a>
+        <a href="constants_notifications-states_constants.js.html">constants/notifications-states/constants.js</a>, <a href="constants_notifications-states_constants.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -101,176 +101,9 @@
 
 
 
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>cuid</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
 
             
-            </td>
-
-            
-
-            
-
-            <td class="description last">Notification's unique identifier</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dateAdded</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Notification's registration date (yyyy-MM-dd'T'HH:mm:ss.SSS'Z')</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>notificationType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">NotificationTypes</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Notification's type</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>destination</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Notification's destination. It is a user identifier</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>state</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">NotificationStates</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Notification's status</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Notification's data</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-            
-                <div class="description">DTO representing notification on database</div>
+                <div class="description">Possible contact methods that server can handle</div>
             
 
             
@@ -289,14 +122,159 @@
      
 
     
-        <h3 class="subsection-title">Namespaces</h3>
 
-        <dl>
-            <dt><a href="Notification.Types.html">Types</a></dt>
-            <dd></dd>
-        </dl>
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".PENDING"><span class="type-signature">(static, constant) </span>PENDING<span class="type-signature"> :string</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_notifications-states_constants.js.html">constants/notifications-states/constants.js</a>, <a href="constants_notifications-states_constants.js.html#line12">line 12</a>
+    </li></ul></dd>
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>pending</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".REDEEMED"><span class="type-signature">(static, constant) </span>REDEEMED<span class="type-signature"> :string</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_notifications-states_constants.js.html">constants/notifications-states/constants.js</a>, <a href="constants_notifications-states_constants.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>redeemed</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
     
 
     

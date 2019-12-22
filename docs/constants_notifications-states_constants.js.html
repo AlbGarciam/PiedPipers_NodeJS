@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>constants/notifications-types/constants.js - Documentation</title>
+    <title>constants/notifications-states/constants.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,7 +32,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">constants/notifications-types/constants.js</h1>
+    <h1 class="page-title">constants/notifications-states/constants.js</h1>
     
 
     
@@ -47,16 +47,22 @@
  * @namespace
  * @memberof module:Constants
  */
-const NotificationTypes = {
+const NotificationStates = {
   /**
    * @constant
    * @type {string}
    * @default
    */
-  FOLLOW: 'follow'
+  PENDING: 'pending',
+  /**
+   * @constant
+   * @type {string}
+   * @default
+   */
+  REDEEMED: 'redeemed'
 };
 
-export default NotificationTypes;
+export default NotificationStates;
 </code></pre>
         </article>
     </section>

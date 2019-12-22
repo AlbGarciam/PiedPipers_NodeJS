@@ -87,7 +87,14 @@ const ExtendedErrorCodes = {
    * @type {number}
    * @default
    */
-  ECODE_NOTIFICATION_ALREADY_REDEEMED: 1011
+  ECODE_NOTIFICATION_ALREADY_REDEEMED: 1011,
+  /**
+   * Notification already redeemed error
+   * @constant
+   * @type {number}
+   * @default
+   */
+  ECODE_INVALID_ENDPOINT: 1012
 };
 
 export default ExtendedErrorCodes;
