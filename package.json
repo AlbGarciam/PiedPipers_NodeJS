@@ -1,6 +1,6 @@
 {
   "name": "piedpipers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "preparedb": "mkdir -p database && rm -rf ./database/db && mkdir ./database/db && mkdir -p ./public/img",
