@@ -11,6 +11,7 @@ import CONTACT_METHOD_TYPES from './contact-method';
 import FIREBASE_CONFIG from './firebase';
 import FILE_FORMATS from './supported-file-formats';
 import ERROR_CODES from './error-codes';
+import EXTENDED_ERROR_CODES from './extended-error-codes';
 
 export {
   PATH,
@@ -20,5 +21,6 @@ export {
   CONTACT_METHOD_TYPES,
   FIREBASE_CONFIG,
   FILE_FORMATS,
-  ERROR_CODES
+  ERROR_CODES,
+  EXTENDED_ERROR_CODES
 };
