@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>routes/user/route.js - Documentation</title>
+    <title>ErrorCodes - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -32,180 +32,423 @@
 
 <div id="main">
     
-    <h1 class="page-title">routes/user/route.js</h1>
+    <h1 class="page-title">ErrorCodes</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/** Express router providing user related routes
- * @namespace UserRouter
- * @alias UserRouter
- * @memberof module:Routes
- */
-import { Router } from 'express';
-import { check } from 'express-validator';
-import _ from 'lodash';
-import { UserController, TokenController, ProfileController } from '../../controllers';
-import { TokenMiddleware, ValidationMiddleware, UserActionMiddleware } from '../../middlewares';
+        <h2>
+            <span class="ancestors"><a href="module-Constants.html">Constants</a>.</span>
+        
+        ErrorCodes
+        </h2>
+        
+    
+</header>
 
-const router = Router();
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-const loginValidations = [
-  check('email')
-    .isEmail()
-    .trim(),
-  check('password')
-    .isString()
-    .isLength({ min: 5 })
-    .trim()
-];
+<dl class="details">
 
-/**
- * Route serving user's login.
- * @memberof UserRouter
- * @name Login
- * @route {POST} user/login
- * @bodyparam {string} email - User's email
- * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link User}
- * @see Error response {@link Error}
- */
-router.post('/login', loginValidations, ValidationMiddleware(), async (req, res, next) => {
-  const { email, password } = req.body;
-  try {
-    const result = await UserController.login(email, password);
-    if (_.isNull(result)) {
-      res.status(403).json({ message: 'UNAUTHORIZED' });
-      return;
-    }
-    const token = TokenController.encodeToken(result);
-    res.setHeader('Authorization', token);
-    res.status(200).json(result);
-  } catch (err) {
-    next(err);
-  }
-});
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_error-codes_constants.js.html">constants/error-codes/constants.js</a>, <a href="constants_error-codes_constants.js.html#line6">line 6</a>
+    </li></ul></dd>
+    
 
-const createValidations = [
-  check('email')
-    .isEmail()
-    .trim(),
-  check('password')
-    .isString()
-    .isLength({ min: 5 })
-    .trim()
-];
+    
 
-/**
- * Route serving authorization token generation process
- * @memberof UserRouter
- * @name Create user
- * @route {POST} user/create
- * @bodyparam {string} email - User's email
- * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link User}
- * @see Error response {@link Error}
- */
-router.post('/create', createValidations, ValidationMiddleware(), async (req, res, next) => {
-  const { email, password } = req.body;
-  try {
-    const result = await UserController.create(email, password);
-    if (_.isNull(result)) {
-      res.status(500).json({ message: 'Failure' });
-      return;
-    }
-    const token = TokenController.encodeToken(result);
-    res.setHeader('Authorization', token);
-    res.status(200).json(result);
-  } catch (err) {
-    next(err);
-  }
-});
+    
 
-const updateValidations = [
-  check('password')
-    .isString()
-    .trim()
-    .isLength({ min: 5 })
-];
+    
 
-/**
- * Route serving user's password change.
- * @memberof UserRouter
- * @name Update password
- * @route {PATCH} user/update
- * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user.
- * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response {@link User}
- * @see Error response {@link Error}
- */
-router.patch(
-  '/update',
-  updateValidations,
-  ValidationMiddleware(),
-  TokenMiddleware(),
-  UserActionMiddleware(),
-  async (req, res, next) => {
-    const { id } = res.locals.decodedToken;
-    const { password } = req.body;
-    try {
-      const result = await UserController.updatePassword(id, password);
-      res.status(200).json(result);
-    } catch (err) {
-      next(err);
-    }
-  }
-);
+    
 
-/**
- * Route serving user's removal process.
- * @memberof UserRouter
- * @name Remove user
- * @route {DELETE} user/
- * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
- * @bodyparam {string} password - User's password. It must have 5 or more characters
- * @see Success response: HTTP 200 OK
- * @see Error response: {@link Error}
- */
-router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, next) => {
-  const { id } = res.locals.decodedToken;
-  try {
-    await ProfileController.remove(id);
-    await UserController.remove(id);
-    res.status(200).json({});
-  } catch (err) {
-    next(err);
-  }
-});
+    
 
-/**
- * Route serving user's email from a given id.
- * @memberof UserRouter
- * @name Get user from cuid
- * @route {GET} user/email
- * @routeParam {string} cuid - User's unique identifier. It must have 5 or more characters
- * @see Success response: {@link module:dto/user UserDTO}
- * @see Error response: {@link Error}
- */
-router.get('/email/:cuid', async (req, res, next) => {
-  const { cuid } = req.params;
-  try {
-    const result = await UserController.get(cuid);
-    res.status(200).json(result);
-  } catch (err) {
-    next(err);
-  }
-});
+    
 
-export default router;
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description">Possible HTTP error codes that server can throw</div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".CODE_AUTHORIZATION_ERROR"><span class="type-signature">(static, constant) </span>CODE_AUTHORIZATION_ERROR<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_error-codes_constants.js.html">constants/error-codes/constants.js</a>, <a href="constants_error-codes_constants.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>403</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Authorization error
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".CODE_LOGIC_ERROR"><span class="type-signature">(static, constant) </span>CODE_LOGIC_ERROR<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_error-codes_constants.js.html">constants/error-codes/constants.js</a>, <a href="constants_error-codes_constants.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>404</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Server logic error
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".CODE_SERVER_ERROR"><span class="type-signature">(static, constant) </span>CODE_SERVER_ERROR<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_error-codes_constants.js.html">constants/error-codes/constants.js</a>, <a href="constants_error-codes_constants.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>500</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Internal server error
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".CODE_VALIDATION_ERROR"><span class="type-signature">(static, constant) </span>CODE_VALIDATION_ERROR<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="constants_error-codes_constants.js.html">constants/error-codes/constants.js</a>, <a href="constants_error-codes_constants.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>422</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Validation error
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
