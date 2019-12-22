@@ -29,17 +29,15 @@ router.use(TokenMiddleware());
  * @see Error response: {@link Error}
  */
 router.get('/profile', async (req, res, next) => {
-  const { name, instruments, lat, long, maxDistance, friendlyLocation, limit, offset } = req.query;
+  const { limit, offset } = req.query;
   const { id } = res.locals.decodedToken;
+  const query = {
+    ...req.query,
+    cuid: id
+  };
   try {
     const result = await SearchController.searchProfile(
-      id,
-      name,
-      instruments,
-      lat,
-      long,
-      maxDistance,
-      friendlyLocation,
+      query,
       parseInt(limit, 10) || 10,
       parseInt(offset, 10) || 0
     );
@@ -66,14 +64,10 @@ router.get('/profile', async (req, res, next) => {
  * @see Error response: {@link Error}
  */
 router.get('/local', async (req, res, next) => {
-  const { name, lat, long, price, maxDistance, limit, offset } = req.query;
+  const { limit, offset } = req.query;
   try {
     const result = await SearchController.searchLocal(
-      name,
-      lat,
-      long,
-      maxDistance,
-      price,
+      req.query,
       parseInt(limit, 10) || 10,
       parseInt(offset, 10) || 0
     );
