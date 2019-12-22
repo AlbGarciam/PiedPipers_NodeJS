@@ -17,9 +17,9 @@ ProfileModel.create = async cuid => {
     return await model.save();
   } catch (err) {
     if (err.code === 11000) {
-      throw Error.Builder.DUPLICATED;
+      throw Error.DUPLICATED;
     }
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -28,7 +28,7 @@ ProfileModel.getByCUID = async cuid => {
     const query = { cuid };
     return await ProfileModel.findOne(query).select(querySelect);
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -37,7 +37,7 @@ ProfileModel.updateData = async (cuid, model) => {
     const query = { cuid };
     return await ProfileModel.updateOne(query, model);
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -51,7 +51,7 @@ ProfileModel.search = async (filter, limit, skip) => {
     };
     return await ProfileModel.paginate(filter, options);
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -59,7 +59,7 @@ ProfileModel.clean = async cuid => {
   try {
     await ProfileModel.deleteOne({ cuid });
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -68,7 +68,7 @@ ProfileModel.getMultipleIds = async cuids => {
   try {
     return await ProfileModel.find({ $or: conditions });
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 

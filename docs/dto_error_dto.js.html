@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Constants.html">Constants</a></li><li><a href="module-DataTransferObject.html">DataTransferObject</a></li><li><a href="module-Routes.html">Routes</a></li></ul><h3>Namespaces</h3><ul><li><a href="ContactMethod.html">ContactMethod</a></li><li><a href="Error.html">Error</a></li><li><a href="FollowNotification.html">FollowNotification</a></li><li><a href="Instruments.html">Instruments</a></li><li><a href="List.html">List</a></li><li><a href="Local.html">Local</a></li><li><a href="LocalRouter.html">LocalRouter</a></li><li><a href="Location.html">Location</a></li><li><a href="module-Constants.ErrorCodes.html">ErrorCodes</a></li><li><a href="module-Constants.ExtendedErrorCodes.html">ExtendedErrorCodes</a></li><li><a href="Notification.html">Notification</a></li><li><a href="Notification.Types.html">Types</a></li><li><a href="NotificationRouter.html">NotificationRouter</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileRouter.html">ProfileRouter</a></li><li><a href="SearchRouter.html">SearchRouter</a></li><li><a href="User.html">User</a></li><li><a href="UserRouter.html">UserRouter</a></li><li><a href="Video.html">Video</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FOLLOW">FOLLOW</a></li><li><a href="global.html#MSG_CORRUPTED_TOKEN">MSG_CORRUPTED_TOKEN</a></li><li><a href="global.html#MSG_DUPLICATED_ITEM">MSG_DUPLICATED_ITEM</a></li><li><a href="global.html#MSG_INVALID_FILE_FORMAT">MSG_INVALID_FILE_FORMAT</a></li><li><a href="global.html#MSG_INVALID_IMAGE_BUFFER">MSG_INVALID_IMAGE_BUFFER</a></li><li><a href="global.html#MSG_INVALID_INSTRUMENTS_ERROR">MSG_INVALID_INSTRUMENTS_ERROR</a></li><li><a href="global.html#MSG_INVALID_LOCATION_ERROR">MSG_INVALID_LOCATION_ERROR</a></li><li><a href="global.html#MSG_INVALID_PASSWORD">MSG_INVALID_PASSWORD</a></li><li><a href="global.html#MSG_INVALID_TOKEN">MSG_INVALID_TOKEN</a></li><li><a href="global.html#MSG_ITEM_NOT_FOUND">MSG_ITEM_NOT_FOUND</a></li><li><a href="global.html#MSG_LOGIN_REQUIRED">MSG_LOGIN_REQUIRED</a></li><li><a href="global.html#MSG_MISSING_USER_ID">MSG_MISSING_USER_ID</a></li><li><a href="global.html#MSG_NOTIFICATION_ALREADY_REDEEMED">MSG_NOTIFICATION_ALREADY_REDEEMED</a></li><li><a href="global.html#MSG_NOTIFICATION_INVALID_RECIPIENT">MSG_NOTIFICATION_INVALID_RECIPIENT</a></li><li><a href="global.html#MSG_UNKNOWN_ERROR">MSG_UNKNOWN_ERROR</a></li><li><a href="global.html#MSG_USER_ALREADY_FOLLOWING">MSG_USER_ALREADY_FOLLOWING</a></li><li><a href="global.html#MSG_USER_ALREADY_INVITED">MSG_USER_ALREADY_INVITED</a></li><li><a href="global.html#MSG_VALIDATION_ERROR">MSG_VALIDATION_ERROR</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Constants.html">Constants</a></li><li><a href="module-DataTransferObject.html">DataTransferObject</a></li><li><a href="module-Routes.html">Routes</a></li></ul><h3>Namespaces</h3><ul><li><a href="ContactMethod.html">ContactMethod</a></li><li><a href="Error.html">Error</a></li><li><a href="FollowNotification.html">FollowNotification</a></li><li><a href="Instruments.html">Instruments</a></li><li><a href="List.html">List</a></li><li><a href="Local.html">Local</a></li><li><a href="LocalRouter.html">LocalRouter</a></li><li><a href="Location.html">Location</a></li><li><a href="module-Constants.ErrorCodes.html">ErrorCodes</a></li><li><a href="module-Constants.ErrorMessages.html">ErrorMessages</a></li><li><a href="module-Constants.ExtendedErrorCodes.html">ExtendedErrorCodes</a></li><li><a href="Notification.html">Notification</a></li><li><a href="Notification.Types.html">Types</a></li><li><a href="NotificationRouter.html">NotificationRouter</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfileRouter.html">ProfileRouter</a></li><li><a href="SearchRouter.html">SearchRouter</a></li><li><a href="User.html">User</a></li><li><a href="UserRouter.html">UserRouter</a></li><li><a href="Video.html">Video</a></li></ul><h3>Global</h3><ul><li><a href="global.html#FOLLOW">FOLLOW</a></li></ul>
 </nav>
 
 <div id="main">
@@ -42,7 +42,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { ERROR_CODES, EXTENDED_ERROR_CODES } from '../../constants';
+            <pre class="prettyprint source linenums"><code>import { ERROR_CODES, EXTENDED_ERROR_CODES, ERROR_MSG } from '../../constants';
 
 /** DTO representing an error on server
  * @namespace Error
@@ -60,113 +60,60 @@ const DTO = (code, ecode, message) => {
   };
 };
 
-/** MESSAGES */
-/** @constant {string} */
-const MSG_ITEM_NOT_FOUND = 'Item was not found';
-/** @constant {string} */
-const MSG_INVALID_PASSWORD = 'Invalid password';
-/** @constant {string} */
-const MSG_INVALID_TOKEN = 'Invalid token';
-/** @constant {string} */
-const MSG_UNKNOWN_ERROR = 'Unexpected error';
-/** @constant {string} */
-const MSG_LOGIN_REQUIRED = 'It is necessary to relogin the user before taking any action';
-/** @constant {string} */
-const MSG_DUPLICATED_ITEM = 'This item already exists';
-/** @constant {string} */
-const MSG_VALIDATION_ERROR = 'One or more parameters are invalid';
-/** @constant {string} */
-const MSG_INVALID_INSTRUMENTS_ERROR = 'Provided instruments are invalid';
-/** @constant {string} */
-const MSG_INVALID_LOCATION_ERROR = 'Provided location is invalid';
-/** @constant {string} */
-const MSG_INVALID_IMAGE_BUFFER = 'Please provide an image';
-/** @constant {string} */
-const MSG_CORRUPTED_TOKEN = 'Token was corrupted and cannot be parsed try to regenerate a new one';
-/** @constant {string} */
-const MSG_MISSING_USER_ID = 'Body does not contain userId';
-/** @constant {string} */
-const MSG_USER_ALREADY_INVITED = 'This user has been already invited';
-/** @constant {string} */
-const MSG_USER_ALREADY_FOLLOWING = 'This user has been already invited';
-/** @constant {string} */
-const MSG_NOTIFICATION_ALREADY_REDEEMED = 'This notification has been already redeemed';
-/** @constant {string} */
-const MSG_NOTIFICATION_INVALID_RECIPIENT = 'This recipient cannot be used';
-/** @constant {string} */
-const MSG_INVALID_FILE_FORMAT = 'Invalid file fomat';
-
-export {
-  MSG_ITEM_NOT_FOUND,
-  MSG_INVALID_PASSWORD,
-  MSG_INVALID_TOKEN,
-  MSG_UNKNOWN_ERROR,
-  MSG_LOGIN_REQUIRED,
-  MSG_VALIDATION_ERROR,
-  MSG_DUPLICATED_ITEM,
-  MSG_INVALID_INSTRUMENTS_ERROR,
-  MSG_INVALID_LOCATION_ERROR,
-  MSG_INVALID_IMAGE_BUFFER,
-  MSG_CORRUPTED_TOKEN,
-  MSG_MISSING_USER_ID,
-  MSG_NOTIFICATION_INVALID_RECIPIENT,
-  MSG_INVALID_FILE_FORMAT
-};
-
 const Builder = {
   UNKNOWN: msg => DTO(ERROR_CODES.CODE_SERVER_ERROR, EXTENDED_ERROR_CODES.ECODE_UNKNOWN_ERROR, msg),
   ITEM_NOT_FOUND: DTO(
     ERROR_CODES.CODE_LOGIC_ERROR,
     EXTENDED_ERROR_CODES.ECODE_ITEM_NOT_FOUND,
-    MSG_ITEM_NOT_FOUND
+    ERROR_MSG.MSG_ITEM_NOT_FOUND
   ),
   INVALID_PASSWORD: DTO(
     ERROR_CODES.CODE_AUTHORIZATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_INVALID_PASSWORD,
-    MSG_INVALID_PASSWORD
+    ERROR_MSG.MSG_INVALID_PASSWORD
   ),
   INVALID_TOKEN: DTO(
     ERROR_CODES.CODE_AUTHORIZATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_INVALID_TOKEN,
-    MSG_INVALID_TOKEN
+    ERROR_MSG.MSG_INVALID_TOKEN
   ),
   VALIDATION: msg =>
     DTO(ERROR_CODES.CODE_VALIDATION_ERROR, EXTENDED_ERROR_CODES.ECODE_VALIDATION_ERROR, msg),
   CORRUPTED_TOKEN: DTO(
     ERROR_CODES.CODE_VALIDATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_CORRUPTED_TOKEN,
-    MSG_CORRUPTED_TOKEN
+    ERROR_MSG.MSG_CORRUPTED_TOKEN
   ),
   EXPIRED_TOKEN: DTO(
     ERROR_CODES.CODE_AUTHORIZATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_LOGIN_REQUIRED,
-    MSG_LOGIN_REQUIRED
+    ERROR_MSG.MSG_LOGIN_REQUIRED
   ),
   DATABASE: msg =>
     DTO(ERROR_CODES.CODE_SERVER_ERROR, EXTENDED_ERROR_CODES.ECODE_DATABASE_ERROR, msg),
   DUPLICATED: DTO(
     ERROR_CODES.CODE_AUTHORIZATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_DUPLICATED_ITEM,
-    MSG_DUPLICATED_ITEM
+    ERROR_MSG.MSG_DUPLICATED_ITEM
   ),
   INVITED_USER: DTO(
     ERROR_CODES.CODE_LOGIC_ERROR,
     EXTENDED_ERROR_CODES.ECODE_USER_ALREADY_INVITED,
-    MSG_USER_ALREADY_INVITED
+    ERROR_MSG.MSG_USER_ALREADY_INVITED
   ),
   ALREADY_FOLLOWING: DTO(
     ERROR_CODES.CODE_LOGIC_ERROR,
     EXTENDED_ERROR_CODES.ECODE_USER_ALREADY_FOLLOWING,
-    MSG_USER_ALREADY_FOLLOWING
+    ERROR_MSG.MSG_USER_ALREADY_FOLLOWING
   ),
   NOTIFICATION_ALREADY_REDEEMED: DTO(
     ERROR_CODES.CODE_LOGIC_ERROR,
     EXTENDED_ERROR_CODES.ECODE_NOTIFICATION_ALREADY_REDEEMED,
-    MSG_NOTIFICATION_ALREADY_REDEEMED
+    ERROR_MSG.MSG_NOTIFICATION_ALREADY_REDEEMED
   )
 };
 
-export { Builder };
+export default Builder;
 </code></pre>
         </article>
     </section>
@@ -181,7 +128,7 @@ export { Builder };
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 22 2019 11:05:03 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 22 2019 11:19:52 GMT+0100 (GMT+01:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

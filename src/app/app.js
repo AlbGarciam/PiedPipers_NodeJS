@@ -45,7 +45,7 @@ app.use((err, req, res, next) => {
     console.error(Date());
     console.error(req);
     console.error(err.stack);
-    const dto = Error.Builder.UNKNOWN(err.message);
+    const dto = Error.UNKNOWN(err.message);
     res.status(500).json(dto);
   }
 });

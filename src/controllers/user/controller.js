@@ -10,12 +10,12 @@ controller.login = async (mail, pwd) => {
   const trimmedEmail = mail.trim();
   const user = await Model.User.getByEmail(trimmedEmail);
   if (_.isNull(user)) {
-    throw Error.Builder.ITEM_NOT_FOUND;
+    throw Error.ITEM_NOT_FOUND;
   }
   if (ValidateEquality(user.salt, pwd, user.password)) {
     return UserDTO(user.email, user.cuid, user.dateAdded);
   }
-  throw Error.Builder.INVALID_PASSWORD;
+  throw Error.INVALID_PASSWORD;
 };
 
 controller.create = async (mail, pwd) => {
@@ -35,7 +35,7 @@ controller.create = async (mail, pwd) => {
 controller.updatePassword = async (cuid, password) => {
   const { email, salt, dateAdded } = await Model.User.getByCuid(cuid);
   if (_.isNull(salt)) {
-    throw Error.Builder.ITEM_NOT_FOUND;
+    throw Error.ITEM_NOT_FOUND;
   }
   const hashedPwd = HashItem(password, salt);
   await Model.User.updatePassword(cuid, hashedPwd);

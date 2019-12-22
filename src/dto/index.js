@@ -2,7 +2,7 @@
  * This module represents the entire set of Data transfer objects presents on this backend
  * @module DataTransferObject
  */
-import * as Error from './error';
+import Error from './error';
 import UserDTO from './user';
 import LocationDTO from './location';
 import ContactMehtodDTO from './contact-method';

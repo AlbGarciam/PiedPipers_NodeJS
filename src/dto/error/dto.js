@@ -1,4 +1,4 @@
-import { ERROR_CODES, EXTENDED_ERROR_CODES } from '../../constants';
+import { ERROR_CODES, EXTENDED_ERROR_CODES, ERROR_MSG } from '../../constants';
 
 /** DTO representing an error on server
  * @namespace Error
@@ -16,110 +16,57 @@ const DTO = (code, ecode, message) => {
   };
 };
 
-/** MESSAGES */
-/** @constant {string} */
-const MSG_ITEM_NOT_FOUND = 'Item was not found';
-/** @constant {string} */
-const MSG_INVALID_PASSWORD = 'Invalid password';
-/** @constant {string} */
-const MSG_INVALID_TOKEN = 'Invalid token';
-/** @constant {string} */
-const MSG_UNKNOWN_ERROR = 'Unexpected error';
-/** @constant {string} */
-const MSG_LOGIN_REQUIRED = 'It is necessary to relogin the user before taking any action';
-/** @constant {string} */
-const MSG_DUPLICATED_ITEM = 'This item already exists';
-/** @constant {string} */
-const MSG_VALIDATION_ERROR = 'One or more parameters are invalid';
-/** @constant {string} */
-const MSG_INVALID_INSTRUMENTS_ERROR = 'Provided instruments are invalid';
-/** @constant {string} */
-const MSG_INVALID_LOCATION_ERROR = 'Provided location is invalid';
-/** @constant {string} */
-const MSG_INVALID_IMAGE_BUFFER = 'Please provide an image';
-/** @constant {string} */
-const MSG_CORRUPTED_TOKEN = 'Token was corrupted and cannot be parsed try to regenerate a new one';
-/** @constant {string} */
-const MSG_MISSING_USER_ID = 'Body does not contain userId';
-/** @constant {string} */
-const MSG_USER_ALREADY_INVITED = 'This user has been already invited';
-/** @constant {string} */
-const MSG_USER_ALREADY_FOLLOWING = 'This user has been already invited';
-/** @constant {string} */
-const MSG_NOTIFICATION_ALREADY_REDEEMED = 'This notification has been already redeemed';
-/** @constant {string} */
-const MSG_NOTIFICATION_INVALID_RECIPIENT = 'This recipient cannot be used';
-/** @constant {string} */
-const MSG_INVALID_FILE_FORMAT = 'Invalid file fomat';
-
-export {
-  MSG_ITEM_NOT_FOUND,
-  MSG_INVALID_PASSWORD,
-  MSG_INVALID_TOKEN,
-  MSG_UNKNOWN_ERROR,
-  MSG_LOGIN_REQUIRED,
-  MSG_VALIDATION_ERROR,
-  MSG_DUPLICATED_ITEM,
-  MSG_INVALID_INSTRUMENTS_ERROR,
-  MSG_INVALID_LOCATION_ERROR,
-  MSG_INVALID_IMAGE_BUFFER,
-  MSG_CORRUPTED_TOKEN,
-  MSG_MISSING_USER_ID,
-  MSG_NOTIFICATION_INVALID_RECIPIENT,
-  MSG_INVALID_FILE_FORMAT
-};
-
 const Builder = {
   UNKNOWN: msg => DTO(ERROR_CODES.CODE_SERVER_ERROR, EXTENDED_ERROR_CODES.ECODE_UNKNOWN_ERROR, msg),
   ITEM_NOT_FOUND: DTO(
     ERROR_CODES.CODE_LOGIC_ERROR,
     EXTENDED_ERROR_CODES.ECODE_ITEM_NOT_FOUND,
-    MSG_ITEM_NOT_FOUND
+    ERROR_MSG.MSG_ITEM_NOT_FOUND
   ),
   INVALID_PASSWORD: DTO(
     ERROR_CODES.CODE_AUTHORIZATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_INVALID_PASSWORD,
-    MSG_INVALID_PASSWORD
+    ERROR_MSG.MSG_INVALID_PASSWORD
   ),
   INVALID_TOKEN: DTO(
     ERROR_CODES.CODE_AUTHORIZATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_INVALID_TOKEN,
-    MSG_INVALID_TOKEN
+    ERROR_MSG.MSG_INVALID_TOKEN
   ),
   VALIDATION: msg =>
     DTO(ERROR_CODES.CODE_VALIDATION_ERROR, EXTENDED_ERROR_CODES.ECODE_VALIDATION_ERROR, msg),
   CORRUPTED_TOKEN: DTO(
     ERROR_CODES.CODE_VALIDATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_CORRUPTED_TOKEN,
-    MSG_CORRUPTED_TOKEN
+    ERROR_MSG.MSG_CORRUPTED_TOKEN
   ),
   EXPIRED_TOKEN: DTO(
     ERROR_CODES.CODE_AUTHORIZATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_LOGIN_REQUIRED,
-    MSG_LOGIN_REQUIRED
+    ERROR_MSG.MSG_LOGIN_REQUIRED
   ),
   DATABASE: msg =>
     DTO(ERROR_CODES.CODE_SERVER_ERROR, EXTENDED_ERROR_CODES.ECODE_DATABASE_ERROR, msg),
   DUPLICATED: DTO(
     ERROR_CODES.CODE_AUTHORIZATION_ERROR,
     EXTENDED_ERROR_CODES.ECODE_DUPLICATED_ITEM,
-    MSG_DUPLICATED_ITEM
+    ERROR_MSG.MSG_DUPLICATED_ITEM
   ),
   INVITED_USER: DTO(
     ERROR_CODES.CODE_LOGIC_ERROR,
     EXTENDED_ERROR_CODES.ECODE_USER_ALREADY_INVITED,
-    MSG_USER_ALREADY_INVITED
+    ERROR_MSG.MSG_USER_ALREADY_INVITED
   ),
   ALREADY_FOLLOWING: DTO(
     ERROR_CODES.CODE_LOGIC_ERROR,
     EXTENDED_ERROR_CODES.ECODE_USER_ALREADY_FOLLOWING,
-    MSG_USER_ALREADY_FOLLOWING
+    ERROR_MSG.MSG_USER_ALREADY_FOLLOWING
   ),
   NOTIFICATION_ALREADY_REDEEMED: DTO(
     ERROR_CODES.CODE_LOGIC_ERROR,
     EXTENDED_ERROR_CODES.ECODE_NOTIFICATION_ALREADY_REDEEMED,
-    MSG_NOTIFICATION_ALREADY_REDEEMED
+    ERROR_MSG.MSG_NOTIFICATION_ALREADY_REDEEMED
   )
 };
 
-export { Builder };
+export default Builder;

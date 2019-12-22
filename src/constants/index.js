@@ -12,6 +12,7 @@ import FIREBASE_CONFIG from './firebase';
 import FILE_FORMATS from './supported-file-formats';
 import ERROR_CODES from './error-codes';
 import EXTENDED_ERROR_CODES from './extended-error-codes';
+import ERROR_MSG from './error-messages';
 
 export {
   PATH,
@@ -22,5 +23,6 @@ export {
   FIREBASE_CONFIG,
   FILE_FORMATS,
   ERROR_CODES,
-  EXTENDED_ERROR_CODES
+  EXTENDED_ERROR_CODES,
+  ERROR_MSG
 };
