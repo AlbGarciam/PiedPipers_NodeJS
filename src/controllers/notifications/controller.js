@@ -12,7 +12,7 @@ controller.provide = async cuid => {
   const model = await Notification.getByCUID(cuid);
 
   if (_.isNil(model)) {
-    throw Error.Builder.ITEM_NOT_FOUND;
+    throw Error.ITEM_NOT_FOUND;
   }
 
   return NotificationDBToDTOMapper(model);
@@ -63,7 +63,7 @@ controller.redeem = async cuid => {
   const notification = await controller.provide(cuid);
 
   if (notification.state === NOTIFICATION_STATES.REDEEMED) {
-    throw Error.Builder.NOTIFICATION_ALREADY_REDEEMED;
+    throw Error.NOTIFICATION_ALREADY_REDEEMED;
   }
 
   return controller.update(cuid, { state: NOTIFICATION_STATES.REDEEMED });

@@ -19,12 +19,15 @@
   "plugins": ["jsdoc-route-plugin"],
   "templates": {
     "cleverLinks": false,
-    "monospaceLinks": false
+    "monospaceLinks": false,
+    "disableSort": true,
+    "collapse": true
   },
   "opts": {
     "recurse": true,
+    "private": true,
     "encoding": "utf8",
-    "template": "node_modules/docdash",
+    "template": "node_modules/jsdocTemplate",
     "destination": "./docs/"
   }
 }

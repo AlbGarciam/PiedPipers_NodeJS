@@ -15,7 +15,7 @@ controller.provide = async identifier => {
   const model = await Profile.getByCUID(identifier);
 
   if (_.isNil(model)) {
-    throw Error.Builder.ITEM_NOT_FOUND;
+    throw Error.ITEM_NOT_FOUND;
   }
 
   return ProfileDBToDTOMapper(model);

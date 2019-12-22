@@ -5,12 +5,12 @@ import { Error } from '../../dto';
 export default () => async (req, res, next) => {
   const userAction = _.get(res, 'locals.decodedToken.userAction');
   if (_.isNil(userAction)) {
-    const model = Error.Builder.CORRUPTED_TOKEN;
+    const model = Error.CORRUPTED_TOKEN;
     next(model);
     return;
   }
   if (moment().isAfter(userAction)) {
-    const model = Error.Builder.EXPIRED_TOKEN;
+    const model = Error.EXPIRED_TOKEN;
     next(model);
     return;
   }

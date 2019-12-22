@@ -11,7 +11,7 @@ controller.provide = async identifier => {
   const model = await Local.getByCUID(identifier);
 
   if (_.isNil(model)) {
-    throw Error.Builder.ITEM_NOT_FOUND;
+    throw Error.ITEM_NOT_FOUND;
   }
   return LocalDBToDTOMapper(model);
 };

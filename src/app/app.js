@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import createHttpError from 'http-errors';
 import _ from 'lodash';
 import express from 'express';
 import cookieParser from 'cookie-parser';
@@ -33,7 +32,7 @@ app.use('/notification', NotificationRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createHttpError(404));
+  next(Error.INVALID_ENDPOINT);
 });
 
 // error handler
@@ -45,7 +44,7 @@ app.use((err, req, res, next) => {
     console.error(Date());
     console.error(req);
     console.error(err.stack);
-    const dto = Error.Builder.UNKNOWN(err.message);
+    const dto = Error.UNKNOWN(err.message);
     res.status(500).json(dto);
   }
 });
