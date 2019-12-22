@@ -15,7 +15,7 @@ LocalModel.getByCUID = async cuid => {
   try {
     return await LocalModel.findOne({ cuid }).select(querySelect);
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -25,9 +25,9 @@ LocalModel.create = async item => {
     return await model.save();
   } catch (err) {
     if (err.code === 11000) {
-      throw Error.Builder.DUPLICATED;
+      throw Error.DUPLICATED;
     }
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -36,7 +36,7 @@ LocalModel.updateData = async (cuid, model) => {
     const local = await LocalModel.updateOne({ cuid }, model);
     return local;
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -50,7 +50,7 @@ LocalModel.search = async (filter, limit, skip) => {
     };
     return await LocalModel.paginate(filter, options);
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -58,7 +58,7 @@ LocalModel.clean = async cuid => {
   try {
     await LocalModel.deleteOne({ cuid });
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -69,7 +69,7 @@ LocalModel.insertImage = async (cuid, image) => {
     photos.push(image);
     await LocalModel.updateData(cuid, { photos });
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -79,7 +79,7 @@ LocalModel.removeImage = async (cuid, image) => {
     const { photos = [] } = local;
     await LocalModel.updateData(cuid, { photos: photos.filter(item => item !== image) });
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 

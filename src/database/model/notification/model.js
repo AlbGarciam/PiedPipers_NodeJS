@@ -13,7 +13,7 @@ NotificationModel.getByCUID = async cuid => {
   try {
     return await NotificationModel.findOne({ cuid }).select(querySelect);
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -27,7 +27,7 @@ NotificationModel.search = async (query, limit, skip) => {
     };
     return await NotificationModel.paginate(query, options);
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -35,7 +35,7 @@ NotificationModel.clean = async cuid => {
   try {
     await NotificationModel.deleteOne({ cuid });
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -49,9 +49,9 @@ NotificationModel.create = async (cuid, destination, model) => {
     return await item.save();
   } catch (err) {
     if (err.code === 11000) {
-      throw Error.Builder.DUPLICATED;
+      throw Error.DUPLICATED;
     }
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -60,7 +60,7 @@ NotificationModel.updateData = async (cuid, model) => {
     const local = await NotificationModel.updateOne({ cuid }, model);
     return local;
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 

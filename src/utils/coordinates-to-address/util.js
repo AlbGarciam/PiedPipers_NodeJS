@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import axios from 'axios';
 import { Error } from '../../dto';
+import { ERROR_MSG } from '../../constants';
 
 const API_KEY = process.env.GEO_PROVIDER_KEY;
 const PROVIDER = 'api.opencagedata.com/geocode/v1/json';
@@ -10,7 +11,7 @@ const route = (lat, long) => {
 
 export default async (lat, long) => {
   if (!(!_.isNil(lat) && !_.isNil(long) && _.isNumber(lat) && _.isNumber(long))) {
-    throw Error.Builder.VALIDATION(Error.MSG_INVALID_LOCATION_ERROR);
+    throw Error.VALIDATION(ERROR_MSG.MSG_INVALID_LOCATION_ERROR);
   }
   try {
     const response = await axios.get(route(lat, long));
@@ -18,10 +19,10 @@ export default async (lat, long) => {
     const formatted = results.map(item => _.get(item, 'formatted'));
     const firstFormatted = _.first(_.compact(formatted));
     if (_.isNil(firstFormatted)) {
-      throw Error.Builder.VALIDATION(Error.MSG_INVALID_LOCATION_ERROR);
+      throw Error.VALIDATION(ERROR_MSG.MSG_INVALID_LOCATION_ERROR);
     }
     return firstFormatted;
   } catch (error) {
-    throw Error.Builder.UNKNOWN(error.message);
+    throw Error.UNKNOWN(error.message);
   }
 };

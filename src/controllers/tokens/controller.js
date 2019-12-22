@@ -15,13 +15,13 @@ const sha256 = data =>
 
 const decryptJWT = async token => {
   if (_.isEmpty(token)) {
-    throw Error.Builder.INVALID_TOKEN;
+    throw Error.INVALID_TOKEN;
   }
   const data = await JWT.verify(token, publicKey, {
     algorithm: process.env.JWT_ALGORITHM
   });
   if (_.isNull(data)) {
-    throw Error.Builder.INVALID_TOKEN;
+    throw Error.INVALID_TOKEN;
   } else {
     return data;
   }
@@ -41,7 +41,7 @@ controller.decodeToken = async jwt => {
   if (_.isEqual(sha256(key), token)) {
     return data;
   }
-  throw Error.Builder.INVALID_TOKEN;
+  throw Error.INVALID_TOKEN;
 };
 
 controller.encodeToken = data => {

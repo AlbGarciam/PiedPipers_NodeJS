@@ -10,7 +10,7 @@ TokenModel.get = async user => {
   try {
     return await TokenModel.find({ user }).select(querySelect);
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -23,9 +23,9 @@ TokenModel.register = async (user, token) => {
     return await item.save();
   } catch (err) {
     if (err.code === 11000) {
-      throw Error.Builder.DUPLICATED;
+      throw Error.DUPLICATED;
     }
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
@@ -33,7 +33,7 @@ TokenModel.unregister = async (user, token) => {
   try {
     await TokenModel.deleteOne({ user, token });
   } catch (err) {
-    throw Error.Builder.DATABASE(err.message);
+    throw Error.DATABASE(err.message);
   }
 };
 
