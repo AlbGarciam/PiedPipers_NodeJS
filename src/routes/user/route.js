@@ -25,7 +25,7 @@ const loginValidations = [
  * Route serving user's login.
  * @memberof UserRouter
  * @name Login
- * @route {POST} user/login
+ * @route {POST} users/login
  * @bodyparam {string} email - User's email
  * @bodyparam {string} password - User's password. It must have 5 or more characters
  * @see Success response {@link User}
@@ -61,7 +61,7 @@ const createValidations = [
  * Route serving authorization token generation process
  * @memberof UserRouter
  * @name Create user
- * @route {POST} user/create
+ * @route {POST} users/create
  * @bodyparam {string} email - User's email
  * @bodyparam {string} password - User's password. It must have 5 or more characters
  * @see Success response {@link User}
@@ -94,7 +94,7 @@ const updateValidations = [
  * Route serving user's password change.
  * @memberof UserRouter
  * @name Update password
- * @route {PATCH} user/update
+ * @route {PATCH} users/update
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user.
  * @bodyparam {string} password - User's password. It must have 5 or more characters
  * @see Success response {@link User}
@@ -122,7 +122,7 @@ router.patch(
  * Route serving user's removal process.
  * @memberof UserRouter
  * @name Remove user
- * @route {DELETE} user/
+ * @route {DELETE} users/
  * @authentication This route uses JWT verification. If you don't have the JWT you need to sign in with a valid user
  * @bodyparam {string} password - User's password. It must have 5 or more characters
  * @see Success response: HTTP 200 OK
@@ -143,7 +143,7 @@ router.delete('/', TokenMiddleware(), UserActionMiddleware(), async (req, res, n
  * Route serving user's email from a given id.
  * @memberof UserRouter
  * @name Get user from cuid
- * @route {GET} user/email
+ * @route {GET} users/email
  * @routeParam {string} cuid - User's unique identifier. It must have 5 or more characters
  * @see Success response: {@link module:dto/user UserDTO}
  * @see Error response: {@link Error}
