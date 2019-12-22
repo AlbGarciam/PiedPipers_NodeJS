@@ -112,6 +112,28 @@
 </code></pre>
 <ol start="2">
 <li>Configure <code>.env</code> file. You have an example on <code>.env.variables</code></li>
+</ol>
+<pre class="prettyprint source lang-bash"><code># Express configuration
+PORT = 8080
+
+# Mongo configuration
+MONGO_PATH = &quot;127.0.0.1&quot;
+MONGO_PORT = 2703
+MONGO_DATABASE = &quot;PiedPipers&quot;
+
+# JWT config
+JWT_ALGORITHM = &quot;RS256&quot;
+
+#In minutes
+USER_ACTION_TTL = 30
+
+#Firebase path
+FIREBASE_PATH = &quot;https://&lt;YOUR-FIREBASE>.firebaseio.com&quot;
+
+# Geo provider key https://opencagedata.com
+GEO_PROVIDER_KEY = &quot;YOUR GEO PROVIDER KEY&quot;
+</code></pre>
+<ol start="3">
 <li>Update <code>etc/keys/private.key</code> and <code>etc/keys/public.pem</code> to secure JWT</li>
 <li>Update <code>etc/keys/firebaseAccountKey.json</code> with your own key</li>
 <li>Install dependencies</li>

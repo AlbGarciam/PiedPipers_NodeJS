@@ -21,6 +21,29 @@ In order to deploy this project you should follow these steps:
 ```
 
 2. Configure `.env` file. You have an example on `.env.variables`
+
+```bash
+# Express configuration
+PORT = 8080
+
+# Mongo configuration
+MONGO_PATH = "127.0.0.1"
+MONGO_PORT = 2703
+MONGO_DATABASE = "PiedPipers"
+
+# JWT config
+JWT_ALGORITHM = "RS256"
+
+#In minutes
+USER_ACTION_TTL = 30
+
+#Firebase path
+FIREBASE_PATH = "https://<YOUR-FIREBASE>.firebaseio.com"
+
+# Geo provider key https://opencagedata.com
+GEO_PROVIDER_KEY = "YOUR GEO PROVIDER KEY"
+```
+
 3. Update `etc/keys/private.key` and `etc/keys/public.pem` to secure JWT
 4. Update `etc/keys/firebaseAccountKey.json` with your own key
 5. Install dependencies
