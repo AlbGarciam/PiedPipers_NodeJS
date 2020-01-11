@@ -7,7 +7,8 @@
     "database": "mongod --config ./etc/mongo.conf",
     "start": "babel-node ./src",
     "start:dev": "nodemon --exec babel-node ./src",
-    "doc": "./node_modules/.bin/jsdoc -c jsdoc.json -R README.md"
+    "doc": "./node_modules/.bin/jsdoc -c jsdoc.json -R README.md",
+    "fill": "babel-node ./samples/fill-remote.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
